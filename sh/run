@@ -22,8 +22,8 @@ case "$@" in
   "lobby-tv")
     exec src/lobby-tv/main
     ;;
-  "01")
-    exec src/01/main
+  "vertical-01")
+    exec src/vertical-01/main
     ;;
   "menu")
     exec src/menu/main

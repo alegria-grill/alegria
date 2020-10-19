@@ -16,7 +16,7 @@ auto_hide_cursor
 day = Time.new.strftime("%a")
 
 while true
-  Alegria.pcmanfm_wallpaper("images/01/current.png")
+  Alegria.pcmanfm_wallpaper("images/vertical-01/current.png")
   sleep_to_min
   while !on_15th_minute?
     sleep_to_min
