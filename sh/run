@@ -19,8 +19,8 @@ killall vlc || :
 git pull || :
 
 case "$@" in
-  "tv")
-    exec src/tv/main
+  "lobby-tv")
+    exec src/lobby-tv/main
     ;;
   "01")
     exec src/01/main
