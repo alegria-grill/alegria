@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require "./src/alegria"
+
+def update_menu
+  Alegria.feh_bg_center("images/menu/menu_01.png", "images/menu/menu_02.png")
+end
+
+minimize_windows
+hide_mouse_cursor
+
+auto_reboot
+auto_git_pull
+auto_hide_cursor
+Alegria.pcmanfm_desktop_off
+
+update_menu
+sleep 60
+
+while true
+  if on_15th_minute?
+    sleep 120 # wait for git to download to files
+    update_menu
+  end # if
+
+  sleep_to_min
+end # while
