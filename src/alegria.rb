@@ -249,7 +249,7 @@ class Alegria
       end # def now!
 
       def latest
-        File.read(CACHE_FILE)
+        "Ignore" # File.read(CACHE_FILE)
       end
 
       def yes?
