@@ -5,7 +5,8 @@ cd /apps/alegria && git pull || :
 
 echo "=== Current directory: $PWD"
 echo "=== Date: $(date)"
-fbi -t 10 -noverbose -l ~/files.txt || {
+cd /home/pi/images
+fbi -a -t 5 -noverbose  *.jpg *.png || {
   echo "!!! $?"
   sleep 5
 }
