@@ -259,8 +259,8 @@ class Alegria
       def reboot_time?
         now = Time.new
         min = now.strftime("%-M").to_i
-        hour24   = now.strftime("%-H").to_i
-        hour24 == 10 && min == 5
+        hour24 = now.strftime("%-H").to_i
+        hour24 == 6 && min == 5
       end # def
     end # class
   end # class Auto_Reboot

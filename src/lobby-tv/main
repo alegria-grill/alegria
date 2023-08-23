@@ -1,18 +1,11 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env zsh
 
-require "./src/alegria"
+set -x
+cd /apps/alegria && git pull || :
 
-minimize_windows
-hide_mouse_cursor
-
-auto_reboot
-auto_git_pull
-auto_hide_cursor
-
-while true
-  Alegria.pcmanfm_wallpaper("images/lobby-tv/current.png")
-  sleep_to_min
-  while !on_15th_minute?
-    sleep_to_min
-  end
-end # while
+echo "=== Current directory: $PWD"
+echo "=== Date: $(date)"
+fbi -t 10 -noverbose -l ~/files.txt || {
+  echo "!!! $?"
+  sleep 5
+}

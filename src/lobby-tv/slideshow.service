@@ -1,0 +1,12 @@
+[Unit]
+Description=Pi Slideshow
+After=network-online.target
+
+[Service]
+Environment=Display=:0
+ExecStart=/apps/alegria/sh/run lobby-tv
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
