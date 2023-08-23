@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
 set -x
-cd /apps/alegria && git pull || :
 
 echo "=== Current directory: $PWD"
 echo "=== Date: $(date)"
