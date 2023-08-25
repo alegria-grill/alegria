@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
 
 set -x
-cd /apps/alegria && git pull || :
 
 echo "=== Current directory: $PWD"
 echo "=== Date: $(date)"
-cd /home/pi/images
-fbi -a -t 5 -noverbose  *.jpg *.png || {
-  echo "!!! $?"
+cd /home/pi
+find images/ -type f -name '*.jpg' -or -name '*.png' > list.txt
+fbi -a -t 5 -noverbose -l $PWD/list.txt || {
+  echo "!!! Failed with exit status: $?"
   sleep 5
 }

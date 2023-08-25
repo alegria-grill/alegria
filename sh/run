@@ -11,11 +11,6 @@ fi
 cd /apps/alegria
 mkdir -p tmp
 
-killall lemonbar || :
-killall mpv || :
-killall smplayer || :
-killall vlc || :
-
 git pull || :
 
 case "$@" in
