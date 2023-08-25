@@ -8,7 +8,7 @@ if ! test "$USER" = "pi" ; then
   set -x
 fi
 
-cd $HOME/apps/alegria
+cd /apps/alegria
 mkdir -p tmp
 
 killall lemonbar || :
