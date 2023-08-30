@@ -4,9 +4,11 @@
 echo "========================================"
 echo "=== DISPLAY: $DISPLAY"
 echo "=== SHLVL:   $SHLVL"
+echo "=== SSH_CLIENT: $SSH_CLIENT"
+echo "=== SSH_TTY:    $SSH_TTY"
 echo "========================================"
 echo
-if [ -z "$DISPLAY" ] && ! pgrep -x fbi && test "$SHLVL" -lt 2 ; then
+if [ -z "$DISPLAY" ] && test -z "$SSH_CLIENT" && ! pgrep -x fbi && test "$SHLVL" -lt 2 ; then
   /apps/alegria/sh/run lobby-tv || echo "!!! Done with exit status: $?"
 fi
 echo
