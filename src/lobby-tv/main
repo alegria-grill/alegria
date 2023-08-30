@@ -6,7 +6,7 @@ echo "=== Current directory: $PWD"
 echo "=== Date: $(date)"
 cd /home/pi
 find images/ -type f -name '*.jpg' -or -name '*.png' > list.txt
-fbi -a -t 5 -noverbose -u -l $PWD/list.txt || {
+fbi -a --blend 400 -t 5 -noverbose -u -l $PWD/list.txt || {
   echo "!!! Failed with exit status: $?"
   sleep 5
 }
