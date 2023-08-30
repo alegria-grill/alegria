@@ -2,8 +2,8 @@
 # sudo raspi-config
 # source /apps/alegria/src/lobby-tv/bashrc.sh
 echo "========================================"
-echo "=== DISPLAY: $DISPLAY"
-echo "=== SHLVL:   $SHLVL"
+echo "=== DISPLAY:    $DISPLAY"
+echo "=== SHLVL:      $SHLVL"
 echo "=== SSH_CLIENT: $SSH_CLIENT"
 echo "=== SSH_TTY:    $SSH_TTY"
 echo "========================================"
