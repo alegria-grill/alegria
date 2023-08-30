@@ -1,9 +1,15 @@
 
 # sudo raspi-config
 # source /apps/alegria/src/lobby-tv/bashrc.sh
-set -x
+echo "========================================"
+echo "=== DISPLAY: $DISPLAY"
+echo "=== SHLVL:   $SHLVL"
+echo "========================================"
+echo
 if [ -z "$DISPLAY" ] && ! pgrep -x fbi && test "$SHLVL" -lt 2 ; then
-  { /apps/alegria/sh/run lobby-tv && echo "=== Slideshow has ended. ==="  || echo "!!! Done with exit status: $?"
+  /apps/alegria/sh/run lobby-tv || echo "!!! Done with exit status: $?"
 fi
-set +x
+echo
+echo
+echo "=== Slideshow has ended. ==="
 
