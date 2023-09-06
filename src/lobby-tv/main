@@ -6,6 +6,12 @@ echo "=== Current directory: $PWD"
 echo "=== Date: $(date)"
 cd $HOME
 find images/ -type f -iname '*.jpg' -or -iname '*.png' > list.txt
-fbi -a -blend 400 -t 5 -noverbose -u -l $PWD/list.txt || {
+fbi -a -t 5 -noverbose -u -l $PWD/list.txt || {
   echo "!!! Failed with exit status: $?"
 }
+
+sleep 30
+if ! test -f /tmp/stop.txt ; then
+  exec $0
+fi
+echo "=== Script is exiting."
