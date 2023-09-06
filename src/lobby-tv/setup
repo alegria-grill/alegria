@@ -10,6 +10,6 @@ if diff "$sfile" "$ofile" ; then
   batcat "$sfile"
 else
   set -x
-  sudo apt install zsh ruby git fbi bat tree
   sudo cp -f -i  "$ofile" "$sfile"
 fi
+sudo apt install zsh ruby git fbi bat tree cec-utils neovim
