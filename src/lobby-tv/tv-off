@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail
+
+{ echo standby 0 | cec-client -s -d 1 ; } || sudo shutdown -h now
