@@ -3,8 +3,11 @@
 set  -u -e
 cd /apps/alegria
 
+sudo apt install zsh ruby git fbi bat tree cec-utils neovim
+
 sfile="/lib/systemd/system/slideshow.service"
 ofile="/apps/alegria/src/lobby-tv/slideshow.service"
+
 if diff "$sfile" "$ofile" ; then
   echo "==== Service already installed" >&2
   batcat "$sfile"
@@ -12,4 +15,3 @@ else
   set -x
   sudo cp -f -i  "$ofile" "$sfile"
 fi
-sudo apt install zsh ruby git fbi bat tree cec-utils neovim
