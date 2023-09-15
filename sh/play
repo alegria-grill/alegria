@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+#
+#
+set -u -e -x
+
+
+mpv --sub-auto=all --slang=en --sid=1  "$*"

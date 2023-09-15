@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+#
+#
+
+files = `find . -type f`
+files.split("\n").map { |l|
+  old_file = l
+  new_file = l.gsub(/[^a-zA-Z0-9\_\-\.\/]+/, '_')
+  if old_file != new_file
+    puts "=== #{old_file}"
+    puts "    #{new_file}"
+    `mv "#{old_file}" "#{new_file}"`
+  end
+}

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#
+#
+set -u -e -o pipefail -x
+
+cd ~/Videos
+vlc -f --no-video-title-show *.webm
+
