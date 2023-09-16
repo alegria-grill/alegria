@@ -2,7 +2,12 @@
 
 set  -u -e -x
 
-sudo apt install zsh ruby git fbi bat tree cec-utils neovim vlc
+sudo apt update
+sudo apt full-upgrade
+
+sudo apt install zsh ruby git fbi bat tree cec-utils neovim vlc feh
+git config --global user.name "lobby-tv-desktop"
+git config --global user.email "1551848+da99@users.noreply.github.com"
 
 # sfile="/lib/systemd/system/slideshow.service"
 # ofile="/apps/alegria/src/lobby-tv/slideshow.service"
