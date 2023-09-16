@@ -8,9 +8,7 @@ if ! test "$USER" = "pi" ; then
   set -x
 fi
 
-cd /apps/alegria
-mkdir -p tmp
-
+cd /home/pi/apps/alegria
 git pull || :
 
 case "$@" in

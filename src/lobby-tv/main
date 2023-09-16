@@ -1,17 +1,44 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env ruby
 
-set -x
+require "./src/alegria"
+HOME_DIR="/home/pi"
+puts "=== Current directory: #{HOME_DIR}"
+puts "=== Date: #{Time.now}"
 
-echo "=== Current directory: $PWD"
-echo "=== Date: $(date)"
-cd $HOME
-find images/ -type f -iname '*.jpg' -or -iname '*.png' > list.txt
-fbi -a -t 5 -noverbose -u -l $PWD/list.txt || {
-  echo "!!! Failed with exit status: $?"
-}
+do_loop = true
 
-sleep 30
-if ! test -f /tmp/stop.txt ; then
-  exec $0
-fi
-echo "=== Script is exiting."
+# fbi -a -t 5 -noverbose -u -l $PWD/list.txt || {
+
+class File_Loop
+  attr_reader :i, :list
+  def initialize(cmd)
+    @i = 0
+    @list = `#{cmd}`.strip.split("\n"))
+  end # def
+
+  def next
+    photo = @list[@i]
+    @i += 1
+    @i = 0 if @i > (@list.size - 1)
+    photo
+  end
+
+  def current
+    @list[@i]
+  end
+
+  def nth?(x)
+    (@i % x) == 0
+  end
+end # class
+
+photos = File_Loop.new(`find "#{HOME_DIR}/Pictures/" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom`
+videos = File_Loop.new(`find "#{HOME_DIR}/Videos/ -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'`)
+
+while do_loop
+  puts `feg --bg-fill "#{photos.next}"`.strip
+  sleep 5
+  if photos.nth?(10)
+    `vlc -f --no-video-title-show #{videos.next}`
+  end
+end # while
