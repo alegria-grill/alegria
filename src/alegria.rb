@@ -219,9 +219,9 @@ class Alegria
 
   def self.pcmanfm_wallpaper(raw_photo)
     new_photo = File.expand_path(raw_photo)
-    if !(new_photo.index(Dir.pwd) == 0)
-      raise "invalid image path: #{new_photo.inspect}"
-    end
+    # if !(new_photo.index(Dir.pwd) == 0)
+    #  raise "invalid image path: #{new_photo.inspect}"
+    # end
 
     full_path = new_photo
     STDERR.puts "=== Updating background to: #{full_path}"

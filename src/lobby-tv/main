@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 require "./src/alegria"
+
+sleep 3
 minimize_windows
 hide_mouse_cursor
 
@@ -12,12 +14,18 @@ puts "=== Date: #{Time.now}"
 do_loop = true
 
 # fbi -a -t 5 -noverbose -u -l $PWD/list.txt || {
+#
+
+def run_cmd(cmd)
+  puts "=== Running: #{cmd}"
+  puts `#{cmd}`.strip
+end
 
 class File_Loop
   attr_reader :i, :list
   def initialize(cmd)
     @i = 0
-    @list = `#{cmd}`.strip.split("\n"))
+    @list = `#{cmd}`.strip.split("\n")
   end # def
 
   def next
@@ -36,14 +44,14 @@ class File_Loop
   end
 end # class
 
-photos = File_Loop.new(`find "#{HOME_DIR}/Pictures/" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom`
-videos = File_Loop.new(`find "#{HOME_DIR}/Videos/ -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'`)
+photos = File_Loop.new(%[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom])
+videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
 
 while do_loop
-  puts `feg --bg-fill "#{photos.next}"`.strip
+  run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
   sleep 5
   if photos.nth?(10)
-    `vlc -f --no-video-title-show #{videos.next}`
+    system(%[vlc -f --no-video-title-show "#{videos.next}"])
   end
   if Time.now.strftime('%k').to_i > (12 + 4)
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip

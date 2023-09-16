@@ -5,7 +5,7 @@ set  -u -e -x
 sudo apt update
 sudo apt full-upgrade
 
-sudo apt install zsh ruby git fbi bat tree cec-utils neovim vlc feh
+sudo apt install zsh ruby git fbi bat tree cec-utils neovim vlc feh wmctrl xdotool ripgrep pcmanfm
 git config --global user.name "lobby-tv-desktop"
 git config --global user.email "1551848+da99@users.noreply.github.com"
 
