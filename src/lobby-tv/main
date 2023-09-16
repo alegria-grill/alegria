@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 
 require "./src/alegria"
+minimize_windows
+hide_mouse_cursor
+
+
 HOME_DIR="/home/pi"
 puts "=== Current directory: #{HOME_DIR}"
 puts "=== Date: #{Time.now}"
@@ -40,5 +44,9 @@ while do_loop
   sleep 5
   if photos.nth?(10)
     `vlc -f --no-video-title-show #{videos.next}`
+  end
+  if Time.now.strftime('%k').to_i > (12 + 4)
+    puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
+    do_loop = false
   end
 end # while

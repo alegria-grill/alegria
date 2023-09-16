@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+#
+set -u -e -o pipefail
+
+case "$@" in
+  off)
+    { echo standby 0 | cec-client -s -d 1 ; }
+    ;;
+  *)
+    { echo on 0 | cec-client -s -d 1 ; }
+    ;;
+esac

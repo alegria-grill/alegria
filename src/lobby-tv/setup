@@ -1,7 +1,6 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env sh
 
-set  -u -e
-cd /apps/alegria
+set  -u -e -x
 
 sudo apt install zsh ruby git fbi bat tree cec-utils neovim vlc
 
