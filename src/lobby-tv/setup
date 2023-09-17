@@ -6,9 +6,26 @@ sudo apt update
 sudo apt full-upgrade
 
 sudo apt install zsh ruby git fbi bat tree cec-utils neovim vlc feh wmctrl xdotool ripgrep pcmanfm
+sudo apt autoremove
+
 git config --global user.name "lobby-tv-desktop"
 git config --global user.email "1551848+da99@users.noreply.github.com"
 
+if ! test -e /apps ; then
+  sudo ln -s $HOME/apps /apps
+fi
+
+cd /apps/alegria
+if ! diff /etc/ssh/sshd_config.d/pi.conf src/lobby-tv/pi.ssh.conf ; then
+  sudo cp -f src/lobby-tv/pi.ssh.conf /etc/ssh/sshd_config.d/pi.conf
+fi
+
+set +x
+echo
+echo
+echo "=== DONE ===="
+echo
+echo
 # sfile="/lib/systemd/system/slideshow.service"
 # ofile="/apps/alegria/src/lobby-tv/slideshow.service"
 #
