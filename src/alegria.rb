@@ -24,7 +24,10 @@ def hide_mouse_cursor
 end
 
 def minimize_windows
-  `wmctrl -l`.strip.split("\n").each { |x| `xdotool windowminimize "#{x.split.first}"` }
+  `wmctrl -l  | grep -v pcmanfm | cut -d' ' -f1`
+    .strip
+    .split("\n")
+    .each { |x| x && x.size > 8 && `xdotool windowminimize "#{x}"` }
 end
 
 def process?(x)
