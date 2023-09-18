@@ -50,9 +50,9 @@ videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname '
 while do_loop
   run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
   sleep 5
-  if photos.nth?(20)
-    system(%[vlc -f --no-video-title-show "#{videos.next}"])
-  end
+  # if photos.nth?(20)
+  #   system(%[vlc -f --no-video-title-show "#{videos.next}"])
+  # end
   if !`ip addr show`["10.9.3"] && Time.now.strftime('%k').to_i > (12 + 3)
     run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/home/pi/Pictures/felip.eli.tota.jpg"])
     sleep 10
