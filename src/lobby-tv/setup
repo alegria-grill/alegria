@@ -5,7 +5,7 @@ set  -u -e -x
 sudo apt update
 sudo apt full-upgrade
 
-sudo apt install zsh ruby git fbi bat tree cec-utils neovim vlc feh wmctrl xdotool ripgrep pcmanfm
+sudo apt install zsh ruby git fbi bat tree cec-utils neovim vlc feh wmctrl xdotool ripgrep pcmanfm mpv smplayer
 sudo apt autoremove
 
 git config --global user.name "lobby-tv-desktop"

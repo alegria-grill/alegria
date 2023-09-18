@@ -3,5 +3,5 @@
 #
 set -u -e -x
 
-yt-dlp --write-sub --write-auto-sub --sub-lang "en.*" $@
+yt-dlp --write-sub --write-auto-sub --sub-lang "es.*" $@
 
