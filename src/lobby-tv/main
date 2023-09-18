@@ -2,6 +2,7 @@
 
 require "./src/alegria"
 
+puts ` echo on 0 | cec-client -s -d 1 ; `.strip
 sleep 3
 minimize_windows
 hide_mouse_cursor
