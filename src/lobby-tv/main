@@ -59,4 +59,5 @@ while do_loop
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
     do_loop = false
   end
+  system("git pull")
 end # while
