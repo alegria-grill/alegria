@@ -46,14 +46,14 @@ class File_Loop
 end # class
 
 # photos = File_Loop.new(%[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom])
-photos = File_Loop.new(%[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png'])
+photos = File_Loop.new(%[find "#{HOME_DIR}/Pictures/temp/" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png'])
 videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
 corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
 
+run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
 while do_loop
-  run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
+  sleep 120
   system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
-  # sleep 5
   if !`ip addr show`["10.9.3"] && Time.now.strftime('%k').to_i > (12 + 5)
     run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/home/pi/Pictures/felip.eli.tota.jpg"])
     sleep 10
