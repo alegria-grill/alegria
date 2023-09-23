@@ -46,19 +46,41 @@ class File_Loop
 end # class
 
 # photos = File_Loop.new(%[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom])
-photos = File_Loop.new(%[find "#{HOME_DIR}/Pictures/temp/" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png'])
-videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
+photo_ext  = %[ -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' ]
+photos     = File_Loop.new(%[find "#{HOME_DIR}/Pictures/temp/" -maxdepth 1 #{photo_ext} -exec ls -1t "{}" +  ])
+slide_show = File_Loop.new(%[find "#{HOME_DIR}/Pictures/" -maxdepth 1 #{photo_ext} ])
+videos     = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
 corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
 
-run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
 while do_loop
-  sleep 300
-  system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
-  if !`ip addr show`["10.9.3"] && Time.now.strftime('%k').to_i > (12 + 5)
+  hour     = Time.now.strftime('%k').to_i
+  minute   = Time.now.strftime('%M').to_i
+  early_morning = hour < 7 && minute < 51
+  morning    = !early_morning && hour >= 7 && hour < 12
+  lunch      = hour == 11 && minute < 15
+  after_noon = hour >= 12
+  shutdown   = hour > (12 + 4)
+
+  case
+  when early_morning
+    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
+    sleep 15
+
+  when lunch
+    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
+    sleep 6
+
+  when shutdown
     run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/home/pi/Pictures/felip.eli.tota.jpg"])
     sleep 10
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
     do_loop = false
     system("git pull")
+    
+  else
+    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
+    sleep 300
+    system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
   end
+
 end # while

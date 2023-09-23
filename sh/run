@@ -9,7 +9,6 @@ if ! test "$USER" = "pi" ; then
 fi
 
 cd /home/pi/apps/alegria
-git pull || :
 
 case "$@" in
   "lobby-tv")
@@ -20,6 +19,9 @@ case "$@" in
     ;;
   "menu")
     exec src/menu/main
+    ;;
+  "pull"
+    git pull
     ;;
   *)
     echo "!!! Invalid option: $@" >&2

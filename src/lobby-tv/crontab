@@ -20,4 +20,5 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
 52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
 0 6	* * mon,tue,wed,thu,fri	root	reboot
+50 5	* * *	pi	/home/pi/apps/alegria/run pull 
 #
