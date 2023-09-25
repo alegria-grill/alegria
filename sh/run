@@ -20,7 +20,7 @@ case "$@" in
   "menu")
     exec src/menu/main
     ;;
-  "pull"
+  "pull")
     git pull
     ;;
   *)
