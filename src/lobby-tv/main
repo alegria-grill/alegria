@@ -66,18 +66,20 @@ while do_loop
     run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
     sleep 15
 
-  when lunch
-    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
-    sleep 6
-
+#  when lunch
+#    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
+#    sleep 6
+#
   when shutdown
-    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/home/pi/Pictures/felip.eli.tota.jpg"])
-    sleep 10
+#    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/home/pi/Pictures/felip.eli.tota.jpg"])
+#    sleep 10
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
     do_loop = false
     system("git pull")
     
   else
+    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
+    sleep 300
     run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
     sleep 300
     system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
