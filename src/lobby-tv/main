@@ -63,7 +63,7 @@ corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -in
 system("sh/run update accident sign")
 
 def show_accident_days
-  run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "images/accident.svg"])
+  run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/alegria/images/accident.svg"])
 end
 
 while do_loop
