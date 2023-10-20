@@ -58,6 +58,7 @@ photo_ext  = %[ -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' ]
 photos     = File_Loop.new(%[find "#{HOME_DIR}/Pictures/temp/" -maxdepth 1 #{photo_ext} ])
 slide_show = File_Loop.new(%[find "#{HOME_DIR}/Pictures/" -maxdepth 1 #{photo_ext}   ])
 videos     = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
+fun_videos     = File_Loop.new(%[find "#{HOME_DIR}/Videos/fun" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
 corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
 
 system("sh/run update accident sign")
@@ -65,6 +66,7 @@ system("sh/run update accident sign")
 def show_accident_days
   run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/alegria/images/accident.svg"])
 end
+show_accident_days
 
 while do_loop
   hour     = Time.now.strftime('%k').to_i
@@ -77,7 +79,8 @@ while do_loop
 
   case
   when early_morning
-    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
+    # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
+    system(%[mpv --sub-auto=fuzzy --fullscreen "#{fun_videos.next}"])
     sleep 15
 
 
