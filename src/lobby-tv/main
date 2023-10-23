@@ -64,7 +64,7 @@ corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -in
 system("sh/run update accident sign")
 
 def show_accident_days
-  run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/alegria/images/accident.svg"])
+  run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/tmp/accident.svg"])
 end
 show_accident_days
 
@@ -83,17 +83,11 @@ while do_loop
     system(%[mpv --sub-auto=fuzzy --fullscreen "#{fun_videos.next}"])
     sleep 15
 
-
-#  when lunch
-#    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
-#    sleep 6
-#
   when shutdown
-#    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/home/pi/Pictures/felip.eli.tota.jpg"])
-#    sleep 10
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
     do_loop = false
     system("git pull")
+    system("sh/run update accident sign")
     
   else
     run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
@@ -101,6 +95,14 @@ while do_loop
     show_accident_days
     sleep 300
     system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
-  end
+
+  end # case
 
 end # while
+
+#  when lunch
+#    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
+#    sleep 6
+#    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/home/pi/Pictures/felip.eli.tota.jpg"])
+#    sleep 10
+#

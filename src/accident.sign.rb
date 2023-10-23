@@ -1,7 +1,7 @@
 
 LAST_ACCIDENT_TXT = "data/last.accident.timestamp"
 TEMPLATES_ACCIDENT = "templates/accident.svg"
-IMAGES_ACCIDENT = "images/accident.svg"
+IMAGES_ACCIDENT = "/tmp/accident.svg"
 NOW_TS = Time.now.to_i
 NOW = Time.now
 TODAY = Time.new(NOW.year, NOW.month, NOW.day, 0, 0, 0)
