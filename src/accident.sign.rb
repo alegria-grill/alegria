@@ -10,10 +10,12 @@ new_cmd = ARGV.join " "
 case new_cmd
 when "reset"
   File.write(LAST_ACCIDENT_TXT, NOW_TS.to_s)
+
 when /write\ +\d+/
   days = ARGV[1].to_i
   new_ts = TODAY.to_i - (24 * 60 * 60 * days)
   File.write(LAST_ACCIDENT_TXT, new_ts)
+
 when "update"
   new_count = begin
                 secs = Time.now.to_i - File.read(LAST_ACCIDENT_TXT).to_i
@@ -25,8 +27,11 @@ when "update"
     File.read(TEMPLATES_ACCIDENT).sub("!DAYS", new_count.to_s)
   )
   puts "Updated sign to read: #{new_count} days"
+  puts "File: #{IMAGES_ACCIDENT}"
+
 else
   STDERR.puts "!!! Unknown arguments: #{new_cmd.inspect}"
   exit 1
-end
+
+end # case
 
