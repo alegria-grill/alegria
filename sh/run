@@ -32,6 +32,7 @@ case "$@" in
     ;;
   "pull")
     git pull
+    ruby src/accident.sign.rb update
     ;;
   "reset accident sign")
     ruby src/accident.sign.rb reset
