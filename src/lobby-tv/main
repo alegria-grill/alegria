@@ -68,6 +68,7 @@ def show_accident_days
 end
 show_accident_days
 
+last_time = "none"
 while do_loop
   hour     = Time.now.strftime('%k').to_i
   minute   = Time.now.strftime('%M').to_i
@@ -77,24 +78,33 @@ while do_loop
   after_noon = hour >= 12
   shutdown   = hour > (12 + 4)
 
+  if early_morning && last_time != "early_morning"
+    system(%[amixer set Master "90%"])
+  else
+    system(%[amixer set Master "20%"])
+  end
+
   case
   when early_morning
     # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
     system(%[mpv --sub-auto=fuzzy --fullscreen "#{fun_videos.next}"])
     sleep 15
+    last_time = "early_morning"
 
   when shutdown
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
     do_loop = false
     system("git pull")
     system("sh/run update accident sign")
-    
+    last_time = "shutdown"
+
   else
     run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
     sleep 300
     show_accident_days
     sleep 300
     system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
+    last_time = "normal"
 
   end # case
 
