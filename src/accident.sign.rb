@@ -1,6 +1,8 @@
 
 LAST_ACCIDENT_TXT = "data/last.accident.timestamp"
 TEMPLATES_ACCIDENT = "templates/accident.svg"
+TEMPLATES_GREEN = "templates/accident.green.svg"
+TEMPLATES_YELLOW = "templates/accident.yellow.svg"
 IMAGES_ACCIDENT = "/tmp/accident.svg"
 NOW_TS = Time.now.to_i
 NOW = Time.now
@@ -22,9 +24,10 @@ when "update"
                 days = (secs/60/60/24).to_i
                 (days < 1) ? 0 : days
               end
+  tmpl = (new_count < 3) ? TEMPLATES_YELLOW : TEMPLATES_GREEN
   File.write(
     IMAGES_ACCIDENT,
-    File.read(TEMPLATES_ACCIDENT).sub("!DAYS", new_count.to_s)
+    File.read(tmpl).sub("!DAYS", new_count.to_s)
   )
   puts "Updated sign to read: #{new_count} days"
   puts "File: #{IMAGES_ACCIDENT}"
