@@ -4,8 +4,11 @@ require "./src/alegria"
 
 puts ` echo on 0 | cec-client -s -d 1 ; `.strip
 sleep 3
+
 minimize_windows
 hide_mouse_cursor
+auto_git_pull
+auto_hide_cursor
 
 
 HOME_DIR="/home/pi"
