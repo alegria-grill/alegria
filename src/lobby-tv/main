@@ -78,16 +78,15 @@ while do_loop
   after_noon = hour >= 12
   shutdown   = hour > (12 + 4)
 
-  if early_morning && last_time != "early_morning"
-    system(%[amixer set Master "90%"])
-  else
-    system(%[amixer set Master "20%"])
+  if !early_morning
+    system(%[amixer set Master 20%])
   end
 
   case
   when early_morning
     # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
     system(%[mpv --sub-auto=fuzzy --fullscreen "#{fun_videos.next}"])
+    system(%[amixer set Master 85%])
     sleep 15
     last_time = "early_morning"
 
