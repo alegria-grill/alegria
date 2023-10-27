@@ -10,6 +10,19 @@ hide_mouse_cursor
 auto_git_pull
 auto_hide_cursor
 
+pid = Process.pid
+fork {
+  puts "=== Starting forked process: #{Process.pid}"
+  while process?(pid)
+    fork {
+      `/apps/alegria/sh/run pull`
+      File.write("/tmp/lobby.pull.txt", Time.now.to_s)
+    }
+    sleep 120
+    sleep_to_hour
+  end
+  puts "=== Done forked process: #{Process.pid}"
+}
 
 HOME_DIR="/home/pi"
 puts "=== Current directory: #{HOME_DIR}"
