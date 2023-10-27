@@ -25,9 +25,10 @@ when "update"
                 (days < 1) ? 0 : days
               end
   tmpl = (new_count < 3) ? TEMPLATES_YELLOW : TEMPLATES_GREEN
+  plural = (new_count == 1) ? "" : "s"
   File.write(
     IMAGES_ACCIDENT,
-    File.read(tmpl).sub("!DAYS", new_count.to_s)
+    File.read(tmpl).sub("!DAYS", new_count.to_s).sub("!S", plural)
   )
   puts "Updated sign to read: #{new_count} days"
   puts "File: #{IMAGES_ACCIDENT}"

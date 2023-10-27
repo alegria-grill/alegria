@@ -30,6 +30,14 @@ case "$@" in
   "menu")
     exec src/menu/main
     ;;
+  "crontab update")
+    set -x
+    {
+     git pull;
+    ruby src/accident.sign.rb update;
+} &>/tmp/crontab.error.txt
+cat /tmp/crontab.error.txt
+    ;;
   "pull")
     git pull
     ruby src/accident.sign.rb update
