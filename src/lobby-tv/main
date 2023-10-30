@@ -88,15 +88,16 @@ last_time = "none"
 while do_loop
   hour     = Time.now.strftime('%k').to_i
   minute   = Time.now.strftime('%M').to_i
-  early_morning = hour < 7 && minute < 51
+  # early_morning = hour < 7 && minute < 51
+  early_morning = false
   morning    = !early_morning && hour >= 7 && hour < 12
   lunch      = hour == 11 && minute < 15
   after_noon = hour >= 12
   shutdown   = hour > (12 + 4)
 
-  if !early_morning
-    system(%[amixer set Master 20%])
-  end
+  # if !early_morning
+  #   system(%[amixer set Master 20%])
+  # end
 
   case
   when early_morning
