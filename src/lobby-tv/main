@@ -116,10 +116,12 @@ while do_loop
 
   else
     # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
-    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
-    sleep 10
+    5.times do
+      run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
+      sleep 12
+    end
     show_accident_days
-    sleep 15
+    sleep 30
     # system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
     last_time = "normal"
 
