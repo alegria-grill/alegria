@@ -115,13 +115,15 @@ while do_loop
     last_time = "shutdown"
 
   else
-    # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
-    5.times do
-      run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
-      sleep 12
-    end
+    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
+    sleep 15
+
+    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
+    sleep 12
+
     show_accident_days
     sleep 30
+
     # system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
     last_time = "normal"
 
