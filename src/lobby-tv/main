@@ -115,17 +115,22 @@ while do_loop
     last_time = "shutdown"
 
   else
-    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
-    sleep 15
-
-    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{photos.next}"])
-    sleep 15
+    3.times do
+      next_photo = photos.next
+      run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}"])
+      if next_photo["xmas"]
+        sleep 180
+      else
+        sleep 30
+      end
+    end
 
     show_accident_days
     sleep 30
 
-    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
-    sleep 12
+
+    # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
+    # sleep 12
 
     # system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
     last_time = "normal"
