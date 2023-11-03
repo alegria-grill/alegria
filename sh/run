@@ -33,14 +33,14 @@ case "$@" in
   "crontab update")
     set -x
     {
-     git pull;
-    ruby src/accident.sign.rb update;
-} &>/tmp/crontab.error.txt
-cat /tmp/crontab.error.txt
+       "$0" pull;
+    } &>/tmp/crontab.error.txt
+    cat /tmp/crontab.error.txt
     ;;
   "pull")
     git pull
     ruby src/accident.sign.rb update
+    (cd /apps/slides && git pull)
     ;;
   "reset accident sign")
     ruby src/accident.sign.rb reset
