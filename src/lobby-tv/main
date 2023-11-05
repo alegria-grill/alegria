@@ -117,13 +117,17 @@ while do_loop
   else
     3.times do
       next_photo = photos.next
-      run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}"])
-      if next_photo["xmas"]
+      case
+      when next_photo["xmas"]
+        run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}"])
         sleep 180
+      when next_photo["_hello"]
+        next
       else
+        run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}"])
         sleep 30
-      end
-    end
+      end # case
+    end # 3.times
 
     show_accident_days
     sleep 30
