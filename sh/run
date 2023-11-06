@@ -10,8 +10,6 @@ else
   cd /apps/alegria
 fi
 
-
-
 case "$@" in
   -h|--help|help)
     cmd="$0"
@@ -22,6 +20,11 @@ case "$@" in
     echo "     Updates accident file to today."
     ;;
   "lobby-tv")
+    if ! ping -c1 8.8.8.8 ; then
+      echo "--- Waiting for network..."
+      sleep 10
+    fi
+    { "$0" pull || echo "!!! error !!!"; } &>/tmp/lobby-tv.txt
     exec src/lobby-tv/main
     ;;
   "vertical-01")
