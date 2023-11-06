@@ -52,6 +52,10 @@ class File_Loop
     photo
   end
 
+  def length
+    @list.length
+  end
+
   def last_index
     @list.size - 1
   end
@@ -71,10 +75,10 @@ end # class
 
 # photos = File_Loop.new(%[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom])
 photo_ext  = %[ -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' ]
-photos     = File_Loop.new(%[find "#{HOME_DIR}/Pictures/temp/" -maxdepth 1 #{photo_ext} ])
+office     = File_Loop.new(%[find "/apps/slides/lobby-tv" -maxdepth 1 #{photo_ext} ])
 slide_show = File_Loop.new(%[find "#{HOME_DIR}/Pictures/" -maxdepth 1 #{photo_ext}   ])
 videos     = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
-fun_videos     = File_Loop.new(%[find "#{HOME_DIR}/Videos/fun" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
+fun_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/fun" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
 corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
 
 system("sh/run update accident sign")
@@ -88,22 +92,23 @@ last_time = "none"
 while do_loop
   hour     = Time.now.strftime('%k').to_i
   minute   = Time.now.strftime('%M').to_i
-  # early_morning = hour < 7 && minute < 51
-  early_morning = false
+  early_morning = hour < 7 && minute < 51
   morning    = !early_morning && hour >= 7 && hour < 12
   lunch      = hour == 11 && minute < 15
   after_noon = hour >= 12
   shutdown   = hour > (12 + 4)
 
-  # if !early_morning
-  #   system(%[amixer set Master 20%])
-  # end
+  if !early_morning
+    system(%[amixer set Master 20%])
+  end
 
   case
   when early_morning
+    system(%[amixer set Master 85%])
+    show_accident_days
+    sleep 30
     # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
     system(%[mpv --sub-auto=fuzzy --fullscreen "#{fun_videos.next}"])
-    system(%[amixer set Master 85%])
     sleep 15
     last_time = "early_morning"
 
@@ -115,23 +120,19 @@ while do_loop
     last_time = "shutdown"
 
   else
-    3.times do
-      next_photo = photos.next
+    office.length.times do
+      next_photo = office.next
+      run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}"])
       case
       when next_photo["xmas"]
-        run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}"])
         sleep 180
-      when next_photo["_hello"]
-        next
       else
-        run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}"])
         sleep 30
       end # case
-    end # 3.times
+    end # .times do
 
     show_accident_days
     sleep 30
-
 
     # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
     # sleep 12

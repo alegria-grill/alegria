@@ -42,21 +42,21 @@ end # def
 def on_minute?
   now = Time.new
   sec = now.strftime("%-S").to_i
-  sec < 2
+  sec < 5
 end # def
 
-def on_5th_minute?
+def on_min?(num)
   now = Time.new
   min = now.strftime("%-M").to_i
   sec = now.strftime("%-S").to_i
-  on_minute? && ((min % 5) == 0)
+  on_minute? && ((min % num) == 0)
+end
+def on_5th_minute?
+  on_min?(5)
 end # def
 
 def on_15th_minute?
-  now = Time.new
-  min = now.strftime("%-M").to_i
-  sec = now.strftime("%-S").to_i
-  on_minute? && ((min % 15) == 0)
+  on_min?(15)
 end # def
 
 def reboot_time?
@@ -78,6 +78,8 @@ def sleep_to_hour
   sec = now.strftime("%-S").to_i
   secs_left = (60 - sec) + 1
   mins_left  = 60 - min
+  secs_left = 1 if secs_left < 1
+  mins_left = 0 if mins_left < 1
   sleep(secs_left + (60 * mins_left))
 end # def
 
@@ -127,10 +129,8 @@ def auto_git_pull
   fork {
     puts "=== Starting forked process: #{Process.pid}"
     while process?(pid)
-      if on_15th_minute?
-        fork { `git pull` }
-      end
-      sleep_to_min
+      fork { `git pull; cd /apps/slides && git pull; ` }
+      sleep_to_hour
     end
     puts "=== Done forked process: #{Process.pid}"
   }
