@@ -41,6 +41,8 @@ case "$@" in
     cat /tmp/crontab.error.txt
     ;;
   "pull")
+    set -x
+    date
     git pull
     ruby src/accident.sign.rb update
     (cd /apps/slides && git pull)

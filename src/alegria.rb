@@ -129,7 +129,7 @@ def auto_git_pull
   fork {
     puts "=== Starting forked process: #{Process.pid}"
     while process?(pid)
-      fork { `git pull; cd /apps/slides && git pull; ` }
+      fork { `/apps/alegria/sh/run pull` }
       sleep_to_hour
     end
     puts "=== Done forked process: #{Process.pid}"
