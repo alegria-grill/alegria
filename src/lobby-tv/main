@@ -120,18 +120,20 @@ while do_loop
     last_time = "shutdown"
 
   else
-    office.length.times do
-      next_photo = office.next
-      run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}"])
-      sleep 60
-    end # .times do
+    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/2023_xmas_1.png"])
+    sleep 10
+
+    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/2023_xmas_2.png"])
+    sleep 60
 
     show_accident_days
     sleep 30
 
+    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/nov_birthdays.png"])
+    sleep 30
+
     # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
     # sleep 12
-
     # system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
     last_time = "normal"
 
