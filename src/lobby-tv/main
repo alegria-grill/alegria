@@ -123,12 +123,7 @@ while do_loop
     office.length.times do
       next_photo = office.next
       run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}"])
-      case
-      when next_photo["xmas"]
-        sleep 180
-      else
-        sleep 30
-      end # case
+      sleep 60
     end # .times do
 
     show_accident_days
