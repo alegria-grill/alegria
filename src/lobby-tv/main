@@ -121,7 +121,7 @@ while do_loop
 
   else
     run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/2023_xmas_1.png"])
-    sleep 10
+    sleep 15
 
     run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/2023_xmas_2.png"])
     sleep 60
