@@ -134,7 +134,7 @@ while do_loop
 
     # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
     # sleep 12
-    # system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
+    system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
     last_time = "normal"
 
   end # case
