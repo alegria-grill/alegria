@@ -120,6 +120,7 @@ while do_loop
     last_time = "shutdown"
 
   else
+    system(%[amixer set Master 25%])
     run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/2023_xmas_1.png"])
     sleep 15
 
