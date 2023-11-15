@@ -106,10 +106,9 @@ while do_loop
   when early_morning
     system(%[amixer set Master 85%])
     show_accident_days
-    sleep 30
+    sleep 5
     # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
     system(%[mpv --sub-auto=fuzzy --fullscreen "#{fun_videos.next}"])
-    sleep 15
     last_time = "early_morning"
 
   when shutdown
