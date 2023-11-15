@@ -20,7 +20,7 @@ def jpg_for_today(raw_dir)
 end # def
 
 def hide_mouse_cursor
-  `xdotool mousemove 1080 1980`
+  `xdotool mousemove 1980 0`
 end
 
 def minimize_windows
