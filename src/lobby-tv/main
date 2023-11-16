@@ -86,14 +86,15 @@ def show_accident_days
 end
 show_accident_days
 
+def hour
+  Time.now.strftime('%k').to_i
+end
+
 def early_morning?
-  hour     = Time.now.strftime('%k').to_i
-  minute   = Time.now.strftime('%M').to_i
-  hour < 7 && minute < 55
+  hour < 7
 end
 
 def shutdown?
-  hour = Time.now.strftime('%k').to_i
   hour > (12 + 4)
 end
 
