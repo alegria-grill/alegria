@@ -11,27 +11,24 @@ auto_git_pull
 auto_hide_cursor
 
 pid = Process.pid
-fork {
+fork do
   puts "=== Starting forked process: #{Process.pid}"
   while process?(pid)
-    fork {
+    fork do
       `/apps/alegria/sh/run pull`
-      File.write("/tmp/lobby.pull.txt", Time.now.to_s)
-    }
+      File.write('/tmp/lobby.pull.txt', Time.now.to_s)
+    end # fork
     sleep 120
     sleep_to_hour
   end
   puts "=== Done forked process: #{Process.pid}"
-}
+end # fork
 
 HOME_DIR="/home/pi"
 puts "=== Current directory: #{HOME_DIR}"
 puts "=== Date: #{Time.now}"
 
 do_loop = true
-
-# fbi -a -t 5 -noverbose -u -l $PWD/list.txt || {
-#
 
 def run_cmd(cmd)
   puts "=== Running: #{cmd}"
@@ -40,6 +37,7 @@ end
 
 class File_Loop
   attr_reader :i, :list
+
   def initialize(cmd)
     @i = 0
     @list = `#{cmd}`.strip.split("\n")
@@ -68,8 +66,8 @@ class File_Loop
     @list[@i]
   end
 
-  def nth?(x)
-    (@i % x) == 0
+  def nth?(num)
+    (@i % num).zero?
   end
 end # class
 
@@ -81,69 +79,64 @@ videos     = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -ina
 fun_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/fun" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
 corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
 
-system("sh/run update accident sign")
+system 'sh/run update accident sign'
 
 def show_accident_days
-  run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/tmp/accident.svg"])
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/tmp/accident.svg")
 end
 show_accident_days
 
-last_time = "none"
-while do_loop
+def early_morning?
   hour     = Time.now.strftime('%k').to_i
   minute   = Time.now.strftime('%M').to_i
-  early_morning = hour < 7 && minute < 51
-  morning    = !early_morning && hour >= 7 && hour < 12
-  lunch      = hour == 11 && minute < 15
-  after_noon = hour >= 12
-  shutdown   = hour > (12 + 4)
+  hour < 7 && minute < 55
+end
 
-  if !early_morning
-    system(%[amixer set Master 20%])
+def shutdown?
+  hour = Time.now.strftime('%k').to_i
+  hour > (12 + 4)
+end
+
+if early_morning?
+  system %(amixer set Master 85%)
+else
+  system %(amixer set Master 20%)
+end
+sleep 5
+
+show_accident_days
+
+while do_loop
+
+  if early_morning?
+    # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
+    system %(mpv --sub-auto=fuzzy --fullscreen "#{fun_videos.next}")
+    sleep 5
+    next
   end
 
-  case
-  when early_morning
-    system(%[amixer set Master 85%])
-    show_accident_days
-    sleep 5
-    # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
-    system(%[mpv --sub-auto=fuzzy --fullscreen "#{fun_videos.next}"])
-    last_time = "early_morning"
-
-  when shutdown
+  if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
     do_loop = false
-    system("git pull")
-    system("sh/run update accident sign")
-    last_time = "shutdown"
+    system 'git pull'
+    system 'sh/run update accident sign'
+    next
+  end
 
-  else
-    system(%[amixer set Master 25%])
-    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/2023_xmas_1.png"])
-    sleep 15
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/2023_xmas_1.png")
+  sleep 15
 
-    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/2023_xmas_2.png"])
-    sleep 60
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/2023_xmas_2.png")
+  sleep 60
 
-    show_accident_days
-    sleep 30
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/nov_birthdays.png")
+  sleep 30
 
-    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/nov_birthdays.png"])
-    sleep 30
+  system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
+  show_accident_days
+  sleep 30
 
-    # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
-    # sleep 12
-    system(%[mpv --sub-auto=fuzzy --fullscreen "#{videos.next}"])
-    last_time = "normal"
-
-  end # case
+  # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
+  # sleep 12
 
 end # while
-
-#  when lunch
-#    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
-#    sleep 6
-#    run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "/home/pi/Pictures/felip.eli.tota.jpg"])
-#    sleep 10
-#
