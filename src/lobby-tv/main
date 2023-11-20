@@ -10,20 +10,6 @@ hide_mouse_cursor
 auto_git_pull
 auto_hide_cursor
 
-pid = Process.pid
-fork do
-  puts "=== Starting forked process: #{Process.pid}"
-  while process?(pid)
-    fork do
-      `/apps/alegria/sh/run pull`
-      File.write('/tmp/lobby.pull.txt', Time.now.to_s)
-    end # fork
-    sleep 120
-    sleep_to_hour
-  end
-  puts "=== Done forked process: #{Process.pid}"
-end # fork
-
 HOME_DIR="/home/pi"
 puts "=== Current directory: #{HOME_DIR}"
 puts "=== Date: #{Time.now}"
@@ -133,7 +119,7 @@ while do_loop
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
     do_loop = false
-    system 'git pull'
+    system "/apps/alegria/sh/run pull"
     Accidents.show
     next
   end

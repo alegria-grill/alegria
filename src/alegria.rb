@@ -129,7 +129,11 @@ def auto_git_pull
   fork {
     puts "=== Starting forked process: #{Process.pid}"
     while process?(pid)
-      fork { `/apps/alegria/sh/run pull` }
+      fork do
+        system "/apps/alegria/sh/run pull"
+        File.write('/tmp/lobby.pull.txt', Time.now.to_s)
+      end
+      sleep 120
       sleep_to_hour
     end
     puts "=== Done forked process: #{Process.pid}"
