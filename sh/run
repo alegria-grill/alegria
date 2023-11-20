@@ -46,7 +46,6 @@ case "$@" in
     set -x
     date
     git pull
-    ruby src/accident.sign.rb update
     (cd /apps/slides && git pull)
     ;;
   "reset accident sign")
