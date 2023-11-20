@@ -20,10 +20,12 @@ case "$@" in
     echo "     Updates accident file to today."
     ;;
   "lobby-tv")
-    if ! ping -c1 8.8.8.8 ; then
+    count=0
+    while test "$count" -lt 11 && ! ping -c1 8.8.8.8; ; do
       echo "--- Waiting for network..."
-      sleep 10
-    fi
+      sleep 1
+      count="$((count + 1))"
+    done
     { "$0" pull || echo "!!! error !!!"; } &>/tmp/lobby-tv.txt
     exec src/lobby-tv/main
     ;;
