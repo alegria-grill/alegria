@@ -79,12 +79,26 @@ videos     = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -ina
 fun_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/fun" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
 corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
 
-system 'sh/run update accident sign'
 
-def show_accident_days
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/tmp/accident.svg")
-end
-show_accident_days
+class Accidents
+  @@last_time = 0
+  class << self
+    def update
+      new_time = File.read("/apps/alegria/data/last.accident.timestamp")
+      if new_time != @@last_time
+        @@last_time = new_time
+        system 'sh/run update accident sign'
+        return true
+      end
+      false
+    end
+
+    def show
+      update
+      run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/tmp/accident.svg")
+    end
+  end # class << self
+end # def
 
 def hour
   Time.now.strftime('%k').to_i
@@ -98,21 +112,21 @@ def shutdown?
   hour > (12 + 4)
 end
 
-if early_morning?
-  system %(amixer set Master 85%)
-else
-  system %(amixer set Master 20%)
-end
-sleep 5
-
-show_accident_days
+Accidents.show
 
 while do_loop
+
+  sleep 1
+  if early_morning?
+    system %(amixer set Master 85%)
+  else
+    system %(amixer set Master 20%)
+  end
+  sleep 1
 
   if early_morning?
     # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
     system %(mpv --sub-auto=fuzzy --fullscreen "#{fun_videos.next}")
-    sleep 5
     next
   end
 
@@ -120,7 +134,7 @@ while do_loop
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
     do_loop = false
     system 'git pull'
-    system 'sh/run update accident sign'
+    Accidents.show
     next
   end
 
@@ -133,9 +147,10 @@ while do_loop
   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/nov_birthdays.png")
   sleep 30
 
+  Accidents.show
+  sleep 10
   system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
-  show_accident_days
-  sleep 30
+  sleep 20
 
   # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
   # sleep 12
