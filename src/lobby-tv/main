@@ -110,11 +110,11 @@ while do_loop
   end
   sleep 1
 
-  if early_morning?
-    # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
-    system %(mpv --sub-auto=fuzzy --fullscreen "#{fun_videos.next}")
-    next
-  end
+  # if early_morning?
+  #   # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
+  #   system %(mpv --sub-auto=fuzzy --fullscreen "#{fun_videos.next}")
+  #   next
+  # end
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
