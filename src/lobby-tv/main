@@ -93,13 +93,17 @@ while do_loop
   end
 
   next_photo = seasonal.next
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
-  case next_photo
-  when /xmas/
-    sleep 60
-  else
+  if next_photo
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
-    sleep 30
+    case next_photo
+    when /xmas/
+      sleep 60
+    else
+      run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
+      sleep 30
+    end
+  else
+    system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
   end
     
   #

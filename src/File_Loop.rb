@@ -42,6 +42,7 @@ class File_Loop
   end # def
 
   def next
+    return nil if @list.empty?
     photo = @list[@i]
     @i += 1
     @i = 0 if @i > (@list.size - 1)
