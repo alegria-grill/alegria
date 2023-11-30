@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 require "./src/alegria"
+require 'date'
+require "./src/File_Loop"
 
 puts ` echo on 0 | cec-client -s -d 1 ; `.strip
 sleep 3
@@ -21,41 +23,6 @@ def run_cmd(cmd)
   puts `#{cmd}`.strip
 end
 
-class File_Loop
-  attr_reader :i, :list
-
-  def initialize(cmd)
-    @i = 0
-    @list = `#{cmd}`.strip.split("\n")
-  end # def
-
-  def next
-    photo = @list[@i]
-    @i += 1
-    @i = 0 if @i > (@list.size - 1)
-    photo
-  end
-
-  def length
-    @list.length
-  end
-
-  def last_index
-    @list.size - 1
-  end
-
-  def end?
-    @i >= last_index
-  end
-
-  def current
-    @list[@i]
-  end
-
-  def nth?(num)
-    (@i % num).zero?
-  end
-end # class
 
 # photos = File_Loop.new(%[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom])
 photo_ext  = %[ -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' ]
@@ -64,6 +31,7 @@ slide_show = File_Loop.new(%[find "#{HOME_DIR}/Pictures/" -maxdepth 1 #{photo_ex
 videos     = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
 fun_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/fun" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
 corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
+seasonal = File_Loop.new(%[find "/apps/slides/exports" -maxdepth 1 #{photo_ext} ])
 
 
 class Accidents
@@ -124,22 +92,20 @@ while do_loop
     next
   end
 
-  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/exports/november_birthday_2023.png")
-  # sleep 120
-
-  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/nov_birthdays.png")
-  # sleep 30
-
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/exports/2023_xmas_party.png")
-  sleep 60
-
+  next_photo = seasonal.next
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
+  case next_photo
+  when /xmas/
+    sleep 60
+  else
+    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
+    sleep 30
+  end
+    
   #
   Accidents.show
   sleep 30
   # system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
   # sleep 20
-
-  # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
-  # sleep 12
 
 end # while
