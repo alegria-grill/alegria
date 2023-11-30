@@ -124,18 +124,18 @@ while do_loop
     next
   end
 
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/exports/november_birthday_2023.png")
-  sleep 120
+  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/exports/november_birthday_2023.png")
+  # sleep 120
 
   # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/lobby-tv/nov_birthdays.png")
   # sleep 30
 
   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/apps/slides/exports/2023_xmas_party.png")
-  sleep 30
+  sleep 60
 
   #
-  # Accidents.show
-  # sleep 30
+  Accidents.show
+  sleep 30
   # system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
   # sleep 20
 
