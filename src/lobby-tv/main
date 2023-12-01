@@ -96,8 +96,8 @@ while do_loop
   if next_photo
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
     case next_photo
-    when /xmas/
-      sleep( 60 * 60 * 12 )
+    when /safety_week/
+      sleep(60 * 5)
     else
       run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
       sleep 30
