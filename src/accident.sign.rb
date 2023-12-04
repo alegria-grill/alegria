@@ -1,6 +1,5 @@
 
 LAST_ACCIDENT_TXT = "data/last.accident.timestamp"
-TEMPLATES_ACCIDENT = "templates/accident.svg"
 TEMPLATES_GREEN = "templates/accident.green.svg"
 TEMPLATES_YELLOW = "templates/accident.yellow.svg"
 IMAGES_ACCIDENT = "/tmp/accident.svg"
@@ -28,7 +27,7 @@ when "update"
   plural = (new_count == 1) ? "" : "s"
   File.write(
     IMAGES_ACCIDENT,
-    File.read(tmpl).sub("!DAYS", new_count.to_s).sub("!S", plural)
+    File.read(tmpl).sub("!D", new_count.to_s).sub("!S", plural)
   )
   puts "Updated sign to read: #{new_count} days"
   puts "File: #{IMAGES_ACCIDENT}"

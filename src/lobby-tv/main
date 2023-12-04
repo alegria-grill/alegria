@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require "./src/alegria"
+require './src/alegria'
 require 'date'
-require "./src/File_Loop"
+require './src/File_Loop'
 
 puts ` echo on 0 | cec-client -s -d 1 ; `.strip
 sleep 3
@@ -12,7 +12,7 @@ hide_mouse_cursor
 auto_git_pull
 auto_hide_cursor
 
-HOME_DIR="/home/pi"
+HOME_DIR = '/home/pi'.freeze
 puts "=== Current directory: #{HOME_DIR}"
 puts "=== Date: #{Time.now}"
 
@@ -23,22 +23,22 @@ def run_cmd(cmd)
   puts `#{cmd}`.strip
 end
 
-
-# photos = File_Loop.new(%[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom])
-photo_ext  = %[ -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' ]
-office     = File_Loop.new(%[find "/apps/slides/lobby-tv" -maxdepth 1 #{photo_ext} ])
-slide_show = File_Loop.new(%[find "#{HOME_DIR}/Pictures/" -maxdepth 1 #{photo_ext}   ])
-videos     = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
-fun_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/fun" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
-corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
-seasonal = File_Loop.new(%[find "/apps/slides/exports" -maxdepth 1 #{photo_ext} ])
-
+# photos = File_Loop.new(
+#   %[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom]
+# )
+photo_ext  = %( -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
+# office     = File_Loop.new(%[find "/apps/slides/lobby-tv" -maxdepth 1 #{photo_ext} ])
+# slide_show = File_Loop.new(%[find "#{HOME_DIR}/Pictures/" -maxdepth 1 #{photo_ext}   ])
+# fun_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/fun" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
+# corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
+videos     = File_Loop.new(%(find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
+seasonal = File_Loop.new(%(find "/apps/slides/exports" -maxdepth 1 #{photo_ext} ))
 
 class Accidents
   @@last_time = 0
   class << self
     def update
-      new_time = File.read("/apps/alegria/data/last.accident.timestamp")
+      new_time = File.read('/apps/alegria/data/last.accident.timestamp')
       if new_time != @@last_time
         @@last_time = new_time
         system 'sh/run update accident sign'
@@ -87,7 +87,7 @@ while do_loop
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
     do_loop = false
-    system "/apps/alegria/sh/run pull"
+    system '/apps/alegria/sh/run pull'
     Accidents.show
     next
   end
@@ -96,21 +96,14 @@ while do_loop
   if next_photo
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
     case next_photo
-    when /xmas/
-      sleep 60
     when /safety_week/
       sleep 30
-    else
-      run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
-      sleep 10
+      Accidents.show
     end
+    sleep 10
   else
     system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
   end
-    
-  #
-  Accidents.show
-  sleep 10
   # system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
   # sleep 20
 
