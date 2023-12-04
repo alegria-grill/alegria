@@ -1,8 +1,6 @@
-TODO:
+Updating:
+* https://jamesjdavis.medium.com/how-to-update-raspberry-pi-just-follow-these-easy-steps-ac507cf70238
 
-* Update French Frie photo on menu.
-* Print new menu numbers for line.
-* Take a better drinks photo and update menu.
 
 To convert dates:
 1) https://www.epochconverter.com/ - Use  
