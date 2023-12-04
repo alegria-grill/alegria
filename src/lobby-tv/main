@@ -95,12 +95,12 @@ while do_loop
   next_photo = seasonal.next
   if next_photo
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
+    sleep 30
     case next_photo
     when /safety_week/
-      sleep 30
       Accidents.show
+      sleep 10
     end
-    sleep 10
   else
     system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
   end
