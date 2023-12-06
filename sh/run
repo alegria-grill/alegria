@@ -21,7 +21,7 @@ case "$@" in
     ;;
   "lobby-tv")
     count=0
-    while test "$count" -lt 11 && ! ping -c1 8.8.8.8; ; do
+    while test "$count" -lt 15 && ! ping -c1 8.8.8.8; ; do
       echo "--- Waiting for network..."
       sleep 1
       count="$((count + 1))"

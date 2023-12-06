@@ -107,9 +107,6 @@ while do_loop
     next
   end
 
-  show_time
-  sleep 30
-
   next_photo = seasonal.next
   if next_photo
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
