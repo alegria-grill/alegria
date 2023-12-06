@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1920"
+   height="1080"
+   viewBox="0 0 1920 1080"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer2">
+    <rect
+       style="fill:#1a1a1a;stroke-width:0;stroke-dasharray:none"
+       id="rect1"
+       width="1920"
+       height="1080"
+       x="0"
+       y="0" />
+  </g>
+  <g
+     id="layer3">
+    <text
+       xml:space="preserve"
+       style="font-size:160px;font-family:'Liberation Serif';-inkscape-font-specification:'Liberation Serif';text-align:center;text-anchor:middle;fill:#f9f9f9;stroke-width:0;stroke-dasharray:none"
+       x="974.38599"
+       y="252.5383"
+       id="text1"><tspan
+         id="tspan1"
+         x="974.38599"
+         y="252.5383"
+         style="font-size:160px">!Month !Day</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:320px;font-family:'Liberation Serif';-inkscape-font-specification:'Liberation Serif';text-align:center;text-anchor:middle;fill:#ffcc00;stroke-width:0;stroke-dasharray:none"
+       x="971.06567"
+       y="569.62634"
+       id="text2"><tspan
+         id="tspan2"
+         x="971.06567"
+         y="569.62634"
+         style="font-size:320px;fill:#ffcc00">!DayName</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:240px;font-family:'Liberation Serif';-inkscape-font-specification:'Liberation Serif';text-align:center;text-anchor:middle;fill:#f9f9f9;stroke-width:0;stroke-dasharray:none"
+       x="970.2063"
+       y="919.53101"
+       id="text3"><tspan
+         id="tspan3"
+         x="970.2063"
+         y="919.53101"
+         style="font-size:240px">!H:!M</tspan></text>
+  </g>
+</svg>

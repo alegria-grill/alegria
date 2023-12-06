@@ -23,6 +23,21 @@ def run_cmd(cmd)
   puts `#{cmd}`.strip
 end
 
+def update_bg(s_file)
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{s_file}")
+end
+
+def show_time
+  run_cmd %(/apps/alegria/src/time.sign.rb update)
+  time_sign = '/tmp/time.sign.svg'
+  if File.exist?(time_sign)
+    update_bg(time_sign)
+    return true
+  end
+
+  false
+end
+
 # photos = File_Loop.new(
 #   %[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom]
 # )
@@ -92,6 +107,9 @@ while do_loop
     next
   end
 
+  show_time
+  sleep 30
+
   next_photo = seasonal.next
   if next_photo
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
@@ -100,6 +118,13 @@ while do_loop
     when /safety_week/
       Accidents.show
       sleep 10
+
+      begin
+        show_time
+        sleep 15
+      rescue Exception => e
+        e
+      end
     end
   else
     system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
