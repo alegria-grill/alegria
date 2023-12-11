@@ -112,6 +112,10 @@ while do_loop
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
     sleep 30
     case next_photo
+    when /birthday/
+      sleep 30
+      show_time
+      sleep 15
     when /safety_week/
       Accidents.show
       sleep 10
