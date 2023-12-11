@@ -112,7 +112,7 @@ while do_loop
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
     sleep 30
     case next_photo
-    when /birthday/
+    when /party/
       sleep 30
       show_time
       sleep 15
@@ -134,3 +134,22 @@ while do_loop
   # sleep 20
 
 end # while
+
+# #!/usr/bin/env ruby
+#
+# require "./src/alegria"
+#
+# minimize_windows
+# hide_mouse_cursor
+#
+# auto_reboot
+# auto_git_pull
+# auto_hide_cursor
+#
+# while true
+#   Alegria.pcmanfm_wallpaper("images/lobby-tv/current.png")
+#   sleep_to_min
+#   while !on_15th_minute?
+#     sleep_to_min
+#   end
+# end # while
