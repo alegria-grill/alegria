@@ -3,7 +3,7 @@
 class AV
   class << self
     def play_video(str_src)
-      system %(mpv --sub-auto=fuzzy --fullscreen "#{src}")
+      system %(mpv --sub-auto=fuzzy --fullscreen "#{str_src}")
     end
 
     def volume_to(str_or_num)
