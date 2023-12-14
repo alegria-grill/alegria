@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 def jpg_for_now(num, raw_dir)
   dir   = File.join(Dir.pwd, raw_dir)

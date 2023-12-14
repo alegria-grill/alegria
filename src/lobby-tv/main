@@ -2,6 +2,7 @@
 
 require './src/alegria'
 require 'date'
+require './src/AV'
 require './src/File_Loop'
 
 puts ` echo on 0 | cec-client -s -d 1 ; `.strip
@@ -46,7 +47,7 @@ photo_ext  = %( -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
 # slide_show = File_Loop.new(%[find "#{HOME_DIR}/Pictures/" -maxdepth 1 #{photo_ext}   ])
 # fun_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/fun" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
 # corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
-videos     = File_Loop.new(%(find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
+videos     = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 seasonal = File_Loop.new(%(find "/apps/slides/exports" -maxdepth 1 #{photo_ext} ))
 
 class Accidents
@@ -83,55 +84,39 @@ end
 
 Accidents.show
 
+AV.volume_to 85
+
 while do_loop
 
-  sleep 1
-  if early_morning?
-    system %(amixer set Master 85%)
-  else
-    system %(amixer set Master 20%)
-  end
-  sleep 1
-
-  # if early_morning?
-  #   # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
-  #   system %(mpv --sub-auto=fuzzy --fullscreen "#{fun_videos.next}")
-  #   next
-  # end
-
-  if shutdown?
-    puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
-    do_loop = false
-    system '/apps/alegria/sh/run pull'
-    Accidents.show
-    next
-  end
+  # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
 
   next_photo = seasonal.next
   if next_photo
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
     sleep 30
     case next_photo
-    when /party/
-      sleep 1200
-      show_time
-      sleep 15
     when /safety_week/
       Accidents.show
       sleep 10
-
-      begin
-        show_time
-        sleep 15
-      rescue Exception => e
-        e
-      end
     end
-  else
-    system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
   end
-  # system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
-  # sleep 20
+
+  if seasonal.end?
+    show_time
+    sleep 10
+    AV.play_video videos.next
+    show_time
+    sleep 10
+  end
+
+  if shutdown?
+    puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
+    do_loop = false
+    system '/apps/alegria/sh/run pull'
+    Accidents.show
+    sleep 10
+    next
+  end
 
 end # while
 
