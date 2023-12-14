@@ -8,7 +8,7 @@ class AV
 
     def volume_to(str_or_num)
       system %(amixer set Master #{str_or_num}%)
-      set 1
+      sleep 1
     end
   end # class << self
 end # class
