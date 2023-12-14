@@ -83,6 +83,7 @@ def shutdown?
 end
 
 Accidents.show
+sleep 5
 
 AV.volume_to 85
 
