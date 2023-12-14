@@ -97,11 +97,11 @@ while do_loop
     case next_photo
     when /safety_week/
       Accidents.show
-      sleep 10
+      sleep 15
     end
   end
 
-  if seasonal.end?
+  if seasonal.start?
     show_time
     sleep 10
     AV.play_video videos.next

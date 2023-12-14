@@ -64,6 +64,10 @@ class File_Loop
     @list.size - 1
   end
 
+  def start?
+    @i.zero?
+  end
+
   def end?
     @i >= last_index
   end
