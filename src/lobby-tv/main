@@ -49,6 +49,7 @@ photo_ext  = %( -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
 # corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
 videos     = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 seasonal = File_Loop.new(%(find "/apps/slides/exports" -maxdepth 1 #{photo_ext} ))
+dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" -maxdepth 1 #{photo_ext} ))
 
 class Accidents
   @@last_time = 0
@@ -108,6 +109,9 @@ while do_loop
     AV.play_video videos.next
     show_time
     sleep 10
+
+    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
+    sleep 30
   end
 
   if shutdown?
