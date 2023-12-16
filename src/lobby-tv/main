@@ -83,8 +83,9 @@ def shutdown?
   hour > (12 + 4)
 end
 
-Accidents.show
-sleep 5
+# Accidents.show
+run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
+sleep 60
 
 AV.volume_to 85
 
@@ -95,23 +96,28 @@ while do_loop
   next_photo = seasonal.next
   if next_photo
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
-    sleep 30
+    sleep 60
+
     case next_photo
     when /safety_week/
       Accidents.show
-      sleep 15
+      sleep 60
     end
   end
 
   if seasonal.start?
     show_time
-    sleep 10
+    sleep 20
+
     AV.play_video videos.next
     show_time
-    sleep 10
+    sleep 20
 
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
-    sleep 30
+    sleep 60
+
+    show_time
+    sleep 20
   end
 
   if shutdown?
