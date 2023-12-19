@@ -44,7 +44,7 @@ end
 # )
 photo_ext  = %( -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
 # office     = File_Loop.new(%[find "/apps/slides/lobby-tv" -maxdepth 1 #{photo_ext} ])
-# slide_show = File_Loop.new(%[find "#{HOME_DIR}/Pictures/" -maxdepth 1 #{photo_ext}   ])
+slide_show = File_Loop.new(%( find "#{HOME_DIR}/Pictures/best" -maxdepth 1 #{photo_ext} ))
 # fun_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/fun" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
 # corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
 videos     = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
@@ -109,7 +109,11 @@ while do_loop
     show_time
     sleep 20
 
+    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}")
+    sleep 60
+
     AV.play_video videos.next
+
     show_time
     sleep 20
 
