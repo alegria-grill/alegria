@@ -99,6 +99,8 @@ while do_loop
     sleep 60
 
     case next_photo
+    when /dec_check/
+      sleep 120
     when /safety_week/
       Accidents.show
       sleep 60
