@@ -46,6 +46,7 @@ photo_ext  = %( -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
 best_photo = File_Loop.new(%( find "#{HOME_DIR}/Pictures/best" -maxdepth 1 #{photo_ext} ))
 videos     = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 seasonal = File_Loop.new(%(find "/apps/slides/exports" -maxdepth 1 #{photo_ext} ))
+important = File_Loop.new(%(find "/apps/slides/exports" -maxdepth 1 -iname '*dec_check*' ))
 dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" -maxdepth 1 #{photo_ext} ))
 
 class Accidents
@@ -88,26 +89,33 @@ AV.volume_to 85
 
 while do_loop
 
-  next_photo = seasonal.next
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{important.next}")
+  sleep 30
 
-  case next_photo
-  when /dec_check/
-    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
-    sleep 120
-  when /birthdays/
-    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
-    sleep 10
-    # when /safety_week/
-    #   Accidents.show
-    #   sleep 30
-    #   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
-    #   sleep 30
-    # else
-    #   next
-  end
-
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
+  show_time
   sleep 10
+  # Accidents.show
+  # sleep 10
+
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{important.next}")
+  sleep 30
+
+  # next_photo = seasonal.next
+  # case next_photo
+  # when /birthdays/
+  #   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
+  #   sleep 10
+  #   # when /safety_week/
+  #   #   Accidents.show
+  #   #   sleep 30
+  #   #   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
+  #   #   sleep 30
+  #   # else
+  #   #   next
+  # end
+
+  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
+  # sleep 10
 
   # if seasonal.start?
   #   show_time
