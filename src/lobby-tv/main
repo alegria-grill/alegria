@@ -43,10 +43,7 @@ end
 #   %[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom]
 # )
 photo_ext  = %( -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
-# office     = File_Loop.new(%[find "/apps/slides/lobby-tv" -maxdepth 1 #{photo_ext} ])
-slide_show = File_Loop.new(%( find "#{HOME_DIR}/Pictures/best" -maxdepth 1 #{photo_ext} ))
-# fun_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/fun" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'])
-# corp_videos = File_Loop.new(%[find "#{HOME_DIR}/Videos/" -maxdepth 1 -type f -iname 'Laser*' -or -name 'DEL*'])
+best_photo = File_Loop.new(%( find "#{HOME_DIR}/Pictures/best" -maxdepth 1 #{photo_ext} ))
 videos     = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 seasonal = File_Loop.new(%(find "/apps/slides/exports" -maxdepth 1 #{photo_ext} ))
 dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" -maxdepth 1 #{photo_ext} ))
@@ -91,40 +88,45 @@ AV.volume_to 85
 
 while do_loop
 
-  # run_cmd(%[pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}"])
-
   next_photo = seasonal.next
-  if next_photo
+
+  case next_photo
+  when /dec_check/
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
-    sleep 60
-
-    case next_photo
-    when /dec_check/
-      sleep 120
-    when /safety_week/
-      Accidents.show
-      sleep 60
-    end
+    sleep 120
+  when /birthdays/
+    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
+    sleep 10
+    # when /safety_week/
+    #   Accidents.show
+    #   sleep 30
+    #   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{next_photo}")
+    #   sleep 30
+    # else
+    #   next
   end
 
-  if seasonal.start?
-    show_time
-    sleep 20
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
+  sleep 10
 
-    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{slide_show.next}")
-    sleep 60
-
-    AV.play_video videos.next
-
-    show_time
-    sleep 20
-
-    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
-    sleep 60
-
-    show_time
-    sleep 20
-  end
+  # if seasonal.start?
+  #   show_time
+  #   sleep 20
+  #
+  #   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
+  #   sleep 60
+  #
+  #   AV.play_video videos.next
+  #
+  #   show_time
+  #   sleep 20
+  #
+  #   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
+  #   sleep 60
+  #
+  #   show_time
+  #   sleep 20
+  # end
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
