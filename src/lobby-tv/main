@@ -100,6 +100,13 @@ while do_loop
   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{important.next}")
   sleep 30
 
+  show_time
+  sleep 10
+
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
+  sleep 10
+
+  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
   # next_photo = seasonal.next
   # case next_photo
   # when /birthdays/
