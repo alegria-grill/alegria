@@ -76,7 +76,7 @@ photo_ext = %( -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
 # photos = File_Loop.new(
 #   %[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom]
 # )
-# best_photo = File_Loop.new(%( find "#{HOME_DIR}/Pictures/best" -maxdepth 1 #{photo_ext} ))
+best_photo = File_Loop.new(%( find "#{HOME_DIR}/Pictures/best" -maxdepth 1 #{photo_ext} ))
 # videos = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 # seasonal = File_Loop.new(%(find "/apps/slides/exports" -maxdepth 1 #{photo_ext} ))
 important = File_Loop.new(%(find "/apps/slides/exports" -maxdepth 1 -iname '*dec_check*' ))
@@ -91,8 +91,13 @@ sleep 2
 
 while do_loop
 
-  show_time
-  sleep 10
+  if early_morning?
+    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
+    sleep 15
+
+    show_time
+    sleep 10
+  end
 
   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{important.next}")
   sleep 30
@@ -103,19 +108,17 @@ while do_loop
   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{important.next}")
   sleep 30
 
-  show_time
-  sleep 10
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{birthday.next}")
+  sleep 20
+
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{birthday.next}")
+  sleep 20
 
   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
   sleep 10
 
-  # Accidents.show
-  # sleep 10
-  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{birthday.next}")
-  # sleep 10
-  #
-  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{birthday.next}")
-  # sleep 10
+  Accidents.show
+  sleep 10
 
   # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
   # next_photo = seasonal.next
@@ -134,8 +137,8 @@ while do_loop
 
   # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
   # sleep 10
-
   # if seasonal.start?
+  #
   #   show_time
   #   sleep 20
   #
