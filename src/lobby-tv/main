@@ -84,10 +84,10 @@ dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" -maxdepth 1 #{photo_ext}
 
 # birthday = File_Loop.new %(find /apps/slides/exports -maxdepth 1 -type f -iname '*birthday*')
 # Accidents.show
-run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
-sleep 60
+# run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
 
 AV.volume_to 85
+sleep 2
 
 while do_loop
 
