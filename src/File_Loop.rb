@@ -47,13 +47,10 @@ class File_Loop
   def next
     return nil if @list.empty?
 
-    photo = @list[@i]
+    @i = 0 if end?
+    e = @list[@i]
     @i += 1
-    if end?
-      @list = self.class.get_files(@cmd)
-      @i = 0
-    end
-    photo
+    e
   end
 
   def length
@@ -69,7 +66,7 @@ class File_Loop
   end
 
   def end?
-    @i >= last_index
+    @i > last_index
   end
 
   def current
