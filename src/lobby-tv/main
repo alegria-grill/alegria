@@ -120,13 +120,13 @@ while do_loop
   # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
   # sleep 10
 
-  # Accidents.show
-  # sleep 10
-
   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{seasonal.next}")
   sleep 15
 
   show_time
+  sleep 10
+
+  Accidents.show
   sleep 10
 
   # next_photo = seasonal.next
