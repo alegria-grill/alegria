@@ -93,11 +93,11 @@ sleep 2
 while do_loop
 
   # if early_morning?
-  #   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
-  #   sleep 15
-  #
-  #   show_time
-  #   sleep 10
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
+  sleep 15
+
+  # show_time
+  # sleep 10
   # end
 
   # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{important.next}")
@@ -117,11 +117,11 @@ while do_loop
 
   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{xmas_party_2023.next}")
   sleep 15
-  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
-  # sleep 10
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
+  sleep 10
 
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{seasonal.next}")
-  sleep 15
+  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{seasonal.next}")
+  # sleep 15
 
   show_time
   sleep 10
