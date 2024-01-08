@@ -96,11 +96,18 @@ while do_loop
 
   # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{xmas_party_2023.next}")
   # sleep 15
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
-  sleep 10
-
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{exports.next}")
-  sleep 60
+  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
+  # sleep 10
+  2.times do |_i|
+    e_photo = exports.next
+    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{e_photo}")
+    case e_photo
+    when /birthday/
+      sleep 15
+    else
+      sleep 60
+    end
+  end
 
   Accidents.show
   sleep 10
