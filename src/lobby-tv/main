@@ -80,7 +80,6 @@ best_photo = File_Loop.new(%( find "#{HOME_DIR}/Pictures/best" -maxdepth 1 #{pho
 # videos = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 exports = File_Loop.new(%(find "/apps/slides/exports" -maxdepth 1 -type f ))
 dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" -maxdepth 1 #{photo_ext} ))
-# birthday = File_Loop.new %(find /apps/slides/exports -maxdepth 1 -type f -iname '*birthday*')
 xmas_party_2023 = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" -maxdepth 1 #{photo_ext})
 
 # Accidents.show
@@ -103,7 +102,7 @@ while do_loop
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{e_photo}")
     case e_photo
     when /birthday/
-      sleep 15
+      sleep 30
     else
       sleep 60
     end
