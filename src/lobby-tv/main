@@ -97,14 +97,14 @@ while do_loop
   # sleep 15
   # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
   # sleep 10
-  2.times do |_i|
+  exports.length.times do |_i|
     e_photo = exports.next
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{e_photo}")
     case e_photo
-    when /birthday/
+    when /payroll/
       sleep 30
     else
-      sleep 60
+      sleep 15
     end
   end
 
