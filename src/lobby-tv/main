@@ -39,7 +39,6 @@ def show_time
   false
 end
 
-
 class Accidents
   @@last_time = 0
   class << self
@@ -72,15 +71,17 @@ def shutdown?
   hour > (12 + 4)
 end
 
-photo_ext = %( -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
+photo_ext = %( -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
+video_ext = %( -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4' )
 # photos = File_Loop.new(
 #   %[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom]
 # )
-best_photo = File_Loop.new(%( find "#{HOME_DIR}/Pictures/best" -maxdepth 1 #{photo_ext} ))
+best_photo = File_Loop.new(%( find "#{HOME_DIR}/Pictures/best" #{photo_ext} ))
 # videos = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 exports = File_Loop.new(%(find "/apps/slides/exports" -maxdepth 1 -type f | sort -h ))
-dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" -maxdepth 1 #{photo_ext} ))
-xmas_party_2023 = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" -maxdepth 1 #{photo_ext})
+dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" #{photo_ext} ))
+xmas_party_2023 = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
+safety_week = File_Loop.new(%(find "#{HOME_DIR}/Videos/safety_week_2024" #{video_ext} ))
 
 # Accidents.show
 # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
@@ -110,6 +111,8 @@ while do_loop
 
   Accidents.show
   sleep 10
+
+  runc_cmd %( sh/play "#{safety_week.next}" )
 
   show_time
   sleep 10
