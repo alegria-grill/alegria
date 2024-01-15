@@ -112,7 +112,7 @@ while do_loop
   Accidents.show
   sleep 10
 
-  runc_cmd %( sh/play "#{safety_week.next}" )
+  run_cmd %( sh/play "#{safety_week.next}" )
 
   show_time
   sleep 10
