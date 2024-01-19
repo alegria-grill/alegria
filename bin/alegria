@@ -1,0 +1,66 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail
+
+
+if test "$USER" = "pi" ; then
+  cd /home/pi/apps/alegria
+else
+  cd /apps/alegria
+fi
+
+case "$@" in
+  -h|--help|help)
+    cmd="$0"
+    echo "$cmd lobby-tv"
+    echo "$cmd pull"
+    echo "$cmd reset|update accident sign"
+    echo "$cmd write accident UNIX_TIMESTAMP"
+    echo "     Updates accident file to today."
+    ;;
+  "lobby-tv")
+    count=0
+    while test "$count" -lt 15 && ! ping -c1 8.8.8.8; ; do
+      echo "--- Waiting for network..."
+      sleep 1
+      count="$((count + 1))"
+    done
+    { "$0" pull || echo "!!! error !!!"; } &>/tmp/lobby-tv.txt
+    exec src/lobby-tv/main
+    ;;
+  "vertical-01")
+    exec src/vertical-01/main
+    ;;
+  "menu")
+    exec src/menu/main
+    ;;
+  "crontab update")
+    set -x
+    {
+       "$0" pull;
+    } &>/tmp/crontab.error.txt
+    cat /tmp/crontab.error.txt
+    ;;
+  "pull")
+    set -x
+    date
+    git pull
+    (cd /apps/slides && git pull)
+    ;;
+  "reset accident sign")
+    ruby src/accident.sign.rb reset
+    ruby src/accident.sign.rb update
+    ;;
+  "update accident sign")
+    ruby src/accident.sign.rb update
+    ;;
+  "write accident "*)
+    ruby src/accident.sign.rb write "$3"
+    ruby src/accident.sign.rb update
+    ;;
+  *)
+    echo "!!! Invalid option: $@" >&2
+    exit 2
+    ;;
+esac
