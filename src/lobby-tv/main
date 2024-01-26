@@ -94,10 +94,8 @@ while do_loop
   show_time
   sleep 10
 
-
   Accidents.show
   sleep 60
-
 
   # Safety week videos:
   4.times do |_i|

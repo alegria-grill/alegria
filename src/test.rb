@@ -1,6 +1,6 @@
 
 require "./src/File_Loop"
 
-photo_ext  = %( -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
-office     = File_Loop.new(%( find "/apps/slides/exports" -maxdepth 1 #{photo_ext} ))
+ext  = %( -type f -iname '*.mp4' )
+office = File_Loop.new(%( find "/home/pi/Videos/mr_safety" -maxdepth 1 #{ext} ))
 office.list.each { |x| puts x }
