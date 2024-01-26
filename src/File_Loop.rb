@@ -65,6 +65,10 @@ class File_Loop
     @i.zero?
   end
 
+  def empty?
+    @list.empty?
+  end
+
   def end?
     @i > last_index
   end
