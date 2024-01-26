@@ -37,16 +37,15 @@ case "$@" in
     ;;
   "crontab update")
     set -x
-    {
-       "$0" pull;
-    } &>/tmp/crontab.error.txt
-    cat /tmp/crontab.error.txt
+    "$0" pull
+    date > /tmp/crontab.update.txt
     ;;
   "pull")
     set -x
     date
     git pull
     (cd /apps/slides && git pull)
+    date > /tmp/alegria.pull.txt
     ;;
   "reset accident sign")
     ruby src/accident.sign.rb reset
