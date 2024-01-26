@@ -72,7 +72,7 @@ def shutdown?
 end
 
 photo_ext = %( -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
-video_ext = %( -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4' )
+video_ext = %( -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4' -or '*.mkv' )
 # photos = File_Loop.new(
 #   %[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom]
 # )
