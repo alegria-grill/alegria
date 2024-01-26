@@ -72,7 +72,7 @@ def shutdown?
 end
 
 photo_ext = %( -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
-video_ext = %( -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4' -or '*.mkv' )
+video_ext = %( -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4' -or -iname '*.mkv' )
 # photos = File_Loop.new(
 #   %[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom]
 # )
@@ -98,10 +98,14 @@ while do_loop
   sleep 30
 
   # Safety week videos:
-  4.times do |_i|
-    run_cmd %( sh/play "#{mr_safety.next}" )
-    show_time
-    sleep 10
+  if mr_safety.empty?
+    warn "video list is empty"
+  else
+    4.times do |_i|
+      run_cmd %( sh/play "#{mr_safety.next}" )
+      show_time
+      sleep 10
+    end
   end
 
   exports.length.times do |_i|
