@@ -82,6 +82,7 @@ exports = File_Loop.new(%(find "/apps/slides/exports" -maxdepth 1 -type f | sort
 dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" #{photo_ext} ))
 xmas_party_2023 = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 safety_week = File_Loop.new(%(find "#{HOME_DIR}/Videos/safety_week_2024" #{video_ext} ))
+mr_safety = File_Loop.new(%(find "#{HOME_DIR}/Videos/mr_safety" #{video_ext} ))
 
 # Accidents.show
 # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
@@ -90,30 +91,26 @@ AV.volume_to 85
 sleep 2
 
 while do_loop
+  show_time
+  sleep 10
 
-  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
-  # sleep 15
 
-  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{xmas_party_2023.next}")
-  # sleep 15
+  Accidents.show
+  sleep 60
+
+
+  # Safety week videos:
+  4.times do |_i|
+    run_cmd %( sh/play "#{mr_safety.next}" )
+    show_time
+    sleep 10
+  end
 
   exports.length.times do |_i|
     e_photo = exports.next
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{e_photo}")
     sleep 15
   end
-
-  Accidents.show
-  sleep 60
-
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
-  sleep 10
-
-  # Safety week videos:
-  # run_cmd %( sh/play "#{safety_week.next}" )
-
-  show_time
-  sleep 10
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
