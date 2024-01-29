@@ -5,4 +5,4 @@ set -u -e -x
 
 
 echo "Playing: $*" > /tmp/current.txt
-mpv --fullscreen  --sub-auto=all  --sid=1 "$*"
+mpv --fullscreen  --sub-auto=all  --sid=1 --sub-pos=0 "$*"
