@@ -97,22 +97,22 @@ while do_loop
   Accidents.show
   sleep 30
 
-  # Safety week videos:
-  if mr_safety.empty?
-    warn "video list is empty"
-  else
-    4.times do |_i|
-      run_cmd %( sh/play "#{mr_safety.next}" )
-      show_time
-      sleep 10
-    end
-  end
+  #     run_cmd %( sh/play "#{mr_safety.next}" )
 
   exports.length.times do |_i|
     e_photo = exports.next
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{e_photo}")
     sleep 15
   end
+
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
+  sleep 10
+
+  show_time
+  sleep 5
+
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{xmas_party_2023.next}")
+  sleep 10
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
