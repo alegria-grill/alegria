@@ -118,7 +118,7 @@ while do_loop
   show_time
   sleep 5
 
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best.next}")
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
   sleep 5
 
   show_time
