@@ -100,7 +100,7 @@ while do_loop
 
   exports.length.times do |_i|
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{exports.next}")
-    sleep 10
+    sleep 30
   end
 
   show_time
