@@ -108,7 +108,7 @@ while do_loop
 
   india.length.times do |_i|
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{india.next}")
-    sleep 5
+    sleep 10
   end
 
   run_cmd %(sh/play "#{HOME_DIR}/Videos/mark_macross.mp4")
@@ -123,15 +123,15 @@ while do_loop
 
   show_time
   sleep 5
+  #
+  # 2.times do |_i|
+  #   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
+  #   sleep 5
+  # end
 
-  2.times do |_i|
-    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
-    sleep 5
-  end
-
-  2.times do |_i|
+  3.times do |_i|
     run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
-    sleep 5
+    sleep 10
   end
 
   show_time
