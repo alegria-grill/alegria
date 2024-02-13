@@ -8,6 +8,8 @@ require './src/File_Loop'
 puts ` echo on 0 | cec-client -s -d 1 ; `.strip
 sleep 3
 
+`echo "current process: #{Process.pid}" > /tmp/lobby.tv.process.txt`
+
 minimize_windows
 hide_mouse_cursor
 auto_git_pull
@@ -18,6 +20,12 @@ puts "=== Current directory: #{HOME_DIR}"
 puts "=== Date: #{Time.now}"
 
 do_loop = true
+reload = false
+
+trap('SIGUSER1') do
+  do_loop = false
+  reload = true
+end
 
 def run_cmd(cmd)
   puts "=== Running: #{cmd}"
@@ -143,6 +151,8 @@ while do_loop
   end
 
 end # while
+
+exec('/apps/alegria/bin/alegria lobby-tv') if repeat
 
 # #!/usr/bin/env ruby
 #
