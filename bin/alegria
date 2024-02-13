@@ -43,9 +43,13 @@ case "$@" in
   "pull")
     set -x
     date
-    git pull
-    (cd /apps/slides && git pull)
-    date > /tmp/alegria.pull.txt
+
+    echo "" > /tmp/alegria.pull.txt
+    while read -r DIR ; do
+      cd "$DIR"
+      git pull
+      echo "Done: $DIR" >> /tmp/alegria.pull.txt
+    done < <(find /apps/ -mindepth 1 -maxdepth 1 -type d)
     ;;
   "reset accident sign")
     ruby src/accident.sign.rb reset
