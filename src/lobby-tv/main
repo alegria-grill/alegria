@@ -76,7 +76,7 @@ video_ext = %( -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4' -or -iname
 # photos = File_Loop.new(
 #   %[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom]
 # )
-best_photo = File_Loop.new(%( find "#{HOME_DIR}/Pictures/best" #{photo_ext} ))
+best_photo = File_Loop.new(%( find "/apps/pictures/best" #{photo_ext} ))
 # videos = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 exports = File_Loop.new(%(find "/apps/slides/exports" #{photo_ext} | sort -h ))
 dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" #{photo_ext} ))
@@ -123,19 +123,15 @@ while do_loop
 
   show_time
   sleep 5
-  #
-  # 2.times do |_i|
-  #   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
-  #   sleep 5
-  # end
 
-  3.times do |_i|
-    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
-    sleep 10
-  end
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
+  sleep 7
+
+  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
+  sleep 4
 
   show_time
-  sleep 5
+  sleep 7
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
