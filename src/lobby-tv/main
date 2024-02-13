@@ -22,7 +22,7 @@ puts "=== Date: #{Time.now}"
 do_loop = true
 reload = false
 
-trap('SIGUSER1') do
+trap('SIGUSR1') do
   do_loop = false
   reload = true
 end
