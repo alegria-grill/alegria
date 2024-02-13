@@ -25,7 +25,7 @@ def hide_mouse_cursor
 end
 
 def minimize_windows
-  `wmctrl -l  | grep -v pcmanfm | cut -d' ' -f1`
+  `wmctrl -lxp | grep -vP 'lxpanel|pcmanfm' | cut -d' ' -f1`
     .strip
     .split("\n")
     .each { |x| x && x.size > 8 && `xdotool windowminimize "#{x}"` }
