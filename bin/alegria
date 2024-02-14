@@ -25,7 +25,10 @@ case "$@" in
       exit 1
     fi
     the_pid="$(cat /tmp/lobby.tv.process.txt)"
-    if ! ps -p "$this_pid" > /dev/null ; then
+    if test -z "$the_pid" ; then
+      exit 1
+    fi
+    if ! ps -p "$the_pid" > /dev/null ; then
       exit 1
     fi
     echo "$the_pid"
