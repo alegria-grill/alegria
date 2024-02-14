@@ -13,11 +13,22 @@ fi
 case "$@" in
   -h|--help|help)
     cmd="$0"
+    echo "$cmd pid"
     echo "$cmd lobby-tv"
     echo "$cmd pull"
     echo "$cmd reset|update accident sign"
     echo "$cmd write accident UNIX_TIMESTAMP"
     echo "     Updates accident file to today."
+    ;;
+  "pid")
+    if ! test -e /tmp/lobby.tv.process.txt ; then
+      exit 1
+    fi
+    the_pid="$(cat /tmp/lobby.tv.process.txt)"
+    if ! ps -p "$this_pid" > /dev/null ; then
+      exit 1
+    fi
+    echo "$the_pid"
     ;;
   "lobby-tv")
     count=0

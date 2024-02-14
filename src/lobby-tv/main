@@ -5,10 +5,11 @@ require 'date'
 require './src/AV'
 require './src/File_Loop'
 
+THIS_PID = Process.pid
 puts ` echo on 0 | cec-client -s -d 1 ; `.strip
 sleep 3
 
-`echo "current process: #{Process.pid}" > /tmp/lobby.tv.process.txt`
+`echo "#{THIS_PID}" > /tmp/lobby.tv.process.txt`
 
 minimize_windows
 hide_mouse_cursor
