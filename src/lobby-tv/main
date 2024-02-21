@@ -91,6 +91,7 @@ exports = File_Loop.new(%(find "/apps/slides/exports" #{photo_ext} | sort -h ))
 dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" #{photo_ext} ))
 xmas_party_2023 = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 india = File_Loop.new %(find "/apps/slides/exports/india_jan2024" #{photo_ext})
+flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
 # safety_week = File_Loop.new(%(find "#{HOME_DIR}/Videos/safety_week_2024" #{video_ext} ))
 # mr_safety = File_Loop.new(%(find "#{HOME_DIR}/Videos/mr_safety" #{video_ext} ))
 
@@ -133,11 +134,17 @@ while do_loop
   show_time
   sleep 5
 
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
-  sleep 7
-
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
-  sleep 4
+  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
+  # sleep 7
+  #
+  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
+  # sleep 4
+  unless flyers.empty?
+    flyers.length.times do |_i|
+      run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{flyers.next}")
+      sleep 30
+    end
+  end
 
   show_time
   sleep 7
