@@ -29,6 +29,7 @@ trap('SIGUSR1') do
 end
 
 def run_cmd(cmd)
+  File.write('/tmp/current.txt', cmd)
   puts "=== Running: #{cmd}"
   puts `#{cmd}`.strip
 end
