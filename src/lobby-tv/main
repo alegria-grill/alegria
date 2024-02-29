@@ -38,6 +38,10 @@ def update_bg(s_file)
   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{s_file}")
 end
 
+def play(s_file)
+  run_cmd %(sh/play "#{s_file}")
+end
+
 def show_time
   run_cmd %(/apps/alegria/src/time.sign.rb update)
   time_sign = '/tmp/time.sign.svg'
@@ -111,34 +115,34 @@ while do_loop
   sleep 5
 
   india.length.times do |_i|
-    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{india.next}")
+    update_bg india.next
     sleep 10
   end
 
-  run_cmd %(sh/play "#{HOME_DIR}/Videos/mark_macross.mp4")
+  play "#{HOME_DIR}/Videos/mark_macross.mp4"
 
   show_time
   sleep 5
 
   3.times do |_i|
-    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{xmas_party_2023.next}")
+    update_bg xmas_party_2023.next
     sleep 5
   end
 
   show_time
   sleep 5
 
-  run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
+  update_bg dept.next
   sleep 10
 
   show_time
   sleep 5
 
-  # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{best_photo.next}")
+  # update_bg best_photo.next
   # sleep 10
 
   flyers.length.times do |_i|
-    run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{flyers.next}")
+    update_bg flyers.next
     sleep 30
   end
 
@@ -148,19 +152,15 @@ while do_loop
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
     do_loop = false
-    system '/apps/alegria/sh/run pull'
+    system 'alegria pull'
     Accidents.show
     sleep 10
-    next
   end
 
-end # while
+end
+# while
 
-exec('/apps/alegria/bin/alegria lobby-tv') if repeat
-
-# #!/usr/bin/env ruby
-#
-# require "./src/alegria"
+exec('alegria lobby-tv') if reload
 #
 # minimize_windows
 # hide_mouse_cursor
@@ -169,10 +169,3 @@ exec('/apps/alegria/bin/alegria lobby-tv') if repeat
 # auto_git_pull
 # auto_hide_cursor
 #
-# while true
-#   Alegria.pcmanfm_wallpaper("images/lobby-tv/current.png")
-#   sleep_to_min
-#   while !on_15th_minute?
-#     sleep_to_min
-#   end
-# end # while
