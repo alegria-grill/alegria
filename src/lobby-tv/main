@@ -92,7 +92,6 @@ dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" #{photo_ext} ))
 xmas_party_2023 = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 india = File_Loop.new %(find "/apps/pictures/india_jan2024" #{photo_ext})
 flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
-# safety_week = File_Loop.new(%(find "#{HOME_DIR}/Videos/safety_week_2024" #{video_ext} ))
 # mr_safety = File_Loop.new(%(find "#{HOME_DIR}/Videos/mr_safety" #{video_ext} ))
 
 # Accidents.show
@@ -116,7 +115,7 @@ while do_loop
     sleep 10
   end
 
-  # run_cmd %(sh/play "#{HOME_DIR}/Videos/mark_macross.mp4")
+  run_cmd %(sh/play "#{HOME_DIR}/Videos/mark_macross.mp4")
 
   show_time
   sleep 5
