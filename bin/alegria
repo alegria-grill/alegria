@@ -4,11 +4,7 @@
 set -u -e -o pipefail
 
 
-if test "$USER" = "pi" ; then
-  cd /home/pi/apps/alegria
-else
-  cd /apps/alegria
-fi
+cd /home/pi/apps/alegria || cd /apps/alegria
 
 case "$@" in
   -h|--help|help)
@@ -34,6 +30,10 @@ case "$@" in
     echo "$the_pid"
     ;;
   "lobby-tv")
+    {
+      echo "=== PATH: $PATH";
+      echo "=== USER: $USER";
+    } || :
     count=0
     while test "$count" -lt 15 && ! ping -c1 8.8.8.8; ; do
       echo "--- Waiting for network..."
