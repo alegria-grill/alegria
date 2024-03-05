@@ -4,6 +4,7 @@
 set -u -e -o pipefail
 
 
+export PATH="$PATH:/apps/alegria/bin"
 cd /home/pi/apps/alegria || cd /apps/alegria
 
 case "$@" in
