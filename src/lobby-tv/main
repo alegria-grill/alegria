@@ -176,7 +176,7 @@ while do_loop
 end
 # while
 
-exec('alegria lobby-tv') if reload
+exec("#{$PROGRAM_NAME} lobby-tv") if reload
 #
 # minimize_windows
 # hide_mouse_cursor
