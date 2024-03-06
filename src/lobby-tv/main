@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require './src/alegria'
 require 'date'
@@ -16,17 +17,21 @@ hide_mouse_cursor
 auto_git_pull
 auto_hide_cursor
 
-HOME_DIR = '/home/pi'.freeze
+HOME_DIR = '/home/pi'
 puts "=== Current directory: #{HOME_DIR}"
 puts "=== Date: #{Time.now}"
 
 do_loop = true
 reload = false
 
+RERUN = '/tmp/rerun.txt'
+File.delete(RERUN) if File.exist?(RERUN)
 trap('SIGUSR1') do
+  File.write(RERUN, 'do_it')
   do_loop = false
   reload = true
 end
+
 
 def run_cmd(cmd)
   File.write('/tmp/current.txt', cmd)
@@ -176,7 +181,6 @@ while do_loop
 end
 # while
 
-exec("#{$PROGRAM_NAME} lobby-tv") if reload
 #
 # minimize_windows
 # hide_mouse_cursor

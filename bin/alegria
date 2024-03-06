@@ -42,7 +42,10 @@ case "$@" in
       count="$((count + 1))"
     done
     { "$0" pull || echo "!!! error !!!"; } &>/tmp/lobby-tv.txt
-    exec src/lobby-tv/main
+    touch /tmp/rerun.txt
+    while test -e /tmp/rerun.txt ; do
+      src/lobby-tv/main
+    done
     ;;
   "vertical-01")
     exec src/vertical-01/main
