@@ -127,33 +127,31 @@ end # def auto_reboot
 
 def auto_git_pull
   pid = Process.pid
-  fork {
+  fork do
     puts "=== Starting forked process: #{Process.pid}"
     while process?(pid)
       fork do
-        system "/apps/alegria/sh/run pull"
+        system '/apps/alegria/sh/run pull'
         File.write('/tmp/lobby.pull.txt', Time.now.to_s)
       end
       sleep 120
       sleep_to_hour
     end
     puts "=== Done forked process: #{Process.pid}"
-  }
-end # def auto_git_pull
+  end
+end
 
 def auto_hide_cursor
   pid = Process.pid
-  fork {
+  fork do
     puts "=== Starting forked process: #{Process.pid}"
     while process?(pid)
-      if on_5th_minute?
-        hide_mouse_cursor
-      end
+      hide_mouse_cursor if on_5th_minute?
       sleep_to_min
     end
     puts "=== Done forked process: #{Process.pid}"
-  }
-end # def auto_hide_cursor
+  end
+end
 
 class Alegria
 
