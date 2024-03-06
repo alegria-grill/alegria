@@ -146,9 +146,9 @@ while do_loop
     update_bg next_f
     case next_f
     when /propane/
-      sleep 90
+      sleep 30
     else
-      sleep 60
+      sleep 90
     end
     show_time
     sleep 10
