@@ -96,6 +96,7 @@ dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" #{photo_ext} ))
 xmas_party_2023 = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 india = File_Loop.new %(find "/apps/pictures/india_jan2024" #{photo_ext})
 flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
+ads    = File_Loop.new %(find "/apps/pictures/ads" #{photo_ext})
 # mr_safety = File_Loop.new(%(find "#{HOME_DIR}/Videos/mr_safety" #{video_ext} ))
 
 # Accidents.show
@@ -133,7 +134,7 @@ while do_loop
   sleep 5
 
   update_bg dept.next
-  sleep 10
+  sleep 15
 
   show_time
   sleep 5
@@ -152,6 +153,16 @@ while do_loop
     end
     show_time
     sleep 10
+  end
+
+  if Time.now.hour > 12
+    ads.length.times do |_i|
+      update_bg ads.next
+      sleep 60
+
+      show_time
+      sleep 10
+    end
   end
 
   if shutdown?
