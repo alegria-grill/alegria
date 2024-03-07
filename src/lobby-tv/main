@@ -111,62 +111,48 @@ AV.volume_to 85
 sleep 2
 
 while do_loop
+
+  flyers.length.times do |_i|
+    next_f = flyers.next
+    update_bg next_f
+    # case next_f
+    # when /walmart/
+    #   sleep 10
+    # else
+    #   sleep 90
+    # end
+    sleep 60
+  end
+
   show_time
-  sleep 5
+  sleep 10
+
+  play "#{HOME_DIR}/Videos/mark_macross.mp4"
+
+  update_bg dept.next
+  sleep 15
+
+  update_bg xmas_party_2023.next
+  sleep 15
+
+  update_bg best_photo.next
+  sleep 10
+
+  update_bg india.next
+  sleep 15
 
   Accidents.show
   sleep 15
 
   show_time
-  sleep 5
+  sleep 10
 
-  india.length.times do |_i|
-    update_bg india.next
-    sleep 10
-  end
-
-  play "#{HOME_DIR}/Videos/mark_macross.mp4"
-
-  show_time
-  sleep 5
-
-  3.times do |_i|
-    update_bg xmas_party_2023.next
-    sleep 10
-  end
-
-  show_time
-  sleep 5
-
-  update_bg dept.next
-  sleep 15
-
-  show_time
-  sleep 5
-
-  # update_bg best_photo.next
-  # sleep 10
-
-  flyers.length.times do |_i|
-    next_f = flyers.next
-    update_bg next_f
-    case next_f
-    when /walmart/
-      sleep 10
-    else
-      sleep 90
-    end
-    show_time
-    sleep 10
-  end
-
-  if Time.now.hour > 12
+  case Time.now.hour
+  when 12, 13
     ads.length.times do |_i|
       update_bg ads.next
       sleep 60
 
-      show_time
-      sleep 10
     end
   end
 
