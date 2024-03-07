@@ -121,13 +121,13 @@ while do_loop
     # else
     #   sleep 90
     # end
-    sleep 60
+    sleep 120
   end
 
   show_time
-  sleep 10
+  sleep 15
 
-  play "#{HOME_DIR}/Videos/mark_macross.mp4"
+  # play "#{HOME_DIR}/Videos/mark_macross.mp4"
 
   update_bg dept.next
   sleep 15
@@ -142,17 +142,16 @@ while do_loop
   sleep 15
 
   Accidents.show
-  sleep 15
+  sleep 60
 
   show_time
-  sleep 10
+  sleep 20
 
   case Time.now.hour
   when 12, 13
     ads.length.times do |_i|
       update_bg ads.next
       sleep 60
-
     end
   end
 
