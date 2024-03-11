@@ -35,13 +35,15 @@ case "$@" in
       echo "=== PATH: $PATH";
       echo "=== USER: $USER";
     } || :
-    count=0
-    while test "$count" -lt 15 && ! ping -c1 8.8.8.8; ; do
-      echo "--- Waiting for network..."
-      sleep 1
-      count="$((count + 1))"
-    done
-    { "$0" pull || echo "!!! error !!!"; } &>/tmp/lobby-tv.txt
+    if test "$(date +"%H")" -lt "7" ; then
+      count=0
+      while test "$count" -lt 15 && ! ping -c1 8.8.8.8; ; do
+        echo "--- Waiting for network..."
+        sleep 1
+        count="$((count + 1))"
+      done
+      { "$0" pull || echo "!!! error !!!"; } &>/tmp/lobby-tv.txt
+    fi
     touch /tmp/rerun.txt
     while test -e /tmp/rerun.txt ; do
       src/lobby-tv/main
