@@ -146,13 +146,13 @@ while do_loop
   show_time
   sleep 20
 
-  case Time.now.hour
-  when 12, 13
-    ads.length.times do |_i|
-      update_bg ads.next
-      sleep 60
-    end
-  end
+  # case Time.now.hour
+  # when 12, 13
+  #   ads.length.times do |_i|
+  #     update_bg ads.next
+  #     sleep 60
+  #   end
+  # end
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
