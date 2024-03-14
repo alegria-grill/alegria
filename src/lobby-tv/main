@@ -124,35 +124,37 @@ while do_loop
   end
 
   show_time
-  sleep 15
+  sleep 10
 
   # play "#{HOME_DIR}/Videos/mark_macross.mp4"
 
   update_bg dept.next
-  sleep 15
+  sleep 10
 
   update_bg xmas_party_2023.next
-  sleep 15
+  sleep 30
 
   update_bg best_photo.next
   sleep 10
 
-  update_bg india.next
-  sleep 15
+  india.length.times do |_x|
+    update_bg india.next
+    sleep 10
+  end
 
   Accidents.show
   sleep 60
 
   show_time
-  sleep 20
+  sleep 10
 
-  # case Time.now.hour
-  # when 12, 13
-  #   ads.length.times do |_i|
-  #     update_bg ads.next
-  #     sleep 60
-  #   end
-  # end
+  case Time.now.hour
+  when 6
+    ads.length.times do |_i|
+      update_bg ads.next
+      sleep 10
+    end
+  end
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
