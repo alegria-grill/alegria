@@ -155,17 +155,9 @@ while do_loop
   Accidents.show
   sleep 30
 
-  case Time.now.hour
-  when 6
-    ads.length.times do |_i|
-      update_bg ads.next
-      sleep 30
-    end
-  else
-    waller.length.times do |_i|
-      update_bg waller.next
-      sleep 60
-    end
+  waller.length.times do |_i|
+    update_bg waller.next
+    sleep 60
   end
 
   if shutdown?
