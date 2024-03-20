@@ -113,17 +113,10 @@ sleep 2
 
 while do_loop
 
-  # flyers.length.times do |_i|
-  #   next_f = flyers.next
-  #   update_bg next_f
-  #   # case next_f
-  #   # when /walmart/
-  #   #   sleep 10
-  #   # else
-  #   #   sleep 90
-  #   # end
-  #   sleep 120
-  # end
+  flyers.length.times do |_i|
+    update_bg flyers.next
+    sleep 120
+  end
 
   show_time
   sleep 10
@@ -146,7 +139,7 @@ while do_loop
   #
   paul_lewis.length.times do |_x|
     update_bg paul_lewis.next
-    sleep 30
+    sleep 45
   end
 
   show_time
