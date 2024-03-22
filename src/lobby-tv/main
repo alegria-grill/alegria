@@ -113,6 +113,12 @@ sleep 2
 
 while do_loop
 
+  show_time
+  sleep 10
+
+  Accidents.show
+  sleep 30
+
   flyers.length.times do |_i|
     update_bg flyers.next
     sleep 120
@@ -120,6 +126,19 @@ while do_loop
 
   show_time
   sleep 10
+
+  india.length.times do |_x|
+    update_bg india.next
+    sleep 15
+  end
+
+  show_time
+  sleep 10
+
+  paul_lewis.length.times do |_x|
+    update_bg paul_lewis.next
+    sleep 45
+  end
 
   # play "#{HOME_DIR}/Videos/mark_macross.mp4"
 
@@ -132,26 +151,10 @@ while do_loop
   # update_bg best_photo.next
   # sleep 10
 
-  # india.length.times do |_x|
-  #   update_bg india.next
-  #   sleep 10
+  # waller.length.times do |_i|
+  #   update_bg waller.next
+  #   sleep 60
   # end
-  #
-  paul_lewis.length.times do |_x|
-    update_bg paul_lewis.next
-    sleep 45
-  end
-
-  show_time
-  sleep 10
-
-  Accidents.show
-  sleep 30
-
-  waller.length.times do |_i|
-    update_bg waller.next
-    sleep 60
-  end
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
