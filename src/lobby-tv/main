@@ -135,11 +135,6 @@ while do_loop
   show_time
   sleep 10
 
-  paul_lewis.length.times do |_x|
-    update_bg paul_lewis.next
-    sleep 45
-  end
-
   # play "#{HOME_DIR}/Videos/mark_macross.mp4"
 
   # update_bg dept.next
@@ -151,10 +146,10 @@ while do_loop
   # update_bg best_photo.next
   # sleep 10
 
-  # waller.length.times do |_i|
-  #   update_bg waller.next
-  #   sleep 60
-  # end
+  waller.length.times do |_i|
+    update_bg waller.next
+    sleep 60
+  end
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
