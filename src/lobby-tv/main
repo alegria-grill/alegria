@@ -119,6 +119,16 @@ while do_loop
   Accidents.show
   sleep 30
 
+  play "#{HOME_DIR}/Videos/temp/good.friday.en.mp4"
+
+  show_time
+  sleep 10
+
+  play "#{HOME_DIR}/Videos/temp/good.friday.es.mp4"
+
+  show_time
+  sleep 10
+
   flyers.length.times do |_i|
     update_bg flyers.next
     sleep 120
