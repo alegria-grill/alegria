@@ -102,7 +102,7 @@ india = File_Loop.new %(find "/apps/pictures/india_jan2024" #{photo_ext})
 flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
 ads    = File_Loop.new %(find "/apps/pictures/ads" #{photo_ext})
 waller = File_Loop.new %(find "/apps/pictures/wall_revival" #{photo_ext})
-paul_lewis = File_Loop.new %(find "/apps/pictures/paul_lewis" #{photo_ext})
+good_friday = File_Loop.new %(find "/apps/pictures/good_friday" #{photo_ext})
 # mr_safety = File_Loop.new(%(find "#{HOME_DIR}/Videos/mr_safety" #{video_ext} ))
 
 # Accidents.show
@@ -131,11 +131,16 @@ while do_loop
 
   flyers.length.times do |_i|
     update_bg flyers.next
+    sleep 30
+  end
+
+  good_friday.length.times do |_i|
+    update_bg good_friday.next
     sleep 120
   end
 
   show_time
-  sleep 10
+  sleep 15
 
   # india.length.times do |_x|
   #   update_bg india.next
