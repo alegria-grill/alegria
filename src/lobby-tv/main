@@ -22,14 +22,12 @@ puts "=== Current directory: #{HOME_DIR}"
 puts "=== Date: #{Time.now}"
 
 do_loop = true
-reload = false
 
 RERUN = '/tmp/rerun.txt'
 File.delete(RERUN) if File.exist?(RERUN)
 trap('SIGUSR1') do
   File.write(RERUN, 'do_it')
   do_loop = false
-  reload = true
 end
 
 def run_cmd(cmd)
