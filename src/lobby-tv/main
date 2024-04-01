@@ -131,13 +131,13 @@ while do_loop
   #   sleep 120
   # end
 
-  show_time
-  sleep 15
-
   india.length.times do |_x|
     update_bg india.next
     sleep 30
   end
+
+  show_time
+  sleep 15
 
   update_bg dept.next
   sleep 30
