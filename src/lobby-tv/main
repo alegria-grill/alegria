@@ -100,7 +100,6 @@ india = File_Loop.new %(find "/apps/pictures/india_jan2024" #{photo_ext})
 flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
 ads    = File_Loop.new %(find "/apps/pictures/ads" #{photo_ext})
 waller = File_Loop.new %(find "/apps/pictures/wall_revival" #{photo_ext})
-good_friday = File_Loop.new %(find "/apps/pictures/good_friday" #{photo_ext})
 # mr_safety = File_Loop.new(%(find "#{HOME_DIR}/Videos/mr_safety" #{video_ext} ))
 
 # Accidents.show
@@ -122,47 +121,26 @@ while do_loop
 
   flyers.length.times do |_i|
     update_bg flyers.next
-    sleep 30
+    sleep 60
   end
 
-  # play "#{HOME_DIR}/Videos/temp/good.friday.es.mp4"
-  # good_friday.length.times do |_i|
-  #   update_bg good_friday.next
-  #   sleep 120
-  # end
+  show_time
+  sleep 10
 
-  india.length.times do |_x|
-    update_bg india.next
-    sleep 30
+  [waller, india, dept, best_photo, xmas_party_2023].each do |x|
+    update_bg x.next
+    sleep 45
   end
 
   show_time
   sleep 15
 
-  update_bg dept.next
-  sleep 30
-
-  # update_bg xmas_party_2023.next
-  # sleep 30
-  #
-  update_bg best_photo.next
-  sleep 30
-
-  show_time
-  sleep 10
-
-  update_bg waller.next
-  sleep 30
-
-  # waller.length.times do |_i|
-  # end
+  # play "#{HOME_DIR}/Videos/temp/good.friday.es.mp4"
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
     do_loop = false
     system 'alegria pull'
-    Accidents.show
-    sleep 10
   end
 
 end
