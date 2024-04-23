@@ -93,7 +93,7 @@ video_ext = %( -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4' -or -iname
 #   %[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom]
 # )
 best_photo = File_Loop.new(%( find "/apps/pictures/best" #{photo_ext} ))
-# videos = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
+videos = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 dept = File_Loop.new(%(find "#{HOME_DIR}/Pictures/dept" #{photo_ext} ))
 xmas_party_2023 = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 india = File_Loop.new %(find "/apps/pictures/india_jan2024" #{photo_ext})
@@ -127,15 +127,15 @@ while do_loop
   show_time
   sleep 10
 
-  [waller, india, dept, best_photo, xmas_party_2023].each do |x|
+  [waller, india, dept, xmas_party_2023].each do |x|
     update_bg x.next
-    sleep 45
+    sleep 60
   end
 
   show_time
-  sleep 15
+  sleep 10
 
-  # play "#{HOME_DIR}/Videos/temp/good.friday.es.mp4"
+  play videos.next
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
