@@ -143,7 +143,7 @@ while do_loop
   play videos.next
 
   india.length.times do |_i|
-    update_bg index.next
+    update_bg india.next
     sleep 10
   end
 
