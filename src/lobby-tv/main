@@ -120,16 +120,31 @@ while do_loop
   sleep 10
 
   flyers.length.times do |_i|
-    update_bg flyers.next
-    sleep 60
+    fn = flyers.next
+    update_bg fn
+
+    if fn['nationa']
+      sleep 60
+    else
+      sleep 30
+    end
   end
 
   show_time
   sleep 10
 
-  [waller, india, dept, xmas_party_2023].each do |x|
-    update_bg x.next
-    sleep 60
+  dept.length.times do |_i|
+    update_bg dept.next
+    sleep 30
+    show_time
+    sleep 10
+  end
+
+  play videos.next
+
+  india.length.times do |_i|
+    update_bg index.next
+    sleep 10
   end
 
   show_time
