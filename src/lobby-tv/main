@@ -121,36 +121,35 @@ while do_loop
 
   flyers.length.times do |_i|
     fn = flyers.next
-    update_bg fn
 
     if fn['nationa']
-      sleep 60
-    else
-      sleep 30
+      update_bg fn
+      sleep 240
     end
+    next
   end
 
   show_time
   sleep 10
 
-  dept.length.times do |_i|
-    update_bg dept.next
-    sleep 30
-    show_time
-    sleep 10
-  end
+  # dept.length.times do |_i|
+  #   update_bg dept.next
+  #   sleep 30
+  #   show_time
+  #   sleep 10
+  # end
 
-  play videos.next
+  # play videos.next
+  #
+  # india.length.times do |_i|
+  #   update_bg india.next
+  #   sleep 10
+  # end
 
-  india.length.times do |_i|
-    update_bg india.next
-    sleep 10
-  end
-
-  show_time
-  sleep 10
-
-  play videos.next
+  # show_time
+  # sleep 10
+  #
+  # play videos.next
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
