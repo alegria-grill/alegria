@@ -17,6 +17,15 @@ case "$@" in
     echo "$cmd write accident UNIX_TIMESTAMP"
     echo "     Updates accident file to today."
     ;;
+  "restart")
+    apid="$(alegria pid)"
+    if test -z "$apid" ; then
+      echo "!!! No pid found." >&2
+      exit 1
+    fi
+    set -x
+    kill -USR1 "$apid"
+    ;;
   "pid")
     if ! test -e /tmp/lobby.tv.process.txt ; then
       exit 1
