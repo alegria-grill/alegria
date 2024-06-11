@@ -120,44 +120,38 @@ while do_loop
   show_time
   sleep 10
 
-  forklift.length.times do |_i|
-    update_bg forklift.next
-    sleep 51
+
+  flyers.length.times do |_i|
+    update_bg flyers.next
+    sleep 50
 
     show_time
     sleep 10
   end
 
-  # flyers.length.times do |_i|
-  #   fn = flyers.next
-  #   update_bg fn
-  #   sleep 50
-  #
-  #   show_time
-  #   sleep 10
-  # end
-
-  # show_time
-  # sleep 10
-
-  # dept.length.times do |_i|
-  #   update_bg dept.next
-  #   sleep 30
-  #   show_time
-  #   sleep 10
-  # end
+  dept.length.times do |_i|
+    update_bg dept.next
+    sleep 30
+    show_time
+    sleep 10
+  end
 
   # play videos.next
   #
-  # india.length.times do |_i|
-  #   update_bg india.next
-  #   sleep 10
-  # end
+  india.length.times do |_i|
+    update_bg india.next
+    sleep 10
+  end
 
-  # show_time
-  # sleep 10
-  #
+  show_time
+  sleep 10
+
   # play videos.next
+
+  forklift.length.times do |_i|
+    update_bg forklift.next
+    sleep 10
+  end
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
