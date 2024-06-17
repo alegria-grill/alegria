@@ -146,12 +146,7 @@ while do_loop
   show_time
   sleep 10
 
-  # play videos.next
-
-  forklift.length.times do |_i|
-    update_bg forklift.next
-    sleep 10
-  end
+  play videos.next
 
   if shutdown?
     puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
