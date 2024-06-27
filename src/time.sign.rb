@@ -9,11 +9,11 @@ case new_cmd
 
 when 'update'
   new_content = File.read(TEMPLATE)
-    .sub('!Month', NOW.strftime('%B'))
-    .sub('!Day', NOW.strftime('%-d'))
-    .sub('!DayName', NOW.strftime('%A'))
-    .sub('!H', NOW.strftime('%-I'))
-    .sub('!M', NOW.strftime('%M %P'))
+    .gsub('!Month', NOW.strftime('%B'))
+    .gsub('!DayName', NOW.strftime('%A'))
+    .gsub('!Day', NOW.strftime('%-d'))
+    .gsub('!H', NOW.strftime('%-I'))
+    .gsub('!M', NOW.strftime('%M %P'))
 
   File.write(
     TMP_FILE,
