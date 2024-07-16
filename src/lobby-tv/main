@@ -122,11 +122,17 @@ while do_loop
 
 
   flyers.length.times do |_i|
-    update_bg flyers.next
-    sleep 50
+    next_f = flyers.next
+    update_bg next_f
+    case next_f
+    when /birthday/
+      sleep 120
+    else
+      sleep 30
+    end
 
     show_time
-    sleep 10
+    sleep 15
   end
 
   dept.length.times do |_i|
