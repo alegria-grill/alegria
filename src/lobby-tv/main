@@ -109,6 +109,9 @@ forklift = File_Loop.new %(find "/apps/pictures/forklift.safety" #{photo_ext})
 AV.volume_to 85
 sleep 2
 
+month = "august"
+day = "0"
+
 while do_loop
 
   show_time
@@ -123,11 +126,17 @@ while do_loop
 
   flyers.length.times do |_i|
     next_f = flyers.next
-    update_bg next_f
     case next_f
     when /birthday/
+      b_file = "/apps/birthdays/#{month}.#{day}.png"
+      if File.exist?(b_file)
+        update_bg b_file
+      else
+        update_bg next_f
+      end
       sleep 120
     else
+      update_bg next_f
       sleep 30
     end
 
