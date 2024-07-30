@@ -109,8 +109,9 @@ forklift = File_Loop.new %(find "/apps/pictures/forklift.safety" #{photo_ext})
 AV.volume_to 85
 sleep 2
 
-month = "august"
-day = "0"
+today = Time.now
+month = Date::MONTHNAMES[today.month].downcase
+day = today.day
 
 while do_loop
 
