@@ -129,7 +129,7 @@ while do_loop
     next_f = flyers.next
     case next_f
     when /birthday/
-      b_file = "/apps/birthdays/#{month}.#{day}.png"
+      b_file = "/apps/non-birthdays/#{month}.#{day}.png"
       if File.exist?(b_file)
         update_bg b_file
       else
