@@ -1,5 +1,29 @@
 # frozen_string_literal: true
 
+require 'date'
+
+module Birthday
+  extend self
+  def update(i, o) # input, output
+    if File.exist?(i)
+      warn "File does not exist: #{i}"
+      return false
+    end
+    today = Time.now
+    month = Date::MONTHNAMES[today.month].downcase
+    day = today.day
+
+    new_content = File.read(i)
+    (day - 1).times do |i|
+      x = i + 1
+
+      new_content = new_content.sub(%{id="day#{x}"}, %{id="day#{x}" style="opacity:40%"})
+    end
+
+    File.write(o, new_content)
+  end
+end
+
 def jpg_for_now(num, raw_dir)
   dir   = File.join(Dir.pwd, raw_dir)
   jpgs  = `find "#{dir}" -maxdepth 1 -mindepth 1 -type f -iname '*.jpg' -or -iname '*.png' `.split
@@ -271,4 +295,4 @@ class Alegria
     end # class
   end # class Auto_Reboot
 
-end # module
+end # class
