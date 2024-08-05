@@ -4,6 +4,7 @@
 require './src/alegria'
 require 'date'
 require './src/AV'
+require './src/Birthday.Sign'
 require './src/File_Loop'
 
 THIS_PID = Process.pid
@@ -109,9 +110,7 @@ forklift = File_Loop.new %(find "/apps/pictures/forklift.safety" #{photo_ext})
 AV.volume_to 85
 sleep 2
 
-today = Time.now
-month = Date::MONTHNAMES[today.month].downcase
-day = today.day
+bs_sign = Birthday_Sign.generate
 
 while do_loop
 
@@ -129,9 +128,8 @@ while do_loop
     next_f = flyers.next
     case next_f
     when /birthday/
-      b_file = "/apps/non-birthdays/#{month}.#{day}.png"
-      if File.exist?(b_file)
-        update_bg b_file
+      if bs_sign
+        update_bg bs_sign
       else
         update_bg next_f
       end
