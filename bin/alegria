@@ -77,8 +77,12 @@ case "$@" in
     echo "" > /tmp/alegria.pull.txt
     while read -r DIR ; do
       cd "$DIR"
-      git pull
-      echo "Done: $DIR" >> /tmp/alegria.pull.txt
+      if test -e .git ; then
+        git pull
+        echo "Done: $DIR" >> /tmp/alegria.pull.txt
+      else
+        echo "Skipping: $DIR"
+      fi
     done < <(find /apps/ -mindepth 1 -maxdepth 1 -type d)
     ;;
   "reset accident sign")
