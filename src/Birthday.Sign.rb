@@ -27,7 +27,7 @@ module Birthday_Sign
 
     (day - 1).times do |i|
       id = "day#{i + 1}"
-      content = content.sub(%{id="#{id}"}, %{id="#{id}" style="opacity:30%"})
+      content = content.sub(%{id="#{id}"}, %{id="#{id}" style="opacity:0.30"})
     end
 
     File.write(current_file, content)
@@ -39,7 +39,7 @@ end # module
 if $PROGRAM_NAME == __FILE__
   cmd = ARGV.join(' ')
   case cmd
-  when "generate"
+  when 'update'
     result = Birthday_Sign.generate
     if result
       puts result

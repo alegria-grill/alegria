@@ -96,6 +96,9 @@ case "$@" in
     ruby src/accident.sign.rb write "$3"
     ruby src/accident.sign.rb update
     ;;
+  'update birthday sign')
+    ruby src/Birthday.Sign.rb update
+    ;;
   "syntax")
     while read -r fn ; do
       echo -n "--- $fn: "
