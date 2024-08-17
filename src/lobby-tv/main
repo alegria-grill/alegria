@@ -127,6 +127,9 @@ while do_loop
   flyers.length.times do |_i|
     next_f = flyers.next
     case next_f
+    when /labor.day/
+      update_bg next_f
+      sleep 60
     when /birthday/
       if bs_sign
         update_bg bs_sign
