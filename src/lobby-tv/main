@@ -32,7 +32,14 @@ trap('SIGUSR1') do
 end
 
 def run_cmd(cmd)
-  File.write('/tmp/current.txt', cmd)
+  current_txt = '/tmp/current.txt'
+  old_content = File.exist?(current_txt) ? File.read(current_txt) : ''
+  line_count = old_content.split("\n").size
+  if line_count > 20
+    File.write(current_txt, cmd)
+  else
+    File.write(current_txt, "#{old_content}\n#{cmd}")
+  end
   puts "=== Running: #{cmd}"
   puts `#{cmd}`.strip
 end
@@ -140,7 +147,7 @@ while do_loop
       sleep 120
     else
       update_bg next_f
-      sleep 30
+      sleep 60
     end
 
     show_time
