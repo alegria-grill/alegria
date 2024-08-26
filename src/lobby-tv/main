@@ -112,6 +112,7 @@ sleep 2
 
 bs_sign = Birthday_Sign.generate
 
+today_month = Birthday_Sign.current_month.downcase
 while do_loop
 
   show_time
@@ -126,11 +127,11 @@ while do_loop
 
   flyers.length.times do |_i|
     next_f = flyers.next
-    case next_f
+    case next_f.downcase
     when /labor.day/
       update_bg next_f
       sleep 60
-    when /birthday/
+    when /birthday.#{today_month}/
       if bs_sign
         update_bg bs_sign
       else
