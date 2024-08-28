@@ -43,7 +43,7 @@ def run_cmd(cmd)
   puts "=== Running: #{cmd}"
   puts `#{cmd}`.strip
 end
-
+#
 def update_bg(s_file)
   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{s_file}")
 end
@@ -62,7 +62,7 @@ def show_time
 
   false
 end
-
+#
 class Accidents
   @@last_time = 0
   class << self
@@ -81,7 +81,7 @@ class Accidents
       run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "/tmp/accident.svg")
     end
   end # class << self
-end # def
+end # class
 
 def hour
   Time.now.strftime('%k').to_i
@@ -109,7 +109,7 @@ flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
 ads    = File_Loop.new %(find "/apps/pictures/ads" #{photo_ext})
 waller = File_Loop.new %(find "/apps/pictures/wall_revival" #{photo_ext})
 forklift = File_Loop.new %(find "/apps/pictures/forklift.safety" #{photo_ext})
-# mr_safety = File_Loop.new(%(find "#{HOME_DIR}/Videos/mr_safety" #{video_ext} ))
+mr_safety = File_Loop.new(%(find "#{HOME_DIR}/Videos/mr_safety" #{video_ext} ))
 
 # Accidents.show
 # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
@@ -130,7 +130,6 @@ while do_loop
 
   show_time
   sleep 10
-
 
   flyers.length.times do |_i|
     next_f = flyers.next
@@ -153,8 +152,6 @@ while do_loop
     sleep 10
   end
 
-  # play videos.next
-  #
   india.length.times do |_i|
     update_bg india.next
     sleep 10
@@ -165,14 +162,13 @@ while do_loop
 
   play videos.next
 
-  next unless if shutdown?
+  next unless shutdown?
 
   puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
   do_loop = false
   system 'alegria pull'
 
-end
-# while
+end # while
 
 #
 # minimize_windows
