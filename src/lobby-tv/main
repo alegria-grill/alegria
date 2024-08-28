@@ -43,7 +43,7 @@ def run_cmd(cmd)
   puts "=== Running: #{cmd}"
   puts `#{cmd}`.strip
 end
-#
+
 def update_bg(s_file)
   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{s_file}")
 end
@@ -62,7 +62,7 @@ def show_time
 
   false
 end
-#
+
 class Accidents
   @@last_time = 0
   class << self

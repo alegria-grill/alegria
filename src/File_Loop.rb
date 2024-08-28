@@ -5,7 +5,7 @@ require 'date'
 class File_Loop
   attr_reader :i, :list, :cmd
 
-  MONTHS = Date::ABBR_MONTHNAMES.map { |x| x && x.upcase }
+  MONTHS = Date::ABBR_MONTHNAMES.map { |x| x&.upcase }
   HUMAN_DATE_PATTERN = /[a-z]{3,4}_\d{2}_\d{4}(_\d{2}_\d{2})?\..{1,4}$/i.freeze
 
   class << self
@@ -16,8 +16,8 @@ class File_Loop
       i
     end
 
-    def date_string_to_number(s)
-      result = s.upcase[HUMAN_DATE_PATTERN]
+    def date_string_to_number(str_date)
+      result = str_date.upcase[HUMAN_DATE_PATTERN]
       return nil unless result
 
       s_month, s_day, s_year, s_hr, s_min = result.split('.').first.split('_')
@@ -25,7 +25,7 @@ class File_Loop
       "#{s_year}#{i_month}#{s_day}#{s_hr || '00'}#{s_min || '00'}".to_i
     end
 
-    def has_date_ending?(str)
+    def date_ending?(str)
       !!str[HUMAN_DATE_PATTERN]
     end
 
@@ -34,7 +34,7 @@ class File_Loop
       `#{s_cmd}`.strip.split("\n").select do |file|
         f_number = File_Loop.date_string_to_number(file)
         f_number ? (today < f_number) : true
-      end
+      end.sort
     end
   end # class self
 
