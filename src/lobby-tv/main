@@ -135,20 +135,12 @@ while do_loop
   flyers.length.times do |_i|
     next_f = flyers.next
     case next_f.downcase
-    when /labor.day/
-      update_bg next_f
-      sleep 60
     when /birthday.#{today_month}/
-      if bs_sign
-        update_bg bs_sign
-      else
-        update_bg next_f
-      end
-      sleep 120
+      update_bg(bs_sign || next_f)
     else
       update_bg next_f
-      sleep 60
     end
+    sleep 120
 
     show_time
     sleep 15
@@ -173,11 +165,11 @@ while do_loop
 
   play videos.next
 
-  if shutdown?
-    puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
-    do_loop = false
-    system 'alegria pull'
-  end
+  next unless if shutdown?
+
+  puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
+  do_loop = false
+  system 'alegria pull'
 
 end
 # while
