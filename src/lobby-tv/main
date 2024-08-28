@@ -96,20 +96,20 @@ def shutdown?
 end
 
 photo_ext = %( -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' -or -iname '*.heic' )
-video_ext = %( -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4' -or -iname '*.mkv' )
+# video_ext = %( -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4' -or -iname '*.mkv' )
 # photos = File_Loop.new(
 #   %[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom]
 # )
-best_photo = File_Loop.new(%( find "/apps/pictures/best" #{photo_ext} ))
+# best_photo = File_Loop.new(%( find "/apps/pictures/best" #{photo_ext} ))
 videos = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 dept = File_Loop.new(%(find "/apps/pictures/teams" #{photo_ext} ))
 xmas_party_2023 = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 india = File_Loop.new %(find "/apps/pictures/india_jan2024" #{photo_ext})
 flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
-ads    = File_Loop.new %(find "/apps/pictures/ads" #{photo_ext})
-waller = File_Loop.new %(find "/apps/pictures/wall_revival" #{photo_ext})
-forklift = File_Loop.new %(find "/apps/pictures/forklift.safety" #{photo_ext})
-mr_safety = File_Loop.new(%(find "#{HOME_DIR}/Videos/mr_safety" #{video_ext} ))
+# ads    = File_Loop.new %(find "/apps/pictures/ads" #{photo_ext})
+# waller = File_Loop.new %(find "/apps/pictures/wall_revival" #{photo_ext})
+# forklift = File_Loop.new %(find "/apps/pictures/forklift.safety" #{photo_ext})
+# mr_safety = File_Loop.new(%(find "#{HOME_DIR}/Videos/mr_safety" #{video_ext} ))
 
 # Accidents.show
 # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
