@@ -106,7 +106,7 @@ dept = File_Loop.new(%(find "/apps/pictures/teams" #{photo_ext} ))
 india = File_Loop.new %(find "/apps/pictures/india_jan2024" #{photo_ext})
 flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
 
-xmas_party_2023 = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
+xmas_party = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 # ads    = File_Loop.new %(find "/apps/pictures/ads" #{photo_ext})
 # waller = File_Loop.new %(find "/apps/pictures/wall_revival" #{photo_ext})
 # forklift = File_Loop.new %(find "/apps/pictures/forklift.safety" #{photo_ext})
@@ -149,6 +149,10 @@ while do_loop
   dept.length.times do |_i|
     update_bg dept.next
     sleep 30
+
+    update_bg xmas_party.next
+    sleep 10
+
     show_time
     sleep 10
   end
