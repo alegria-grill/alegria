@@ -10,7 +10,7 @@ cd /home/pi/apps/alegria || cd /apps/alegria
 case "$@" in
   -h|--help|help)
     cmd="$0"
-    echo "$cmd pid"
+    echo "$cmd pid|restart"
     echo "$cmd lobby-tv"
     echo "$cmd pull"
     echo "$cmd reset|update accident sign"
