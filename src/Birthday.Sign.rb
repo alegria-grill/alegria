@@ -23,13 +23,11 @@ module Birthday_Sign
     return false unless File.exist?(current_template_file)
 
     content = File.read(current_template_file)
-    today = Time.now
-    day = today.day
 
-    (day - 1).times do |i|
+    (Time.now.day - 1).times do |i|
       id = "day#{i + 1}"
       content = content.sub(%(id="#{id}"), %(id="#{id}" style="opacity:0.30"))
-    end
+    end # .times
 
     File.write(current_file, content)
     current_file
