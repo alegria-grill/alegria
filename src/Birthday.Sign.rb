@@ -8,7 +8,7 @@ module Birthday_Sign
 
   def current_month
     today = Time.now
-    month = Date::MONTHNAMES[today.month].downcase
+    Date::MONTHNAMES[today.month].downcase
   end
 
   def current_template_file
@@ -21,20 +21,20 @@ module Birthday_Sign
 
   def generate
     return false unless File.exist?(current_template_file)
+
     content = File.read(current_template_file)
     today = Time.now
     day = today.day
 
     (day - 1).times do |i|
       id = "day#{i + 1}"
-      content = content.sub(%{id="#{id}"}, %{id="#{id}" style="opacity:0.30"})
+      content = content.sub(%(id="#{id}"), %(id="#{id}" style="opacity:0.30"))
     end
 
     File.write(current_file, content)
     current_file
   end
 end # module
-
 
 if $PROGRAM_NAME == __FILE__
   cmd = ARGV.join(' ')
@@ -44,7 +44,7 @@ if $PROGRAM_NAME == __FILE__
     if result
       puts result
     else
-      warn "!!! Something went wrong. File did not generate."
+      warn '!!! Something went wrong. File did not generate.'
       exit 1
     end
   else
