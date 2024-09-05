@@ -32,16 +32,19 @@ trap('SIGUSR1') do
 end
 
 def run_cmd(cmd)
+  append_warn("=== Running: #{cmd}")
+  puts `#{cmd}`.strip
+end
+
+def append_warn(msg)
   current_txt = '/tmp/current.txt'
   old_content = File.exist?(current_txt) ? File.read(current_txt) : ''
   line_count = old_content.split("\n").size
-  if line_count > 20
-    File.write(current_txt, cmd)
+  if line_count > 50
+    File.write(current_txt, msg)
   else
     File.write(current_txt, "#{old_content}\n#{cmd}")
   end
-  puts "=== Running: #{cmd}"
-  puts `#{cmd}`.strip
 end
 
 def update_bg(s_file)
@@ -146,8 +149,13 @@ while do_loop
     sleep 15
   end
 
-  update_bg(bs_sign) if bs_sign
-  sleep 120
+  if bs_sign
+    update_bg(bs_sign)
+    sleep 120
+  else
+    puts '--- Skipping Birthday Sign.'
+    append_warn("--- Skipping birthday sign: #{bs_sign.inspect}")
+  end
 
   dept.length.times do |_i|
     update_bg dept.next
