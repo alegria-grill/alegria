@@ -43,7 +43,7 @@ def append_warn(msg)
   if line_count > 50
     File.write(current_txt, msg)
   else
-    File.write(current_txt, "#{old_content}\n#{cmd}")
+    File.write(current_txt, "#{old_content}\n#{msg}")
   end
 end
 
