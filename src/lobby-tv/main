@@ -123,7 +123,6 @@ AV.volume_to 85
 sleep 2
 
 bs_sign = Birthday_Sign.generate
-puts("--- Birthday sign status: #{bs_sign.inspect}")
 append_warn("--- Birthday sign status: #{bs_sign.inspect}")
 
 today_month = Birthday_Sign.current_month.downcase
@@ -131,6 +130,14 @@ while do_loop
 
   show_time
   sleep 10
+
+  if bs_sign
+    update_bg(bs_sign)
+    sleep 120
+  else
+    puts '--- Skipping Birthday Sign.'
+    append_warn("--- Skipping birthday sign: #{bs_sign.inspect}")
+  end
 
   Accidents.show
   sleep 30
@@ -150,14 +157,6 @@ while do_loop
 
     show_time
     sleep 15
-  end
-
-  if bs_sign
-    update_bg(bs_sign)
-    sleep 120
-  else
-    puts '--- Skipping Birthday Sign.'
-    append_warn("--- Skipping birthday sign: #{bs_sign.inspect}")
   end
 
   dept.length.times do |_i|
