@@ -37,6 +37,7 @@ def run_cmd(cmd)
 end
 
 def append_warn(msg)
+  puts msg
   current_txt = '/tmp/current.txt'
   old_content = File.exist?(current_txt) ? File.read(current_txt) : ''
   line_count = old_content.split("\n").size
