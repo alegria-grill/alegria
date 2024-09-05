@@ -142,22 +142,13 @@ while do_loop
   Accidents.show
   sleep 30
 
+  flyers.length.times do |_i|
+    update_bg flyers.next
+    sleep 120
+  end
+
   show_time
   sleep 10
-
-  flyers.length.times do |_i|
-    next_f = flyers.next
-    case next_f.downcase
-    when /birthday.#{today_month}/
-      update_bg(bs_sign || next_f)
-    else
-      update_bg next_f
-    end
-    sleep 120
-
-    show_time
-    sleep 15
-  end
 
   dept.length.times do |_i|
     update_bg dept.next
@@ -165,10 +156,10 @@ while do_loop
 
     update_bg xmas_party.next
     sleep 10
-
-    show_time
-    sleep 10
   end
+
+  show_time
+  sleep 10
 
   india.length.times do |_i|
     update_bg india.next
