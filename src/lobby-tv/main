@@ -122,6 +122,7 @@ AV.volume_to 85
 sleep 2
 
 bs_sign = Birthday_Sign.generate
+puts("--- Birthday sign status: #{bs_sign.inspect}")
 append_warn("--- Birthday sign status: #{bs_sign.inspect}")
 
 today_month = Birthday_Sign.current_month.downcase
