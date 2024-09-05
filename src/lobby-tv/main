@@ -146,6 +146,8 @@ while do_loop
     sleep 15
   end
 
+  update_bg(bs_sign) if bs_sign
+
   dept.length.times do |_i|
     update_bg dept.next
     sleep 30
