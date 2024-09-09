@@ -95,6 +95,14 @@ def early_morning?
   hour < 7
 end
 
+def morning?
+  hour < 11
+end
+
+def afternoon?
+  hour >= 11
+end
+
 def shutdown?
   hour > (12 + 4)
 end
@@ -126,6 +134,8 @@ bs_sign = Birthday_Sign.generate
 append_warn("--- Birthday sign status: #{bs_sign.inspect}")
 
 today_month = Birthday_Sign.current_month.downcase
+today = Time.now
+
 while do_loop
 
   show_time
@@ -150,26 +160,27 @@ while do_loop
   show_time
   sleep 10
 
-  dept.length.times do |_i|
-    update_bg dept.next
-    sleep 30
+  if afternoon?
+    dept.length.times do |_i|
+      update_bg dept.next
+      sleep 30
 
-    update_bg xmas_party.next
+      update_bg xmas_party.next
+      sleep 10
+    end
+
+    show_time
     sleep 10
-  end
 
-  show_time
-  sleep 10
+    india.length.times do |_i|
+      update_bg india.next
+      sleep 10
+    end
 
-  india.length.times do |_i|
-    update_bg india.next
+    show_time
     sleep 10
-  end
-
-  show_time
-  sleep 10
-
-  play videos.next
+    play videos.next
+  end # if afternoon?
 
   next unless shutdown?
 
