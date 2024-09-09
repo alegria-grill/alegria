@@ -134,7 +134,6 @@ bs_sign = Birthday_Sign.generate
 append_warn("--- Birthday sign status: #{bs_sign.inspect}")
 
 today_month = Birthday_Sign.current_month.downcase
-today = Time.now
 
 while do_loop
 
@@ -157,10 +156,10 @@ while do_loop
     sleep 120
   end
 
-  show_time
-  sleep 10
-
   if afternoon?
+    show_time
+    sleep 10
+
     dept.length.times do |_i|
       update_bg dept.next
       sleep 30
