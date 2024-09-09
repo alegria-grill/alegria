@@ -103,6 +103,10 @@ def afternoon?
   hour >= 11
 end
 
+def evening?
+  hour >= (12 + 3)
+end
+
 def shutdown?
   hour > (12 + 4)
 end
@@ -156,7 +160,7 @@ while do_loop
     sleep 120
   end
 
-  if afternoon?
+  if afternoon? && !evening?
     show_time
     sleep 10
 
