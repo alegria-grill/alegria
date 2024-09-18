@@ -4,17 +4,16 @@
 <svg
    version="1.1"
    id="svg1"
-   width="1906.8889"
-   height="333.18845"
-   viewBox="0 0 1906.8889 333.18845"
+   width="1872"
+   height="1056"
+   viewBox="0 0 1872 1056"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs1" />
   <g
-     id="g1"
-     transform="translate(7.8339257,-40.163712)">
+     id="g1">
     <image
        width="1872"
        height="1056"
@@ -30,7 +29,7 @@
        y="40.163712" />
     <g
        id="layer3-2"
-       transform="matrix(0.72919816,0,0,0.72919816,-844.24188,174.6518)"
+       transform="matrix(0.72919816,0,0,0.72919816,-866.24188,174.6518)"
        style="display:inline;fill:#ffcc00;stroke:#000000;stroke-width:1.37137;stroke-dasharray:none;stroke-opacity:1">
       <text
          xml:space="preserve"
@@ -65,7 +64,7 @@
     </g>
     <g
        id="g12"
-       transform="matrix(0.93432844,0,0,0.93432844,325.30887,-632.79044)"
+       transform="matrix(0.93432844,0,0,0.93432844,363.30887,-632.79044)"
        style="display:inline;fill:#ffcc00;stroke:#000000;stroke-width:1.07029;stroke-dasharray:none;stroke-opacity:1">
       <text
          xml:space="preserve"
