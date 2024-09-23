@@ -153,12 +153,15 @@ while do_loop
   end
 
   Accidents.show
-  sleep 30
+  sleep 60
 
   flyers.length.times do |_i|
     update_bg flyers.next
     sleep 120
   end
+
+  Accidents.show
+  sleep 60
 
   if afternoon? && !evening?
     show_time
