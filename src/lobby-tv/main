@@ -163,7 +163,7 @@ while do_loop
   Accidents.show
   sleep 60
 
-  if afternoon? && !evening?
+  if false && afternoon? && !evening?
     show_time
     sleep 10
 
