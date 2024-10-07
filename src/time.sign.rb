@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 TMP_FILE = '/tmp/time.sign.svg'
-TEMPLATE = '/apps/alegria/templates/time.svg'
+TEMPLATE = '/apps/pictures/templates/time.svg'
 
 NOW = Time.now
 
