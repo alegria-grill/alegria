@@ -158,7 +158,7 @@ while do_loop
 
   flyers.length.times do |_i|
     update_bg flyers.next
-    sleep 120
+    sleep(5 * 60)
   end
 
   Accidents.show
