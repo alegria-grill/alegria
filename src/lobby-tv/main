@@ -164,8 +164,8 @@ while do_loop
   Accidents.show
   sleep 60
 
-  play xmas_videos.next
-  play xmas_videos.next
+  # play xmas_videos.next
+  # play xmas_videos.next
 
   if false && afternoon? && !evening?
     show_time
