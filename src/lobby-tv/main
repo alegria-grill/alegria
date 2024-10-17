@@ -143,7 +143,10 @@ today_month = Birthday_Sign.current_month.downcase
 while do_loop
 
   show_time
-  sleep 10
+  sleep 30
+
+  Accidents.show
+  sleep 60
 
   if bs_sign
     update_bg(bs_sign)
@@ -153,19 +156,13 @@ while do_loop
     append_warn("--- Skipping birthday sign: #{bs_sign.inspect}")
   end
 
-  Accidents.show
-  sleep 60
-
   flyers.length.times do |_i|
     update_bg flyers.next
     sleep(5 * 60)
   end
 
-  Accidents.show
-  sleep 60
-
-  # play xmas_videos.next
-  # play xmas_videos.next
+  play xmas_videos.next
+  play xmas_videos.next
 
   if false && afternoon? && !evening?
     show_time
