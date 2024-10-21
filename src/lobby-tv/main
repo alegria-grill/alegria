@@ -159,10 +159,8 @@ while do_loop
   flyers.length.times do |_i|
     update_bg flyers.next
     sleep(5 * 60)
+    play xmas_videos.next
   end
-
-  play xmas_videos.next
-  play xmas_videos.next
 
   if false && afternoon? && !evening?
     show_time
