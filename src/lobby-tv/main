@@ -157,10 +157,13 @@ while do_loop
     update_bg flyers.next
     sleep(5 * 60)
 
+    show_time
+    sleep 10
+
     play xmas_videos.next
 
     show_time
-    sleep 45
+    sleep 30
   end
 
   if false && afternoon? && !evening?
