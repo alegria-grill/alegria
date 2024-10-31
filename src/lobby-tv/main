@@ -159,13 +159,14 @@ while do_loop
 
   flyers.length.times do |_i|
     update_bg flyers.next
-    sleep(5 * 60)
+    sleep(2 * 60)
 
     show_time
-    sleep 10
+    sleep 25
+  end
 
+  2.times do
     play xmas_videos.next
-
     show_time
     sleep 30
   end
