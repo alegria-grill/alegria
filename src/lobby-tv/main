@@ -139,20 +139,14 @@ sleep 2
 bs_sign = Birthday_Sign.generate
 append_warn("--- Birthday sign status: #{bs_sign.inspect}")
 
-today_month = Birthday_Sign.current_month.downcase
+# today_month = Birthday_Sign.current_month.downcase
+bd_file = "/apps/birthdays/#{Date::ABBR_MONTHNAMES[Time.now.month].downcase}#{Time.now.day}.png"
+birthday_sign = File.exist?(bd_file) && bd_file
 
 while do_loop
 
   Accidents.show
   sleep 60
-
-  if bs_sign
-    update_bg(bs_sign)
-    sleep 120
-  else
-    puts '--- Skipping Birthday Sign.'
-    append_warn("--- Skipping birthday sign: #{bs_sign.inspect}")
-  end
 
   update_bg short_flyers.next
   sleep 60
@@ -164,6 +158,23 @@ while do_loop
     show_time
     sleep 25
   end
+
+  # if bs_sign
+  #   update_bg(bs_sign)
+  #   sleep 120
+  # else
+  #   puts '--- Skipping Birthday Sign.'
+  #   append_warn("--- Skipping birthday sign: #{bs_sign.inspect}")
+  # end
+  if birthday_sign
+    update_bg birthday_sign
+    sleep(5 * 60)
+  else
+    append_warn("--- Skipping birthday sign: #{bd_file.inspect}")
+  end
+
+  show_time
+  sleep 25
 
   2.times do
     play xmas_videos.next
