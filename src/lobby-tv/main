@@ -148,8 +148,8 @@ while do_loop
   Accidents.show
   sleep 60
 
-  update_bg short_flyers.next
-  sleep 60
+  # update_bg short_flyers.next
+  # sleep 60
 
   flyers.length.times do |_i|
     update_bg flyers.next
