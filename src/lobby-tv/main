@@ -136,12 +136,28 @@ xmas_videos = File_Loop.new %(find "#{HOME_DIR}/Videos/xmas" -maxdepth 1 -type f
 AV.volume_to 85
 sleep 2
 
-bs_sign = Birthday_Sign.generate
-append_warn("--- Birthday sign status: #{bs_sign.inspect}")
+# bs_sign = Birthday_Sign.generate
+# append_warn("--- Birthday sign status: #{bs_sign.inspect}")
 
 # today_month = Birthday_Sign.current_month.downcase
-bd_file = "/apps/birthdays/#{Date::ABBR_MONTHNAMES[Time.now.month].downcase}#{Time.now.day}.png"
-birthday_sign = File.exist?(bd_file) && bd_file
+
+TODAY_NAME = Time.now.strftime('%A').upcase
+
+def bday_file(num = nil)
+  bd_file = "/apps/birthdays/#{Date::ABBR_MONTHNAMES[Time.now.month].downcase}#{num.nil? ? Time.now.day : num}.png"
+  File.exist?(bd_file) && bd_file
+end
+
+def show_bday(seconds)
+  3.times do |i|
+    birthday_sign = bday_file(Time.now.day + i)
+    if birthday_sign
+      update_bg birthday_sign
+      sleep seconds
+    end
+    break unless TODAY_NAME == 'FRIDAY'
+  end
+end
 
 while do_loop
 
@@ -159,6 +175,7 @@ while do_loop
     sleep 25
   end
 
+  show_bday(30)
   # if bs_sign
   #   update_bg(bs_sign)
   #   sleep 120
@@ -166,12 +183,12 @@ while do_loop
   #   puts '--- Skipping Birthday Sign.'
   #   append_warn("--- Skipping birthday sign: #{bs_sign.inspect}")
   # end
-  if birthday_sign
-    update_bg birthday_sign
-    sleep(5 * 60)
-  else
-    append_warn("--- Skipping birthday sign: #{bd_file.inspect}")
-  end
+  # if birthday_sign
+  #   update_bg birthday_sign
+  #   sleep(5 * 60)
+  # else
+  #   append_warn("--- Skipping birthday sign: #{bd_file.inspect}")
+  # end
 
   show_time
   sleep 25
