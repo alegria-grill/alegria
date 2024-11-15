@@ -174,8 +174,9 @@ while do_loop
     show_time
     sleep 25
   end
+  puts "=== End of flyers ==="
 
-  show_bday(30)
+  show_bday(120)
   # if bs_sign
   #   update_bg(bs_sign)
   #   sleep 120
