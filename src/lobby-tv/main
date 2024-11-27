@@ -174,22 +174,9 @@ while do_loop
     show_time
     sleep 25
   end
-  puts "=== End of flyers ==="
+  puts '=== End of flyers ==='
 
   show_bday(120)
-  # if bs_sign
-  #   update_bg(bs_sign)
-  #   sleep 120
-  # else
-  #   puts '--- Skipping Birthday Sign.'
-  #   append_warn("--- Skipping birthday sign: #{bs_sign.inspect}")
-  # end
-  # if birthday_sign
-  #   update_bg birthday_sign
-  #   sleep(5 * 60)
-  # else
-  #   append_warn("--- Skipping birthday sign: #{bd_file.inspect}")
-  # end
 
   show_time
   sleep 25
