@@ -161,8 +161,8 @@ end
 
 while do_loop
 
-  Accidents.show
-  sleep 60
+  # Accidents.show
+  # sleep 60
 
   # update_bg short_flyers.next
   # sleep 60
