@@ -181,11 +181,11 @@ while do_loop
   show_time
   sleep 25
 
-  # xmas_videos.length.times do
-  #   play xmas_videos.next
-  #   show_time
-  #   sleep 30
-  # end
+  xmas_videos.length.times do
+    play xmas_videos.next
+    show_time
+    sleep 30
+  end
 
   if false && afternoon? && !evening?
     show_time
