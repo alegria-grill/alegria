@@ -161,8 +161,8 @@ end
 
 while do_loop
 
-  # Accidents.show
-  # sleep 60
+  Accidents.show
+  sleep 60
 
   # update_bg short_flyers.next
   # sleep 60
@@ -185,12 +185,6 @@ while do_loop
 
   show_time
   sleep 25
-
-  xmas_videos.length.times do
-    play xmas_videos.next
-    show_time
-    sleep 30
-  end
 
   if false && afternoon? && !evening?
     show_time
