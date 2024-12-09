@@ -136,8 +136,8 @@ xmas_videos = File_Loop.new %(find "#{HOME_DIR}/Videos/xmas" -maxdepth 1 -type f
 AV.volume_to 85
 sleep 2
 
-# bs_sign = Birthday_Sign.generate
-# append_warn("--- Birthday sign status: #{bs_sign.inspect}")
+bs_sign = Birthday_Sign.generate
+append_warn("--- Birthday sign status: #{bs_sign.inspect}")
 
 # today_month = Birthday_Sign.current_month.downcase
 
@@ -166,6 +166,11 @@ while do_loop
 
   # update_bg short_flyers.next
   # sleep 60
+
+  if bs_sign
+    update_bg bs_sign
+    sleep(60)
+  end
 
   flyers.length.times do |_i|
     update_bg flyers.next
