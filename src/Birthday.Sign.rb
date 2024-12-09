@@ -26,7 +26,7 @@ module Birthday_Sign
 
     (Time.now.day - 1).times do |i|
       id = "day#{i + 1}"
-      content = content.sub(%(id="#{id}"), %(id="#{id}" style="opacity:0.30"))
+      content = content.sub(%(id="#{id}"), %(id="#{id}" style="opacity:0.60"))
     end # .times
 
     File.write(current_file, content)
