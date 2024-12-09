@@ -124,6 +124,7 @@ flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
 short_flyers = File_Loop.new %(find "/apps/pictures/short_flyers" #{photo_ext})
 
 # xmas_party = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
+xmas_2024 = File_Loop.new %(find "/apps/pictures/xmas_2024" #{photo_ext})
 # xmas_videos = File_Loop.new %(find "#{HOME_DIR}/Videos/xmas" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4')
 # ads    = File_Loop.new %(find "/apps/pictures/ads" #{photo_ext})
 # waller = File_Loop.new %(find "/apps/pictures/wall_revival" #{photo_ext})
@@ -182,6 +183,14 @@ while do_loop
   puts '=== End of flyers ==='
 
   # show_bday(120)
+
+  show_time
+  sleep 20
+
+  xmas_2024.length.times do |_i|
+    update_bg xmas_2024.next
+    sleep 10
+  end
 
   show_time
   sleep 20
