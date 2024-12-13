@@ -6,6 +6,12 @@ require 'date'
 module Birthday_Sign
   extend self
 
+  def show_today?
+    !!File.read(current_template_file)[/="day#{Time.now.day}"/]
+  rescue Object => _e
+    false
+  end
+
   def current_month
     today = Time.now
     Date::MONTHNAMES[today.month].downcase
