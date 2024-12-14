@@ -137,7 +137,8 @@ xmas_2024 = File_Loop.new %(find "/apps/pictures/xmas_2024" #{photo_ext})
 AV.volume_to 85
 sleep 2
 
-bs_sign = Birthday_Sign.generate
+bs_sign = Birthday_Sign.show_today? ? Birthday_Sign.generate : false
+
 append_warn("--- Birthday sign status: #{bs_sign.inspect}")
 
 # today_month = Birthday_Sign.current_month.downcase
