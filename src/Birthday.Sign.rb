@@ -7,7 +7,17 @@ module Birthday_Sign
   extend self
 
   def show_today?
-    !!File.read(current_template_file)[/="day#{Time.now.day}"/]
+    today_num = Time.now.day
+    body = File.read(current_template_file)
+    answer = body[/="day#{today_num}"/]
+    return answer if answer
+
+    case Time.now.strftime('%A').upcase
+    when 'FRIDAY', 'SATURDAY'
+      body[/="day#{today_num + 1}"/] || body[/="day#{today_num + 2}"/]
+    else
+      answer
+    end
   rescue Object => _e
     false
   end
