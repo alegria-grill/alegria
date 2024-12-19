@@ -184,41 +184,21 @@ while do_loop
   puts '=== End of flyers ==='
 
   # show_bday(120)
-
   show_time
   sleep 20
 
-  xmas_2024.length.times do |_i|
+  if afternoon? && !evening?
+    update_bg dept.next
+    sleep 30
+
     update_bg xmas_2024.next
-    sleep 10
-  end
+    sleep 30
 
-  show_time
-  sleep 20
-
-  if false && afternoon? && !evening?
-    show_time
-    sleep 10
-
-    dept.length.times do |_i|
-      update_bg dept.next
-      sleep 30
-
-      update_bg xmas_party.next
-      sleep 10
-    end
+    # update_bg india.next
+    # sleep 20
 
     show_time
     sleep 10
-
-    india.length.times do |_i|
-      update_bg india.next
-      sleep 10
-    end
-
-    show_time
-    sleep 10
-    play videos.next
   end # if afternoon?
 
   next unless shutdown?
@@ -226,7 +206,6 @@ while do_loop
   puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
   do_loop = false
   system 'alegria pull'
-
 end # while
 
 #
