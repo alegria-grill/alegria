@@ -184,22 +184,22 @@ while do_loop
   puts '=== End of flyers ==='
 
   # show_bday(120)
-  show_time
-  sleep 20
-
-  if afternoon? && !evening?
-    update_bg dept.next
-    sleep 30
-
-    update_bg xmas_2024.next
-    sleep 30
-
-    # update_bg india.next
-    # sleep 20
-
-    show_time
-    sleep 10
-  end # if afternoon?
+  # show_time
+  # sleep 20
+  #
+  # if afternoon? && !evening?
+  #   update_bg dept.next
+  #   sleep 30
+  #
+  #   update_bg xmas_2024.next
+  #   sleep 30
+  #
+  #   # update_bg india.next
+  #   # sleep 20
+  #
+  #   show_time
+  #   sleep 10
+  # end # if afternoon?
 
   next unless shutdown?
 
