@@ -255,7 +255,7 @@ class Alegria
 
     full_path = new_photo
     STDERR.puts "=== Updating background to: #{full_path}"
-    `pcmanfm --set-wallpaper "#{full_path}" --wallpaper-mode=crop`
+    `pcmanfm --set-wallpaper "#{full_path}" --wallpaper-mode=fit`
     true
   end # def
 
