@@ -177,14 +177,14 @@ while do_loop
     sleep(60)
   end
 
-  # flyers.length.times do |_i|
-  #   update_bg flyers.next
-  #   sleep(2 * 60)
-  #
-  #   show_time
-  #   sleep 25
-  # end
-  # puts '=== End of flyers ==='
+  flyers.length.times do |_i|
+    update_bg flyers.next
+    sleep(2 * 60)
+
+    show_time
+    sleep 25
+  end
+  puts '=== End of flyers ==='
 
   # show_bday(120)
   # show_time
