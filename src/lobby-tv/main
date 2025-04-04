@@ -117,19 +117,15 @@ photo_ext = %( -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.jpeg' -or -iname
 #   %[find "#{HOME_DIR}/Pictures/\" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png' | sort -R --random-source=/dev/urandom]
 # )
 # best_photo = File_Loop.new(%( find "/apps/pictures/best" #{photo_ext} ))
-videos = File_Loop.new(%(find "#{HOME_DIR}/Videos/main" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
+videos = File_Loop.new(%(find "/apps/pictures/flyers" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 dept = File_Loop.new(%(find "/apps/pictures/teams" #{photo_ext} ))
-india = File_Loop.new %(find "/apps/pictures/india_jan2024" #{photo_ext})
+# india = File_Loop.new %(find "/apps/pictures/india_jan2024" #{photo_ext})
 flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
 short_flyers = File_Loop.new %(find "/apps/pictures/short_flyers" #{photo_ext})
 
 # xmas_party = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 xmas_2024 = File_Loop.new %(find "/apps/pictures/xmas_2024" #{photo_ext})
 # xmas_videos = File_Loop.new %(find "#{HOME_DIR}/Videos/xmas" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4')
-# ads    = File_Loop.new %(find "/apps/pictures/ads" #{photo_ext})
-# waller = File_Loop.new %(find "/apps/pictures/wall_revival" #{photo_ext})
-# forklift = File_Loop.new %(find "/apps/pictures/forklift.safety" #{photo_ext})
-# mr_safety = File_Loop.new(%(find "#{HOME_DIR}/Videos/mr_safety" #{video_ext} ))
 
 # Accidents.show
 # run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{dept.next}")
@@ -164,24 +160,31 @@ end
 while do_loop
 
   Accidents.show
-  sleep 60
+  sleep 10
 
+  videos.length.times do |_i|
+    system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
+  end
   # update_bg short_flyers.next
   # sleep 60
+  Accidents.show
+  sleep 5
+  show_time
+  sleep 20
 
   if bs_sign
     update_bg bs_sign
     sleep(60)
   end
 
-  flyers.length.times do |_i|
-    update_bg flyers.next
-    sleep(2 * 60)
-
-    show_time
-    sleep 25
-  end
-  puts '=== End of flyers ==='
+  # flyers.length.times do |_i|
+  #   update_bg flyers.next
+  #   sleep(2 * 60)
+  #
+  #   show_time
+  #   sleep 25
+  # end
+  # puts '=== End of flyers ==='
 
   # show_bday(120)
   # show_time
