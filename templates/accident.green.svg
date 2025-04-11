@@ -21,12 +21,12 @@
        x="-15.45153"
        y="-11.115057" />
     <rect
-       style="fill:#e6e6e6;stroke-width:0.934868"
+       style="fill:#e6e6e6;stroke-width:0.8733"
        id="rect9"
        width="1920"
-       height="227.94424"
+       height="198.90915"
        x="0"
-       y="750.30481" />
+       y="666.30481" />
     <rect
        style="display:none;fill:#e6e6e6;stroke-width:0.934868"
        id="rect8"
@@ -40,66 +40,68 @@
        width="1920"
        height="102.51889"
        x="0"
-       y="977.14697" />
+       y="807.14697" />
     <text
        xml:space="preserve"
-       style="font-size:106.667px;fill:#e6e6e6"
-       x="955.94824"
-       y="112.53867"
+       style="font-size:83.3404px;fill:#e6e6e6;stroke-width:0.781313"
+       x="961.2818"
+       y="93.319748"
        id="text1"><tspan
-         x="955.9483"
-         y="112.53867"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:106.667px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';text-align:center;text-anchor:middle;fill:#e6e6e6"
+         x="961.2818"
+         y="93.319748"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:83.3404px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';text-align:center;text-anchor:middle;fill:#e6e6e6;stroke-width:0.781313"
          id="tspan2">THIS PLANT HAS WORKED</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:106.667px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';text-align:center;text-anchor:middle;fill:#f9f9f9"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:85.3333px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';text-align:center;text-anchor:middle;white-space:pre;inline-size:1844.12;fill:#f9f9f9"
        x="951.31281"
        y="577.60931"
-       id="text3"><tspan
-         id="tspan3"
+       id="text3"
+       transform="translate(9.1041665,34.657783)"><tspan
          x="951.31281"
          y="577.60931"
-         style="font-size:106.667px;fill:#f9f9f9">WITHOUT A </tspan><tspan
-         x="951.31287"
-         y="710.94305"
-         style="font-size:106.667px;fill:#f9f9f9"
-         id="tspan1">LOST TIME ACCIDENT</tspan></text>
+         id="tspan1622">WITHOUT A LOST TIME ACCIDENT</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:80px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';text-align:center;text-anchor:middle;fill:#000000"
-       x="954.37109"
-       y="839.62079"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:77.3333px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';text-align:center;text-anchor:middle;fill:#000000"
+       x="958.20642"
+       y="759.62079"
        id="text4"><tspan
-         id="tspan4"
-         x="954.37109"
-         y="839.62079"
-         style="font-size:80px">REPORT ALL INJURIES</tspan><tspan
-         x="954.37109"
-         y="939.62079"
+         x="958.20642"
+         y="759.62079"
          id="tspan5"
-         style="font-size:80px">TO YOUR TEAM LEADER</tspan></text>
+         style="font-size:77.3333px">REPORT ALL INJURIES TO YOUR TEAM LEADER</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:64px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';text-align:center;text-anchor:middle;display:inline;fill:#333333"
-       x="955.03125"
-       y="1047.9363"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:64px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';text-align:center;text-anchor:middle;display:inline;fill:#000000"
+       x="961.03125"
+       y="877.93628"
        id="text6"><tspan
          id="tspan6"
-         x="955.03125"
-         y="1047.9363"
-         style="font-size:64px;fill:#333333">SAFETY BEGINS WITH YOU</tspan></text>
+         x="961.03125"
+         y="877.93628"
+         style="font-size:64px;fill:#000000">SAFETY BEGINS WITH YOU</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:333.333px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';text-align:center;text-anchor:middle;fill:#ffcc00"
-       x="937.29919"
-       y="412.89075"
+       x="955.5"
+       y="410.89075"
        id="text10"><tspan
          id="tspan10"
-         x="937.29919"
-         y="412.89075"
+         x="955.5"
+         y="410.89075"
          style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:333.333px;font-family:Likhan;-inkscape-font-specification:'Likhan Medium';fill:#ffcc00">!D <tspan
    style="font-size:333.333px;fill:#ececec"
    id="tspan8">day!s</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:89.3333px;font-family:'Delicious Heavy';-inkscape-font-specification:'Delicious Heavy,  Bold';fill:#000000;stroke:#000000;stroke-width:1.93128"
+       x="552.7323"
+       y="1021.2243"
+       id="text1485"><tspan
+         id="tspan1483"
+         x="552.7323"
+         y="1021.2243"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:89.3333px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';fill:#ffffff;stroke:none;stroke-width:1.93128">RECORD: 108 days</tspan></text>
   </g>
 </svg>
