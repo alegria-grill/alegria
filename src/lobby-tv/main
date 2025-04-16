@@ -122,6 +122,7 @@ dept = File_Loop.new(%(find "/apps/pictures/teams" #{photo_ext} ))
 # india = File_Loop.new %(find "/apps/pictures/india_jan2024" #{photo_ext})
 flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
 short_flyers = File_Loop.new %(find "/apps/pictures/short_flyers" #{photo_ext})
+landscape = File_Loop.new %(find "/apps/pictures/landscape" #{photo_ext})
 
 # xmas_party = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 xmas_2024 = File_Loop.new %(find "/apps/pictures/xmas_2024" #{photo_ext})
@@ -159,23 +160,8 @@ end
 
 while do_loop
 
-  Accidents.show
-  sleep 10
-
-  videos.length.times do |_i|
-    system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
-  end
-  # update_bg short_flyers.next
-  # sleep 60
-  Accidents.show
-  sleep 5
   show_time
   sleep 20
-
-  if bs_sign
-    update_bg bs_sign
-    sleep(60)
-  end
 
   flyers.length.times do |_i|
     update_bg flyers.next
@@ -184,6 +170,21 @@ while do_loop
     show_time
     sleep 25
   end
+
+  if afternoon?
+    if bs_sign
+      update_bg bs_sign
+      sleep(60)
+    end
+    videos.length.times do |_i|
+      system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
+    end
+    Accidents.show
+    sleep 60
+  else
+    update_bg landscape.next
+  end
+
   puts '=== End of flyers ==='
 
   # show_bday(120)
