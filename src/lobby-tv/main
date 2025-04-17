@@ -123,6 +123,7 @@ dept = File_Loop.new(%(find "/apps/pictures/teams" #{photo_ext} ))
 flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
 short_flyers = File_Loop.new %(find "/apps/pictures/short_flyers" #{photo_ext})
 landscape = File_Loop.new %(find "/apps/pictures/landscape" #{photo_ext})
+bd_flyers = File_Loop.new %(find "/apps/pictures/birthday" #{photo_ext})
 
 # xmas_party = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 xmas_2024 = File_Loop.new %(find "/apps/pictures/xmas_2024" #{photo_ext})
@@ -171,11 +172,23 @@ while do_loop
     sleep 25
   end
 
+  show_time
+  sleep 20
+
   if afternoon?
     if bs_sign
       update_bg bs_sign
       sleep(60)
     end
+
+    bd_flyers.length.times do |_i|
+      update_bg bd_flyers.next
+      sleep(45)
+    end
+
+    show_time
+    sleep 20
+
     videos.length.times do |_i|
       system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
     end
