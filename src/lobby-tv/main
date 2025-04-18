@@ -196,6 +196,7 @@ while do_loop
     sleep 60
   else
     update_bg landscape.next
+    sleep 15
   end
 
   puts '=== End of flyers ==='
