@@ -175,6 +175,9 @@ while do_loop
   show_time
   sleep 20
 
+  Accidents.show
+  sleep 10
+
   if afternoon?
     if bs_sign
       update_bg bs_sign
@@ -192,12 +195,8 @@ while do_loop
     videos.length.times do |_i|
       system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
     end
-    Accidents.show
-    sleep 60
-  else
-    update_bg landscape.next
-    sleep 15
-  end
+
+  end # afternoon?
 
   puts '=== End of flyers ==='
 
