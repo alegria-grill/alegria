@@ -142,6 +142,7 @@ append_warn("--- Birthday sign status: #{bs_sign.inspect}")
 # today_month = Birthday_Sign.current_month.downcase
 
 TODAY_NAME = Time.now.strftime('%A').upcase
+MONTH_NAME = Date.today.strftime('%B').downcase
 
 def bday_file(num = nil)
   bd_file = "/apps/birthdays/#{Date::ABBR_MONTHNAMES[Time.now.month].downcase}#{num.nil? ? Time.now.day : num}.png"
@@ -189,7 +190,9 @@ while do_loop
     end
 
     bd_flyers.length.times do |_i|
-      update_bg bd_flyers.next
+      next_flyer = bd_flyers.next
+      next unless next_flyer[MONTH_NAME]
+      update_bg next_flyer
       sleep(45)
     end
 
