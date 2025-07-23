@@ -103,7 +103,7 @@ case "$@" in
     while read -r fn ; do
       echo -n "--- $fn: "
       ruby -c "$fn"
-    done < <(find . -type f -iname '*.rb')
+    done < <(find src -type f -iname '*.rb' -or -name 'main' )
     ;;
   *)
     echo "!!! Invalid option: $@" >&2

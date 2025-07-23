@@ -173,15 +173,15 @@ while do_loop
     sleep 25
   end
 
+  videos.length.times do |_i|
+    system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
+  end
+
   show_time
   sleep 20
 
   Accidents.show
   sleep 10
-
-  videos.length.times do |_i|
-    system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
-  end
 
   if afternoon?
     if bs_sign
