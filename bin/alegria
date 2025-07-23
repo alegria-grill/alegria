@@ -6,11 +6,7 @@ set -u -e -o pipefail
 
 export PATH="$PATH:/apps/alegria/bin"
 
-if test -e /home/pi/apps/alegria ; then
-  cd /home/pi/apps/alegria
-else
-  cd /apps/alegria
-fi
+cd /apps/alegria || cd /home/pi/apps/alegria
 
 case "$@" in
   -h|--help|help)
