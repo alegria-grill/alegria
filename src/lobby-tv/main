@@ -103,6 +103,10 @@ def afternoon?
   hour >= 11
 end
 
+def party_mode?
+  hour < 12
+end
+
 def evening?
   hour >= (12 + 3)
 end
@@ -173,8 +177,10 @@ while do_loop
     sleep 25
   end
 
-  videos.length.times do |_i|
-    system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
+  if party_mode?
+    videos.length.times do |_i|
+      system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
+    end
   end
 
   show_time
