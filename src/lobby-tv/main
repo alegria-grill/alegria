@@ -91,6 +91,8 @@ def hour
   Time.now.strftime('%k').to_i
 end
 
+TODAY_NUM = Time.now.strftime('%-d').to_i
+
 def early_morning?
   hour < 7
 end
@@ -101,6 +103,10 @@ end
 
 def afternoon?
   hour >= 11
+end
+
+def party_time?
+  hour >= 12
 end
 
 def evening?
@@ -124,6 +130,7 @@ flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
 short_flyers = File_Loop.new %(find "/apps/pictures/short_flyers" #{photo_ext})
 landscape = File_Loop.new %(find "/apps/pictures/landscape" #{photo_ext})
 bd_flyers = File_Loop.new %(find "/apps/pictures/birthday" #{photo_ext})
+bd_videos = File_Loop.new(%(find "/apps/pictures/birthday" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 
 # xmas_party = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 xmas_2024 = File_Loop.new %(find "/apps/pictures/xmas_2024" #{photo_ext})
@@ -178,15 +185,27 @@ while do_loop
   Accidents.show
   sleep 10
 
+  if party_time?
+    case TODAY_NUM
+    when 9, 10, 11, 17, 21, 24, 27, 29, 5, 12, 19, 26
+      bd_flyers.length.times do |_i|
+        update_bg bd_flyers.next
+        sleep(45)
+      end
+
+      bd_videos.length.times do |_i|
+        system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
+      end
+
+      show_time
+      sleep 20
+    end # case
+  end # id party_time?
+
   if afternoon?
     if bs_sign
       update_bg bs_sign
       sleep(60)
-    end
-
-    bd_flyers.length.times do |_i|
-      update_bg bd_flyers.next
-      sleep(45)
     end
 
     show_time
