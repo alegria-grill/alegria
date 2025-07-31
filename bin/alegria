@@ -5,7 +5,8 @@ set -u -e -o pipefail
 
 
 export PATH="$PATH:/apps/alegria/bin"
-cd /home/pi/apps/alegria || cd /apps/alegria
+
+cd /apps/alegria || cd /home/pi/apps/alegria
 
 case "$@" in
   -h|--help|help)
@@ -103,7 +104,7 @@ case "$@" in
     while read -r fn ; do
       echo -n "--- $fn: "
       ruby -c "$fn"
-    done < <(find . -type f -iname '*.rb')
+    done < <(find src -type f -iname '*.rb' -or -name 'main' )
     ;;
   *)
     echo "!!! Invalid option: $@" >&2

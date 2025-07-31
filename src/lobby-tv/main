@@ -91,8 +91,6 @@ def hour
   Time.now.strftime('%k').to_i
 end
 
-TODAY_NUM = Time.now.strftime('%-d').to_i
-
 def early_morning?
   hour < 7
 end
@@ -107,6 +105,10 @@ end
 
 def party_time?
   hour >= 12
+end
+
+def party_mode?
+  hour < 12
 end
 
 def evening?
@@ -149,6 +151,8 @@ append_warn("--- Birthday sign status: #{bs_sign.inspect}")
 # today_month = Birthday_Sign.current_month.downcase
 
 TODAY_NAME = Time.now.strftime('%A').upcase
+MONTH_NAME = Date.today.strftime('%B').downcase
+TODAY_NUM = Time.now.strftime('%-d').to_i
 
 def bday_file(num = nil)
   bd_file = "/apps/birthdays/#{Date::ABBR_MONTHNAMES[Time.now.month].downcase}#{num.nil? ? Time.now.day : num}.png"
@@ -179,9 +183,6 @@ while do_loop
     sleep 25
   end
 
-  show_time
-  sleep 20
-
   Accidents.show
   sleep 10
 
@@ -201,21 +202,6 @@ while do_loop
       sleep 20
     end # case
   end # id party_time?
-
-  if afternoon?
-    if bs_sign
-      update_bg bs_sign
-      sleep(60)
-    end
-
-    show_time
-    sleep 20
-
-    videos.length.times do |_i|
-      system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
-    end
-
-  end # afternoon?
 
   puts '=== End of flyers ==='
 
