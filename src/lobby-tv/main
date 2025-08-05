@@ -186,6 +186,12 @@ while do_loop
   Accidents.show
   sleep 10
 
+  if morning?
+    videos.length.times do |_i|
+      system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
+    end
+  end
+
   if party_time?
     case TODAY_NUM
     when 9, 10, 11, 17, 21, 24, 27, 29, 5, 12, 19, 26
@@ -195,7 +201,7 @@ while do_loop
       end
 
       bd_videos.length.times do |_i|
-        system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
+        system %(mpv --sub-auto=fuzzy --fullscreen "#{bd_videos.next}")
       end
 
       show_time
