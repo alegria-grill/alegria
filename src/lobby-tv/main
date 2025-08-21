@@ -96,7 +96,7 @@ def early_morning?
 end
 
 def morning?
-  hour < 11
+  hour <= 11
 end
 
 def afternoon?
@@ -105,6 +105,10 @@ end
 
 def party_time?
   hour >= 12
+end
+
+def lunch?
+  hour == 12
 end
 
 def party_mode?
@@ -186,7 +190,7 @@ while do_loop
   Accidents.show
   sleep 10
 
-  if morning?
+  if morning? || lunch?
     videos.length.times do |_i|
       system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
     end
