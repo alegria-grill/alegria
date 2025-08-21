@@ -190,10 +190,15 @@ while do_loop
   Accidents.show
   sleep 10
 
+  show_time
+  sleep 25
+
   if morning? || lunch?
     videos.length.times do |_i|
       system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
     end
+    show_time
+    sleep 25
   end
 
   if party_time?
