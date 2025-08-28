@@ -203,7 +203,7 @@ while do_loop
 
   if party_time?
     case TODAY_NUM
-    when 9, 10, 11, 17, 21, 24, 27, 29, 5, 12, 18, 19, 26
+    when 9, 10, 11, 17, 21, 24, 27, 29, 30, 5, 12, 18, 19, 26
       bd_flyers.length.times do |_i|
         update_bg bd_flyers.next
         sleep(45)
