@@ -201,25 +201,25 @@ while do_loop
     end
   end
 
-  if party_time?
-    case TODAY_NUM
-    when 9, 13, 14, 17, 19, 20, 22, 24, 25, 26, 27, 28, 29, 30
-      bd_flyers.length.times do |_i|
-        update_bg bd_flyers.next
-        sleep(45)
-      end
-
-      show_time
-      sleep 10
-
-      bd_videos.length.times do |_i|
-        system %(mpv --sub-auto=fuzzy --fullscreen "#{bd_videos.next}")
-      end
-
-      show_time
-      sleep 10
-    end # case
-  end # id party_time?
+  # if party_time?
+  #   case TODAY_NUM
+  #   when 9, 13, 14, 17, 19, 20, 22, 24, 25, 26, 27, 28, 29, 30
+  #     bd_flyers.length.times do |_i|
+  #       update_bg bd_flyers.next
+  #       sleep(45)
+  #     end
+  #
+  #     show_time
+  #     sleep 10
+  #
+  #     bd_videos.length.times do |_i|
+  #       system %(mpv --sub-auto=fuzzy --fullscreen "#{bd_videos.next}")
+  #     end
+  #
+  #     show_time
+  #     sleep 10
+  #   end # case
+  # end # id party_time?
 
   puts '=== End of flyers ==='
 
