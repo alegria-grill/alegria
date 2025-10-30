@@ -6,6 +6,34 @@ require 'date'
 module Birthday_Sign
   extend self
 
+  def last_tuesday_of_the_month
+    today = Date.today
+
+    if today.month == 12
+      next_month = 1
+      next_year = today.year + 1
+    else
+      next_month = today.month + 1
+      next_year = today.year
+    end
+
+    next_first = Date.new(next_year, next_month, 1)
+    next_cwday = next_first.cwday
+    last_tuesday = case next_cwday
+                   when 1
+                     next_first - 6
+                   when 2
+                     next_first - 7
+                   else
+                     next_first - (next_cwday - 2)
+                   end
+    last_tuesday
+  end # def last_tuesday_of_the_month
+
+  def is_bd_party_over?
+    Date.today > last_tuesday_of_the_month
+  end
+
   def show_today?
     today_num = Time.now.day
     body = File.read(current_template_file)

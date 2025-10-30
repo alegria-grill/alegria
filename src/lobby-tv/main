@@ -138,6 +138,9 @@ landscape = File_Loop.new %(find "/apps/pictures/landscape" #{photo_ext})
 bd_flyers = File_Loop.new %(find "/apps/pictures/birthday" #{photo_ext})
 bd_videos = File_Loop.new(%(find "/apps/pictures/birthday" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 
+last_tuesday = File_Loop.new %(find "/apps/pictures/last_tuesday" #{photo_ext})
+last_tuesday_videos = File_Loop.new(%(find "/apps/pictures/birthday" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
+
 # xmas_party = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 xmas_2024 = File_Loop.new %(find "/apps/pictures/xmas_2024" #{photo_ext})
 # xmas_videos = File_Loop.new %(find "#{HOME_DIR}/Videos/xmas" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4')
@@ -148,9 +151,8 @@ xmas_2024 = File_Loop.new %(find "/apps/pictures/xmas_2024" #{photo_ext})
 AV.volume_to 85
 sleep 2
 
-bs_sign = Birthday_Sign.show_today? ? Birthday_Sign.generate : false
-
-append_warn("--- Birthday sign status: #{bs_sign.inspect}")
+# bs_sign = Birthday_Sign.show_today? ? Birthday_Sign.generate : false
+# append_warn("--- Birthday sign status: #{bs_sign.inspect}")
 
 # today_month = Birthday_Sign.current_month.downcase
 
@@ -219,6 +221,15 @@ while do_loop
       show_time
       sleep 10
     end # case
+
+    unless Birthday_Sign.is_bd_party_over?
+      last_tuesday.length.times do |_i|
+        update_bg last_tuesday.next
+      end
+      last_tuesday_videos.length.times do |_i|
+        system %(mpv --sub-auto=fuzzy --fullscreen "#{last_tuesday_videos.next}")
+      end
+    end
   end # id party_time?
 
   puts '=== End of flyers ==='
