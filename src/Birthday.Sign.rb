@@ -6,6 +6,10 @@ require 'date'
 module Birthday_Sign
   extend self
 
+  def month_name
+    Date.today.strftime("%B").downcase
+  end
+
   def last_tuesday_of_the_month
     today = Date.today
 

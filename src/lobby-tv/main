@@ -7,6 +7,7 @@ require './src/AV'
 require './src/Birthday.Sign'
 require './src/File_Loop'
 
+THIS_MONTH = Date.today.strftime("%B").downcase
 THIS_PID = Process.pid
 puts ` echo on 0 | cec-client -s -d 1 ; `.strip
 sleep 3
@@ -135,11 +136,12 @@ dept = File_Loop.new(%(find "/apps/pictures/teams" #{photo_ext} ))
 flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
 short_flyers = File_Loop.new %(find "/apps/pictures/short_flyers" #{photo_ext})
 landscape = File_Loop.new %(find "/apps/pictures/landscape" #{photo_ext})
-bd_flyers = File_Loop.new %(find "/apps/pictures/birthday" #{photo_ext})
-bd_videos = File_Loop.new(%(find "/apps/pictures/birthday" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 
-last_tuesday = File_Loop.new %(find "/apps/pictures/last_tuesday" #{photo_ext})
-last_tuesday_videos = File_Loop.new(%(find "/apps/pictures/birthday" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
+bd_flyers = File_Loop.new %(find "/apps/pictures/#{THIS_MONTH}" #{photo_ext})
+bd_videos = File_Loop.new(%(find "/apps/pictures/#{THIS_MONTH}" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
+
+last_tuesday = File_Loop.new %(find "/apps/pictures/#{THIS_MONTH}_last_tuesday" #{photo_ext})
+last_tuesday_videos = File_Loop.new(%(find "/apps/pictures/#{THIS_MONTH}_last_tuesday" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 
 # xmas_party = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 xmas_2024 = File_Loop.new %(find "/apps/pictures/xmas_2024" #{photo_ext})
