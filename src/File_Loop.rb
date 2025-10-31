@@ -41,7 +41,7 @@ class File_Loop
   def initialize(cmd)
     @i = 0
     @cmd = cmd
-    @list = self.class.get_files(cmd)
+    @list = `#{cmd}`.strip.split("\n")
   end # def
 
   def next
