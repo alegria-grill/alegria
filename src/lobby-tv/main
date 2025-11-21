@@ -140,8 +140,8 @@ landscape = File_Loop.new %(find "/apps/pictures/landscape" #{photo_ext})
 bd_flyers = File_Loop.new %(find "/apps/pictures/#{THIS_MONTH}" #{photo_ext})
 bd_videos = File_Loop.new(%(find "/apps/pictures/#{THIS_MONTH}" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
 
-last_tuesday = File_Loop.new %(find "/apps/pictures/#{THIS_MONTH}_last_tuesday" #{photo_ext})
-last_tuesday_videos = File_Loop.new(%(find "/apps/pictures/#{THIS_MONTH}_last_tuesday" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
+last_tuesday = Birthday_Sign.last_tuesday_photos
+last_tuesday_videos = Birthday_Sign.last_tuesday_videos
 
 # xmas_party = File_Loop.new %(find "#{HOME_DIR}/Pictures/xmas_party_2023" #{photo_ext})
 xmas_2024 = File_Loop.new %(find "/apps/pictures/xmas_2024" #{photo_ext})

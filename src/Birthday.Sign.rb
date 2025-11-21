@@ -2,12 +2,22 @@
 # frozen_string_literal: true
 
 require 'date'
+require './src/File_Loop'
 
 module Birthday_Sign
   extend self
+  THIS_MONTH = Date.today.strftime("%B").downcase
 
   def month_name
     Date.today.strftime("%B").downcase
+  end
+
+  def last_tuesday_photos
+    File_Loop.new %(find "/apps/pictures/#{THIS_MONTH}_last_tuesday" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png'  )
+  end
+
+  def last_tuesday_videos
+    File_Loop.new(%(find "/apps/pictures/#{THIS_MONTH}_last_tuesday" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
   end
 
   def last_tuesday_of_the_month
@@ -93,6 +103,9 @@ if $PROGRAM_NAME == __FILE__
       warn '!!! Something went wrong. File did not generate.'
       exit 1
     end
+  when 'check'
+    puts Birthday_Sign.last_tuesday_photos.list
+    puts Birthday_Sign.last_tuesday_videos.list
   else
     warn "!!! Unknown command: #{cmd}"
     exit 1
