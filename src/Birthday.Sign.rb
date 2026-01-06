@@ -12,6 +12,22 @@ module Birthday_Sign
     Date.today.strftime("%B").downcase
   end
 
+  def this_month_photos
+    File_Loop.new %(find "/apps/pictures/#{THIS_MONTH}" #{File_Loop::PHOTO_EXT})
+  end
+
+  def this_month_videos
+    File_Loop.new(%(find "/apps/pictures/#{THIS_MONTH}" #{File_Loop::VIDEO_EXT}))
+  end
+
+  def last_tuesday_dir
+    "/apps/pictures/#{THIS_MONTH}_last_tuesday"
+  end
+
+  def last_tuesday_dir?
+    Dir.exist?(last_tuesday_dir)
+  end
+
   def last_tuesday_photos
     File_Loop.new %(find "/apps/pictures/#{THIS_MONTH}_last_tuesday" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png'  )
   end
@@ -106,6 +122,8 @@ if $PROGRAM_NAME == __FILE__
   when 'check'
     puts Birthday_Sign.last_tuesday_photos.list
     puts Birthday_Sign.last_tuesday_videos.list
+    puts Birthday_Sign.this_month_photos.list
+    puts Birthday_Sign.this_month_videos.list
   else
     warn "!!! Unknown command: #{cmd}"
     exit 1

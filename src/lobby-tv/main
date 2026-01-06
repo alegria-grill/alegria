@@ -137,8 +137,8 @@ flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
 short_flyers = File_Loop.new %(find "/apps/pictures/short_flyers" #{photo_ext})
 landscape = File_Loop.new %(find "/apps/pictures/landscape" #{photo_ext})
 
-bd_flyers = File_Loop.new %(find "/apps/pictures/#{THIS_MONTH}" #{photo_ext})
-bd_videos = File_Loop.new(%(find "/apps/pictures/#{THIS_MONTH}" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
+bd_flyers = Birthday_Sign.this_month_videos
+bd_videos = Birthday_Sign.this_month_videos
 
 last_tuesday = Birthday_Sign.last_tuesday_photos
 last_tuesday_videos = Birthday_Sign.last_tuesday_videos
@@ -207,7 +207,7 @@ while do_loop
 
   if party_time?
     case TODAY_NUM
-    when 1, 3, 4, 9, 14, 16, 17, 18, 20, 23, 25, 26, 28
+    when 1, 3, 6, 8, 9, 13, 14, 18, 20, 25, 27, 31
       bd_flyers.length.times do |_i|
         update_bg bd_flyers.next
         sleep(45)

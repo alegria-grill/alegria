@@ -5,6 +5,8 @@ require 'date'
 class File_Loop
   attr_reader :i, :list, :cmd
 
+  PHOTO_EXT = %( -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.jpeg' -or -iname '*.png' -or -iname '*.heic' )
+  VIDEO_EXT = %( -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4')
   MONTHS = Date::ABBR_MONTHNAMES.map { |x| x&.upcase }
   HUMAN_DATE_PATTERN = /[a-z]{3,4}_\d{2}_\d{4}(_\d{2}_\d{2})?\..{1,4}$/i.freeze
 
