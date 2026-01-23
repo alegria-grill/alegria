@@ -21,7 +21,7 @@ module Birthday_Sign
   end
 
   def last_tuesday_dir
-    "/apps/pictures/#{THIS_MONTH}_last_tuesday"
+    "/apps/pictures/#{THIS_MONTH}_last"
   end
 
   def last_tuesday_dir?
@@ -29,11 +29,11 @@ module Birthday_Sign
   end
 
   def last_tuesday_photos
-    File_Loop.new %(find "/apps/pictures/#{THIS_MONTH}_last_tuesday" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png'  )
+    File_Loop.new %(find "#{last_tuesday_dir}" -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.png'  )
   end
 
   def last_tuesday_videos
-    File_Loop.new(%(find "/apps/pictures/#{THIS_MONTH}_last_tuesday" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
+    File_Loop.new(%(find "#{last_tuesday_dir}" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
   end
 
   def last_tuesday_of_the_month
