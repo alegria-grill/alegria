@@ -57,7 +57,7 @@ end
 
 def process?(x)
   begin
-    Process.getpgid( x )
+    Process.getpgid(x)
     true
   rescue Errno::ESRCH
     false
@@ -179,6 +179,17 @@ end
 
 class Alegria
 
+  def self.git_commit_hash
+    fin = ''
+    Dir.chdir('/apps/pictures') do
+      fin += `git rev-parse --short HEAD`.strip
+    end
+    Dir.chdir('/apps/alegria') do
+      fin += `git rev-parse --short HEAD`.strip
+    end
+    fin
+  end
+
   def self.before_hour?(hour)
     return false if Time.now.min == 59 && hour12 == (hour - 1)
     hour12 < hour
@@ -296,3 +307,14 @@ class Alegria
   end # class Auto_Reboot
 
 end # class
+
+if $PROGRAM_NAME == __FILE__
+  cmd = ARGV.join(' ')
+  case cmd
+  when 'check'
+    puts Alegria.git_commit_hash
+  else
+    warn "!!! Unknown command: #{cmd}"
+    exit 1
+  end
+end # if

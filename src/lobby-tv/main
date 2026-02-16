@@ -178,7 +178,16 @@ def show_bday(seconds)
   end
 end
 
+
+last_commit = Alegria.git_commit_hash
+
 while do_loop
+
+  if last_commit != Alegria.git_commit_hash
+    do_loop = false
+    next
+  end
+
 
   show_time
   sleep 20

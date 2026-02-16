@@ -114,6 +114,7 @@ case "$@" in
        "$0" syntax
      fi
      ruby src/Birthday.Sign.rb check
+     ruby src/alegria.rb check
     ;;
   *)
     echo "!!! Invalid option: $@" >&2
