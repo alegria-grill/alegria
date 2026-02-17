@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require './src/File_Loop'
 require 'date'
 
 module Birthday
@@ -312,6 +313,7 @@ if $PROGRAM_NAME == __FILE__
   cmd = ARGV.join(' ')
   case cmd
   when 'check'
+    puts File_Loop.photos("/apps/pictures/flyers").list.inspect
     puts Alegria.git_commit_hash
   else
     warn "!!! Unknown command: #{cmd}"

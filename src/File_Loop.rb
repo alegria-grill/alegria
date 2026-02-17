@@ -11,6 +11,10 @@ class File_Loop
   HUMAN_DATE_PATTERN = /[a-z]{3,4}_\d{2}_\d{4}(_\d{2}_\d{2})?\..{1,4}$/i.freeze
 
   class << self
+    def photos(dir)
+      File_Loop.new %(find  "#{dir.inspect}" #{PHOTO_EXT})
+    end
+
     def month_name_to_month_number(str)
       i = File_Loop::MONTHS.index(str.upcase) || 0
       return "0#{i}" if i < 10

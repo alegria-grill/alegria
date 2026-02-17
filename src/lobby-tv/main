@@ -5,7 +5,6 @@ require './src/alegria'
 require 'date'
 require './src/AV'
 require './src/Birthday.Sign'
-require './src/File_Loop'
 
 THIS_MONTH = Date.today.strftime("%B").downcase
 THIS_PID = Process.pid
@@ -131,11 +130,11 @@ photo_ext = %( -maxdepth 1 -type f -iname '*.jpg' -or -iname '*.jpeg' -or -iname
 # )
 # best_photo = File_Loop.new(%( find "/apps/pictures/best" #{photo_ext} ))
 videos = File_Loop.new(%(find "/apps/pictures/flyers" -maxdepth 1 -type f -iname '*.webm' -or -iname '*.mp4'))
-dept = File_Loop.new(%(find "/apps/pictures/teams" #{photo_ext} ))
+# dept = File_Loop.new(%(find "/apps/pictures/teams" #{photo_ext} ))
 # india = File_Loop.new %(find "/apps/pictures/india_jan2024" #{photo_ext})
-flyers = File_Loop.new %(find "/apps/pictures/flyers" #{photo_ext})
-short_flyers = File_Loop.new %(find "/apps/pictures/short_flyers" #{photo_ext})
-landscape = File_Loop.new %(find "/apps/pictures/landscape" #{photo_ext})
+flyers = File_Loop.photos "/apps/pictures/flyers"
+# short_flyers = File_Loop.new %(find "/apps/pictures/short_flyers" #{photo_ext})
+# landscape = File_Loop.new %(find "/apps/pictures/landscape" #{photo_ext})
 
 bd_flyers = Birthday_Sign.this_month_videos
 bd_videos = Birthday_Sign.this_month_videos
@@ -180,6 +179,7 @@ end
 
 
 last_commit = Alegria.git_commit_hash
+puts "Flyers: #{flyers.list.inspect}"
 
 while do_loop
 
@@ -192,9 +192,9 @@ while do_loop
   show_time
   sleep 20
 
-  flyers.length.times do |_i|
-    update_bg flyers.next
-    sleep(2 * 60)
+  flyers.list.each do |next_photo|
+    update_bg next_photo
+    sleep(60)
 
     show_time
     sleep 25
