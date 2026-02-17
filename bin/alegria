@@ -56,8 +56,8 @@ case "$@" in
       done
       { "$0" pull || echo "!!! error !!!"; } &>/tmp/lobby-tv.txt
     fi
-    touch /tmp/rerun.txt
-    while test -e /tmp/rerun.txt ; do
+
+    while ! test -e /tmp/stop.txt ; do
       src/lobby-tv/main
     done
     ;;
