@@ -249,6 +249,7 @@ while do_loop
 
   puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
   do_loop = false
+  File.delete(RERUN) if File.exist?(RERUN)
   system 'alegria pull'
 end # while
 
