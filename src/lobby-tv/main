@@ -25,11 +25,11 @@ puts "=== Date: #{Time.now}"
 do_loop = true
 
 RERUN = '/tmp/rerun.txt'
-File.delete(RERUN) if File.exist?(RERUN)
-trap('SIGUSR1') do
-  File.write(RERUN, 'do_it')
-  do_loop = false
-end
+# File.delete(RERUN) if File.exist?(RERUN)
+# trap('SIGUSR1') do
+#   File.write(RERUN, 'do_it')
+#   do_loop = false
+# end
 
 def run_cmd(cmd)
   append_warn("=== Running: #{cmd}")
