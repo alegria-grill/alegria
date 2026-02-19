@@ -198,9 +198,6 @@ while do_loop
   Accidents.show
   sleep 10
 
-  show_time
-  sleep 25
-
   if morning? || lunch?
     videos.length.times do |_i|
       system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
@@ -238,6 +235,8 @@ while do_loop
     end
   end # id party_time?
 
+  # NOTE: Make sure time display is not the last
+  # item shown. In case the program crashes.
   puts '=== End of flyers ==='
 
   next unless shutdown?
