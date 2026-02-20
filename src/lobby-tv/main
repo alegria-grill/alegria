@@ -183,16 +183,12 @@ while do_loop
     next
   end
 
-
   show_time
   sleep 20
 
   flyers.list.each do |next_photo|
     update_bg next_photo
-    sleep(60)
-
-    show_time
-    sleep 25
+    sleep(120)
   end
 
   Accidents.show
