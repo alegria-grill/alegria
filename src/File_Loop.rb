@@ -47,7 +47,7 @@ class File_Loop
   def initialize(cmd)
     @i = 0
     @cmd = cmd
-    @list = `#{cmd}`.strip.split("\n")
+    @list = `#{cmd} | sort `.strip.split("\n")
   end # def
 
   def next
