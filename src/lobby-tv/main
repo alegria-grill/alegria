@@ -190,6 +190,7 @@ while do_loop
   show_time
   sleep 20
 
+  puts '--- Doing flyer loop:'
   flyers.list.each do |next_photo|
     update_bg next_photo
     sleep(30)
@@ -199,6 +200,7 @@ while do_loop
   sleep 10
 
   if morning? || lunch?
+    puts '--- Doing video loop:'
     videos.length.times do |_i|
       puts '-- Showing video:'
       system %(mpv --sub-auto=fuzzy --fullscreen "#{videos.next}")
@@ -210,11 +212,13 @@ while do_loop
   if party_time?
     case TODAY_NUM
     when 2, 3, 4, 5, 6, 7, 9, 12, 15, 16, 18, 19, 27, 30
+      puts '--- Doing birthday flyers loop:'
       bd_flyers.length.times do |_i|
         puts '-- Showing flyer:'
         update_bg bd_flyers.next
         sleep(45)
       end
+      puts '--- DONE birthday flyer loop.'
 
       show_time
       sleep 10
