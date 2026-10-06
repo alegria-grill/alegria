@@ -135,7 +135,7 @@ flyers = File_Loop.photos "/apps/pictures/flyers"
 # short_flyers = File_Loop.new %(find "/apps/pictures/short_flyers" #{photo_ext})
 # landscape = File_Loop.new %(find "/apps/pictures/landscape" #{photo_ext})
 
-bd_flyers = Birthday_Sign.this_month_videos
+bd_flyers = Birthday_Sign.this_month_photos
 bd_videos = Birthday_Sign.this_month_videos
 
 last_tuesday = Birthday_Sign.last_tuesday_photos
@@ -179,6 +179,7 @@ end
 
 last_commit = Alegria.git_commit_hash
 puts "Flyers: #{flyers.list.inspect}"
+puts "Bday Flyers: #{bd_flyers.list.inspect}"
 
 while do_loop
 
