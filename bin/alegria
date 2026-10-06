@@ -54,13 +54,14 @@ case "$@" in
         sleep 1
         count="$((count + 1))"
       done
-      { "$0" pull || echo "!!! error !!!"; } &>/tmp/lobby-tv.txt
+      { "$0" pull || echo "!!! error $? !!!"; } &>/tmp/lobby-tv.txt
     fi
 
     while ! test -e /tmp/stop.txt ; do
-      src/lobby-tv/main
+      src/lobby-tv/main || { echo "Error $?"; }
     done
     ;;
+
   "vertical-01")
     exec src/vertical-01/main
     ;;
