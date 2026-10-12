@@ -8,7 +8,8 @@ require './src/Birthday.Sign'
 
 THIS_MONTH = Date.today.strftime('%B').downcase
 THIS_PID = Process.pid
-puts ` echo on 0 | cec-client -s -d 1 ; `.strip
+# puts ` echo on 0 | cec-client -s -d 1 ; `.strip
+puts `cec-ctl -d /dev/cec0 --playback --to 0 --image-view-on`.strip
 sleep 3
 
 `echo "#{THIS_PID}" > /tmp/lobby.tv.process.txt`
@@ -249,7 +250,8 @@ while do_loop
 
   next unless shutdown?
 
-  puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
+  # puts ` echo standby 0 | cec-client -s -d 1 ; `.strip
+  puts ` cec-ctl -d /dev/cec0 --to 0 --standby ; `.strip
   do_loop = false
   system "touch #{RERUN}"
   system 'alegria pull'

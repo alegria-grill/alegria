@@ -5,11 +5,15 @@ set  -u -e -x
 sudo apt update
 sudo apt full-upgrade
 
-sudo apt install zsh ruby git fbi bat tree cec-utils neovim vlc feh wmctrl xdotool ripgrep pcmanfm mpv smplayer
+sudo apt install zsh ruby git fbi bat tree \
+  cec-utils neovim vlc feh wmctrl xdotool ripgrep pcmanfm mpv smplayer \
+  v4l-utils
 sudo apt autoremove
 
 git config --global user.name "lobby-tv-desktop"
 git config --global user.email "1551848+da99@users.noreply.github.com"
+
+sudo usermod -aG video "$USER"
 
 if ! test -e /apps ; then
   sudo ln -s $HOME/apps /apps
