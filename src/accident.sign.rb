@@ -25,7 +25,7 @@ when 'update'
     days = (secs / 60 / 60 / 24).to_i
     days < 1 ? 0 : days
   end
-  tmpl = new_count < 3 ? TEMPLATES_YELLOW : TEMPLATES_GREEN
+  tmpl = new_count < 2 ? TEMPLATES_YELLOW : TEMPLATES_GREEN
   plural = new_count == 1 ? '' : 's'
   File.write(
     IMAGES_ACCIDENT,
