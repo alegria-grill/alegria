@@ -45,7 +45,7 @@ def append_warn(msg)
 end
 
 def update_bg(s_file)
-  run_cmd %(feh --bg-center "#{s_file}")
+  run_cmd %(feh --bg-fill "#{s_file}")
   # if `which pcmanfm`.strip.empty?
   # else
   #   run_cmd %(pcmanfm --wallpaper-mode=fit --set-wallpaper "#{s_file}")
