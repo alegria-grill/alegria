@@ -57,6 +57,9 @@ case "$@" in
       { "$0" pull || echo "!!! error $? !!!"; } &>/tmp/lobby-tv.txt
     fi
 
+    sleep 1
+    ping -c1 1.1.1.1 || touch /tmp/no.network.txt
+
     while ! test -e /tmp/stop.txt ; do
       src/lobby-tv/main || { echo "Error $?"; }
     done

@@ -32,6 +32,10 @@ def run_cmd(cmd)
   puts `#{cmd}`.strip
 end
 
+def network_down?
+  File.exists?("/tmp/no.network.txt")
+end
+
 def append_warn(msg)
   puts msg
   current_txt = '/tmp/current.txt'
@@ -57,6 +61,8 @@ def play(s_file)
 end
 
 def show_time
+  return false if network_down?
+
   run_cmd %(/apps/alegria/src/time.sign.rb update)
   time_sign = '/tmp/time.sign.svg'
   if File.exist?(time_sign)
@@ -81,6 +87,7 @@ class Accidents
     end
 
     def show
+      return false if network_down?
       update
       update_bg "/tmp/accident.svg"
     end
