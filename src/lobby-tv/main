@@ -33,7 +33,7 @@ def run_cmd(cmd)
 end
 
 def network_down?
-  File.exists?("/tmp/no.network.txt")
+  File.exist?("/tmp/no.network.txt")
 end
 
 def append_warn(msg)
