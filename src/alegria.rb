@@ -287,7 +287,7 @@ class Alegria
       def now!
         @@last_msg = latest
         `git pull`
-        `sudo reboot`
+        `loginctl reboot`
       end # def now!
 
       def latest
